@@ -6,23 +6,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧪 Smart Tools Pro</title>
+<title>Smart Tools Pro</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
 
 body{
 margin:0;
 font-family:tahoma;
-background:linear-gradient(135deg,#2563eb,#020617);
-min-height:100vh;
+background:#020617;
 }
 
-
-/* لودینگ */
 
 #loading{
 position:fixed;
@@ -34,21 +27,13 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 color:white;
-z-index:9999;
 }
 
 
-.logo{
-font-size:35px;
+.loading-text{
+font-size:26px;
 font-weight:bold;
-animation:zoom 1.2s infinite;
-}
-
-
-@keyframes zoom{
-50%{
-transform:scale(1.15);
-}
+margin-bottom:20px;
 }
 
 
@@ -58,7 +43,6 @@ height:20px;
 background:#334155;
 border-radius:20px;
 overflow:hidden;
-margin-top:30px;
 }
 
 
@@ -76,20 +60,17 @@ font-size:20px;
 
 
 
-/* سایت */
-
 #site{
 display:none;
+background:white;
+min-height:100vh;
 padding:20px;
 }
 
 
 .box{
-max-width:420px;
+max-width:450px;
 margin:auto;
-background:white;
-padding:20px;
-border-radius:25px;
 }
 
 
@@ -102,38 +83,16 @@ color:#2563eb;
 .card{
 background:#f1f5f9;
 padding:15px;
-border-radius:18px;
 margin:15px 0;
-}
-
-
-button{
-width:100%;
-padding:12px;
-border:0;
-border-radius:15px;
-background:#2563eb;
-color:white;
-font-size:16px;
-}
-
-
-input{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:1px solid #aaa;
-margin:5px 0;
+border-radius:18px;
 }
 
 
 footer{
 text-align:center;
-margin-top:20px;
 font-weight:bold;
-color:#2563eb;
+margin-top:20px;
 }
-
 
 </style>
 
@@ -145,8 +104,8 @@ color:#2563eb;
 
 <div id="loading">
 
-<div class="logo">
-🧪 Smart Tools Pro
+<div class="loading-text">
+Loading...
 </div>
 
 
@@ -166,6 +125,7 @@ color:#2563eb;
 <div id="site">
 
 <div class="box">
+
 
 <h1>
 🧪 Smart Tools Pro
@@ -199,7 +159,6 @@ color:#2563eb;
 </div>
 
 
-
 <div class="card">
 
 <h3>⏱ تایمر</h3>
@@ -207,15 +166,12 @@ color:#2563eb;
 <input id="time" placeholder="ثانیه">
 
 <button onclick="startTimer()">
-شروع تایمر
+شروع
 </button>
 
-<p id="timer">
-آماده
-</p>
+<p id="timer">آماده</p>
 
 </div>
-
 
 
 <div class="card">
@@ -229,23 +185,6 @@ color:#2563eb;
 <p id="dice"></p>
 
 </div>
-
-
-
-<div class="card">
-
-<h3>🎯 حدس عدد</h3>
-
-<input id="guess" placeholder="عدد ۱ تا ۱۰">
-
-<button onclick="guessGame()">
-حدس
-</button>
-
-<p id="game"></p>
-
-</div>
-
 
 
 <div class="card">
@@ -263,13 +202,12 @@ color:#2563eb;
 </div>
 
 
-
 <div class="card">
 
 <h3>📡 تست پینگ</h3>
 
 <button onclick="pingTest()">
-شروع تست پینگ
+شروع تست
 </button>
 
 <p id="ping">
@@ -277,17 +215,6 @@ color:#2563eb;
 </p>
 
 </div>
-
-
-
-<div class="card">
-
-<button onclick="darkMode()">
-🌙 حالت شب
-</button>
-
-</div>
-
 
 
 <footer>
@@ -300,7 +227,7 @@ color:#2563eb;
 </div><script>
 
 
-// لودینگ ۰ تا ۱۰۰
+// لودینگ
 
 let p = 0;
 
@@ -317,9 +244,9 @@ if(p >= 100){
 
 clearInterval(load);
 
-document.getElementById("loading").style.display="none";
+document.getElementById("loading").style.display = "none";
 
-document.getElementById("site").style.display="block";
+document.getElementById("site").style.display = "block";
 
 }
 
@@ -368,10 +295,12 @@ clearInterval(timer);
 let t = Number(document.getElementById("time").value);
 
 
-timer = setInterval(function(){
+timer = setInterval(()=>{
+
 
 document.getElementById("timer").innerHTML =
 t + " ثانیه";
+
 
 t--;
 
@@ -384,6 +313,7 @@ document.getElementById("timer").innerHTML =
 "⏰ تمام شد";
 
 }
+
 
 },1000);
 
@@ -398,6 +328,7 @@ function dice(){
 
 let x = Math.floor(Math.random()*6)+1;
 
+
 document.getElementById("dice").innerHTML =
 "🎲 عدد: " + x;
 
@@ -406,60 +337,37 @@ document.getElementById("dice").innerHTML =
 
 
 
-// حدس عدد
-
-let secret = Math.floor(Math.random()*10)+1;
-
-
-function guessGame(){
-
-let g = Number(document.getElementById("guess").value);
-
-
-if(g === secret){
-
-document.getElementById("game").innerHTML =
-"🎉 درست بود!";
-
-secret = Math.floor(Math.random()*10)+1;
-
-}else{
-
-document.getElementById("game").innerHTML =
-"❌ اشتباهه";
-
-}
-
-}
-
-
-
-
-// تست پینگ
+// پینگ اصلاح شده
 
 async function pingTest(){
 
 let out = document.getElementById("ping");
 
-out.innerHTML="⏳ در حال تست...";
+out.innerHTML = "⏳ در حال تست...";
 
 
 try{
 
-let start = performance.now();
+let start = Date.now();
 
-await fetch("https://www.google.com/favicon.ico?"+Date.now());
 
-let end = performance.now();
+await fetch(
+"https://www.google.com/favicon.ico?time="+Date.now(),
+{mode:"no-cors"}
+);
+
+
+let end = Date.now();
 
 
 out.innerHTML =
-"📡 پینگ: " + Math.round(end-start) + " ms";
+"📡 پینگ تقریبی: " + (end-start) + " ms";
 
 
-}catch{
+}catch(e){
 
-out.innerHTML="❌ خطا";
+out.innerHTML =
+"⚠️ مرورگر اجازه تست دقیق پینگ نمی‌دهد";
 
 }
 
@@ -482,43 +390,33 @@ try{
 let start = performance.now();
 
 
-let r = await fetch(
+let response = await fetch(
 "https://speed.cloudflare.com/__down?bytes=1000000&x="+Date.now()
 );
 
 
-await r.blob();
+await response.blob();
 
 
 let end = performance.now();
 
 
-let seconds=(end-start)/1000;
+let seconds = (end-start)/1000;
 
-let speed=(1/seconds).toFixed(2);
+
+let speed = (1/seconds).toFixed(2);
 
 
 out.innerHTML =
 "🚀 سرعت تقریبی: " + speed + " MB/s";
 
 
-}catch{
+}catch(e){
 
-out.innerHTML="❌ خطا در تست";
+out.innerHTML =
+"⚠️ تست سرعت محدود شد";
 
 }
-
-}
-
-
-
-
-
-// حالت شب
-
-function darkMode(){
-
-document.body.style.background="#020617";
 
 }
 
