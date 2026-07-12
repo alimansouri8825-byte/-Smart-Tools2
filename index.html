@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Smart Tools</title>
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:tahoma,sans-serif;
+}
+
+body{
 background:#020617;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-font-family:tahoma,sans-serif;
 color:white;
 text-align:center;
 }
 
 .box{
 background:#0f172a;
-padding:30px;
+padding:35px;
 border-radius:20px;
-max-width:500px;
 width:90%;
+max-width:550px;
+box-shadow:0 0 20px rgba(37,99,235,.4);
 }
 
 h1{
-font-size:32px;
+font-size:36px;
 margin-bottom:20px;
+color:#38bdf8;
 }
 
 p{
-font-size:20px;
+font-size:22px;
 line-height:1.8;
+margin-bottom:30px;
 }
 
-.loading{
-font-size:26px;
-margin-top:20px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-50%{
-opacity:0.3;
-}
+#loading{
+font-size:28px;
+font-weight:bold;
 }
 
 </style>
@@ -57,18 +61,38 @@ opacity:0.3;
 
 <div class="box">
 
-<h1>🧪 Smart Tools 🧪</h1>
+<h1>Smart Tools</h1>
 
 <p>
-در حال بروزرسانی نسخه <b>Pro Max</b><br>
-به نسخه <b>Ultra</b>
+در حال ارتقای نسخه <b>Pro Max</b><br>
+به نسخه <b>Ultra</b>...
+<br><br>
+لطفاً به‌زودی دوباره مراجعه کنید.
 </p>
 
-<div class="loading">
-...Loading
-</div>
+<div id="loading">.Loading</div>
 
 </div>
+
+<script>
+
+let dots = 1;
+
+setInterval(function(){
+
+dots++;
+
+if(dots > 3){
+dots = 1;
+}
+
+document.getElementById("loading").innerHTML =
+".".repeat(dots) + "Loading";
+
+},500);
+
+</script>
 
 </body>
+
 </html>
