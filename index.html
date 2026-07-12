@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🧪 Smart Tools</title>
+
+<style>
+body{
+margin:0;
+font-family:tahoma;
+background:linear-gradient(135deg,#2563eb,#0f172a);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:1s;
+}
+
+.box{
+background:white;
+width:370px;
+padding:20px;
+border-radius:25px;
+box-shadow:0 0 25px #0008;
+}
+
+h2{
+text-align:center;
+color:#2563eb;
+}
+
+.card{
+background:#f1f5f9;
+padding:15px;
+border-radius:15px;
+margin:15px 0;
+}
+
+button{
+width:100%;
+padding:12px;
+border:0;
+border-radius:12px;
+background:#2563eb;
+color:white;
+font-size:16px;
+margin-top:8px;
+}
+
+input{
+width:90%;
+padding:10px;
+border-radius:10px;
+border:1px solid #aaa;
+margin:5px;
+}
+
+footer{
+text-align:center;
+margin-top:20px;
+padding:15px;
+font-size:16px;
+color:#2563eb;
+font-weight:bold;
+}
+
+.dark{
+background:#020617;
+}
+
+.dark .box{
+background:#1e293b;
+color:white;
+}
+
+.dark .card{
+background:#334155;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="box">
+
+<h2>🧪 Smart Tools</h2>
+
+
+<div class="card">
+<h3>📱 مشخصات دستگاه</h3>
+<p id="device">در حال دریافت...</p>
+</div>
+
+
+<div class="card">
+<h3>🧮 ماشین حساب</h3>
+
+<input id="a" placeholder="عدد اول">
+<input id="b" placeholder="عدد دوم">
+
+<button onclick="calc()">جمع</button>
+
+<p id="calc"></p>
+
+</div>
+
+
+<div class="card">
+
+<h3>⏱ تایمر</h3>
+
+<input id="time" placeholder="ثانیه">
+
+<button onclick="timerStart()">شروع تایمر</button>
+
+<p id="timer">00</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🎲 تاس</h3>
+
+<button onclick="dice()">انداختن تاس</button>
+
+<p id="dice"></p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🎯 بازی حدس عدد</h3>
+
+<p>یک عدد بین ۱ تا ۱۰ حدس بزن</p>
+
+<input id="guess">
+
+<button onclick="guessGame()">حدس</button>
+
+<p id="game"></p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌙 تنظیمات</h3>
+
+<button onclick="dark()">حالت شب</button>
+
+</div>
+
+
+<footer>
+سازنده: علی منصوری
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+
+document.getElementById("device").innerHTML=
+"🌐 مرورگر: "+navigator.userAgent+
+"<br><br>"+
+"🗣 زبان: "+navigator.language+
+"<br><br>"+
+"📐 صفحه: "+screen.width+" × "+screen.height+
+"<br><br>"+
+"⚙️ هسته CPU: "+
+(navigator.hardwareConcurrency||"نامشخص");
+
+
+
+function calc(){
+
+let a=Number(document.getElementById("a").value);
+let b=Number(document.getElementById("b").value);
+
+document.getElementById("calc").innerHTML=
+"نتیجه: "+(a+b);
+
+}
+
+
+
+let interval;
+
+function timerStart(){
+
+clearInterval(interval);
+
+let t=Number(document.getElementById("time").value);
+
+interval=setInterval(()=>{
+
+document.getElementById("timer").innerHTML=t+" ثانیه";
+
+t--;
+
+if(t<0){
+
+clearInterval(interval);
+
+document.getElementById("timer").innerHTML="⏰ تمام شد";
+
+}
+
+},1000);
+
+}
+
+
+
+function dice(){
+
+let x=Math.floor(Math.random()*6)+1;
+
+document.getElementById("dice").innerHTML=
+"🎲 عدد تاس: "+x;
+
+}
+
+
+
+let secret=Math.floor(Math.random()*10)+1;
+
+
+function guessGame(){
+
+let g=Number(document.getElementById("guess").value);
+
+
+if(g==secret){
+
+document.getElementById("game").innerHTML=
+"🎉 درست حدس زدی!";
+
+secret=Math.floor(Math.random()*10)+1;
+
+}
+
+else{
+
+document.getElementById("game").innerHTML=
+"❌ اشتباهه، دوباره تلاش کن";
+
+}
+
+}
+
+
+
+function dark(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+</script>
+
+
+</body>
+</html>
