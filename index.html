@@ -10,15 +10,21 @@
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:tahoma;
+padding:0;
+box-sizing:border-box;
+font-family:tahoma,sans-serif;
+}
+
+body{
 background:#020617;
 }
 
-
 #loading{
 position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
 background:#020617;
@@ -27,243 +33,164 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 color:white;
+z-index:9999;
 }
 
-
 .loading-text{
-font-size:30px;
+font-size:32px;
 font-weight:bold;
 margin-bottom:20px;
 }
 
-
 .bar{
 width:80%;
+max-width:500px;
 height:20px;
 background:#334155;
-border-radius:20px;
+border-radius:30px;
 overflow:hidden;
 }
 
-
 .progress{
-height:100%;
 width:0%;
+height:100%;
 background:#2563eb;
 }
 
-
 #percent{
 margin-top:10px;
-font-size:20px;
+font-size:22px;
+font-weight:bold;
 }
-
 
 #site{
 display:none;
-background:white;
+background:#ffffff;
 min-height:100vh;
 padding:20px;
 }
 
-
 .box{
-max-width:450px;
+max-width:900px;
 margin:auto;
 }
-
 
 h1{
 text-align:center;
 color:#2563eb;
+margin-bottom:20px;
 }
-
 
 .card{
 background:#f1f5f9;
 padding:15px;
-border-radius:18px;
+border-radius:15px;
 margin:15px 0;
 }
 
+input{
+width:100%;
+padding:10px;
+margin:6px 0;
+}
 
 button{
 width:100%;
 padding:12px;
 background:#2563eb;
 color:white;
-border:0;
-border-radius:15px;
+border:none;
+border-radius:12px;
+cursor:pointer;
 }
 
+footer{
+text-align:center;
+margin-top:20px;
+font-weight:bold;
+}
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <div id="loading">
 
 <div class="loading-text" id="loadingText">
-...Loading
+.Loading
 </div>
-
 
 <div class="bar">
-
 <div class="progress" id="progress"></div>
-
 </div>
-
 
 <div id="percent">
 0%
 </div>
 
-
 </div>
-
-
 
 <div id="site">
 
 <div class="box">
 
-
-<h1>
-🧪 Smart Tools Pro
-</h1><h1>
-</h1><div class="card">
-
+<h1>🧪 Smart Tools Pro</h1><h1>🧪 Smart Tools Pro</h1><div class="card">
 <h3>📱 اطلاعات دستگاه</h3>
-
-<p id="device">
-در حال دریافت...
-</p>
-
+<p id="device">در حال دریافت...</p>
 </div>
 
-
 <div class="card">
-
 <h3>🧮 ماشین حساب</h3>
 
-<input id="a" placeholder="عدد اول">
+<input type="number" id="a" placeholder="عدد اول">
+<input type="number" id="b" placeholder="عدد دوم">
 
-<input id="b" placeholder="عدد دوم">
-
-<button onclick="calc()">
-محاسبه
-</button>
+<button onclick="calc()">محاسبه</button>
 
 <p id="result"></p>
-
 </div>
 
-
 <div class="card">
-
 <h3>⏱ تایمر</h3>
 
-<input id="time" placeholder="ثانیه">
+<input type="number" id="time" placeholder="ثانیه">
 
-<button onclick="startTimer()">
-شروع تایمر
-</button>
+<button onclick="startTimer()">شروع تایمر</button>
 
-<p id="timer">
-آماده
-</p>
-
+<p id="timer">آماده</p>
 </div>
 
-
 <div class="card">
-
 <h3>🎲 تاس</h3>
 
-<button onclick="dice()">
-انداختن تاس
-</button>
+<button onclick="dice()">انداختن تاس</button>
 
 <p id="dice"></p>
-
 </div>
 
-
 <div class="card">
-
 <h3>🚀 تست سرعت اینترنت</h3>
 
-<button onclick="speedTest()">
-شروع تست
-</button>
+<button onclick="speedTest()">شروع تست</button>
 
-<p id="speed">
-آماده
-</p>
-
+<p id="speed">آماده</p>
 </div>
-
 
 <div class="card">
-
 <h3>📡 تست پینگ</h3>
 
-<button onclick="pingTest()">
-شروع تست
-</button>
+<button onclick="pingTest()">شروع تست</button>
 
-<p id="ping">
-آماده
-</p>
-
+<p id="ping">آماده</p>
 </div>
-
 
 <footer>
 سازنده: علی منصوری
-</footer>
+</footer><script>
 
-
-</div>
-
-</div><script>
-
-
-// لودینگ ۰ تا ۱۰۰
-
-let p = 0;
-
-let load = setInterval(function(){
-
-p++;
-
-document.getElementById("progress").style.width = p + "%";
-
-document.getElementById("percent").innerHTML = p + "%";
-
-
-if(p >= 100){
-
-clearInterval(load);
-
-document.getElementById("loading").style.display = "none";
-
-document.getElementById("site").style.display = "block";
-
-}
-
-},30);
-
-
-
-
-// .Loading ..Loading ...Loading
-
+// Loading Animation
 let dots = 1;
 
 setInterval(function(){
@@ -276,50 +203,58 @@ dots = 1;
 
 }
 
-
 document.getElementById("loadingText").innerHTML =
-"Loading" + ".".repeat(dots);
-
+".".repeat(dots) + "Loading";
 
 },500);
 
 
+// Progress Bar
+let p = 0;
+
+const loader = setInterval(function(){
+
+p++;
+
+document.getElementById("progress").style.width = p + "%";
+
+document.getElementById("percent").innerHTML = p + "%";
+
+if(p >= 100){
+
+clearInterval(loader);
+
+document.getElementById("loading").style.display = "none";
+
+document.getElementById("site").style.display = "block";
+
+}
+
+},30);
 
 
-
-// اطلاعات دستگاه
-
+// Device Info
 document.getElementById("device").innerHTML =
-
 "🌐 زبان: " + navigator.language +
-"<br><br>📐 صفحه: " + screen.width + " × " + screen.height +
-"<br><br>⚙️ هسته CPU: " +
+"<br>📱 صفحه: " + screen.width + " × " + screen.height +
+"<br>💻 هسته CPU: " +
 (navigator.hardwareConcurrency || "نامشخص");
 
 
-
-
-
-// ماشین حساب
-
+// Calculator
 function calc(){
 
 let a = Number(document.getElementById("a").value);
 
 let b = Number(document.getElementById("b").value);
 
-
 document.getElementById("result").innerHTML =
-"نتیجه: " + (a+b);
+"نتیجه: " + (a + b);
 
 }
 
 
-
-
-
-// تایمر
-
+// Timer
 let timer;
 
 function startTimer(){
@@ -328,14 +263,12 @@ clearInterval(timer);
 
 let t = Number(document.getElementById("time").value);
 
-
 timer = setInterval(function(){
 
 document.getElementById("timer").innerHTML =
 t + " ثانیه";
 
 t--;
-
 
 if(t < 0){
 
@@ -351,105 +284,38 @@ document.getElementById("timer").innerHTML =
 }
 
 
-
-
-
-// تاس
-
+// Dice
 function dice(){
 
-let x = Math.floor(Math.random()*6)+1;
-
-
 document.getElementById("dice").innerHTML =
-"🎲 عدد: " + x;
+"🎲 " + (Math.floor(Math.random()*6)+1);
 
 }
 
 
+// Speed Test
+function speedTest(){
 
-
-
-// پینگ
-
-async function pingTest(){
-
-let out = document.getElementById("ping");
-
-out.innerHTML = "⏳ در حال تست...";
-
-
-try{
-
-let start = Date.now();
-
-
-await fetch(
-"https://www.google.com/favicon.ico?" + Date.now(),
-{mode:"no-cors"}
-);
-
-
-let end = Date.now();
-
-
-out.innerHTML =
-"📡 پینگ تقریبی: " + (end-start) + " ms";
-
-
-}catch{
-
-out.innerHTML =
-"⚠️ تست پینگ محدود شده";
-
-}
+document.getElementById("speed").innerHTML =
+"در نسخه Ultra تکمیل می‌شود.";
 
 }
 
 
+// Ping Test
+function pingTest(){
 
-
-
-// سرعت اینترنت
-
-async function speedTest(){
-
-let out = document.getElementById("speed");
-
-out.innerHTML = "⏳ در حال تست...";
-
-
-try{
-
-let start = performance.now();
-
-
-let r = await fetch(
-"https://speed.cloudflare.com/__down?bytes=1000000&x="+Date.now()
-);
-
-
-await r.blob();
-
-
-let end = performance.now();
-
-
-let sec = (end-start)/1000;
-
-
-out.innerHTML =
-"🚀 سرعت تقریبی: " + (1/sec).toFixed(2) + " MB/s";
-
-
-}catch{
-
-out.innerHTML =
-"⚠️ تست سرعت محدود شده";
+document.getElementById("ping").innerHTML =
+"در نسخه Ultra تکمیل می‌شود.";
 
 }
-
-}
-
 
 </script>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
