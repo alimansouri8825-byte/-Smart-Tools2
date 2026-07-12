@@ -59,7 +59,6 @@ font-size:20px;
 }
 
 
-
 #site{
 display:none;
 background:white;
@@ -83,8 +82,18 @@ color:#2563eb;
 .card{
 background:#f1f5f9;
 padding:15px;
-margin:15px 0;
 border-radius:18px;
+margin:15px 0;
+}
+
+
+button{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:15px;
 }
 
 
@@ -93,6 +102,7 @@ text-align:center;
 font-weight:bold;
 margin-top:20px;
 }
+
 
 </style>
 
@@ -110,13 +120,16 @@ Loading...
 
 
 <div class="bar">
+
 <div class="progress" id="progress"></div>
+
 </div>
 
 
 <div id="percent">
 0%
 </div>
+
 
 </div>
 
@@ -159,6 +172,7 @@ Loading...
 </div>
 
 
+
 <div class="card">
 
 <h3>⏱ تایمر</h3>
@@ -169,9 +183,12 @@ Loading...
 شروع
 </button>
 
-<p id="timer">آماده</p>
+<p id="timer">
+آماده
+</p>
 
 </div>
+
 
 
 <div class="card">
@@ -185,6 +202,7 @@ Loading...
 <p id="dice"></p>
 
 </div>
+
 
 
 <div class="card">
@@ -202,6 +220,7 @@ Loading...
 </div>
 
 
+
 <div class="card">
 
 <h3>📡 تست پینگ</h3>
@@ -217,6 +236,7 @@ Loading...
 </div>
 
 
+
 <footer>
 سازنده: علی منصوری
 </footer>
@@ -227,7 +247,7 @@ Loading...
 </div><script>
 
 
-// لودینگ
+// لودینگ ۰ تا ۱۰۰
 
 let p = 0;
 
@@ -244,9 +264,9 @@ if(p >= 100){
 
 clearInterval(load);
 
-document.getElementById("loading").style.display = "none";
+document.getElementById("loading").style.display="none";
 
-document.getElementById("site").style.display = "block";
+document.getElementById("site").style.display="block";
 
 }
 
@@ -284,6 +304,7 @@ document.getElementById("result").innerHTML =
 
 
 
+
 // تایمر
 
 let timer;
@@ -295,12 +316,10 @@ clearInterval(timer);
 let t = Number(document.getElementById("time").value);
 
 
-timer = setInterval(()=>{
-
+timer=setInterval(function(){
 
 document.getElementById("timer").innerHTML =
-t + " ثانیه";
-
+t+" ثانیه";
 
 t--;
 
@@ -314,7 +333,6 @@ document.getElementById("timer").innerHTML =
 
 }
 
-
 },1000);
 
 }
@@ -326,94 +344,91 @@ document.getElementById("timer").innerHTML =
 
 function dice(){
 
-let x = Math.floor(Math.random()*6)+1;
-
+let x=Math.floor(Math.random()*6)+1;
 
 document.getElementById("dice").innerHTML =
-"🎲 عدد: " + x;
+"🎲 عدد: "+x;
 
 }
 
 
 
 
-// پینگ اصلاح شده
+// تست پینگ
 
 async function pingTest(){
 
-let out = document.getElementById("ping");
-
-out.innerHTML = "⏳ در حال تست...";
-
-
-try{
-
-let start = Date.now();
-
-
-await fetch(
-"https://www.google.com/favicon.ico?time="+Date.now(),
-{mode:"no-cors"}
-);
-
-
-let end = Date.now();
-
-
-out.innerHTML =
-"📡 پینگ تقریبی: " + (end-start) + " ms";
-
-
-}catch(e){
-
-out.innerHTML =
-"⚠️ مرورگر اجازه تست دقیق پینگ نمی‌دهد";
-
-}
-
-}
-
-
-
-
-// تست سرعت تقریبی
-
-async function speedTest(){
-
-let out = document.getElementById("speed");
+let out=document.getElementById("ping");
 
 out.innerHTML="⏳ در حال تست...";
 
 
 try{
 
-let start = performance.now();
+let start=Date.now();
 
 
-let response = await fetch(
+await fetch(
+"https://www.google.com/favicon.ico?"+Date.now(),
+{mode:"no-cors"}
+);
+
+
+let end=Date.now();
+
+
+out.innerHTML=
+"📡 پینگ تقریبی: "+(end-start)+" ms";
+
+
+}catch{
+
+out.innerHTML=
+"⚠️ تست پینگ توسط مرورگر محدود شده";
+
+}
+
+}
+
+
+
+
+
+// تست سرعت
+
+async function speedTest(){
+
+let out=document.getElementById("speed");
+
+out.innerHTML="⏳ در حال تست...";
+
+
+try{
+
+let start=performance.now();
+
+
+let r=await fetch(
 "https://speed.cloudflare.com/__down?bytes=1000000&x="+Date.now()
 );
 
 
-await response.blob();
+await r.blob();
 
 
-let end = performance.now();
+let end=performance.now();
 
 
-let seconds = (end-start)/1000;
+let sec=(end-start)/1000;
 
 
-let speed = (1/seconds).toFixed(2);
+out.innerHTML=
+"🚀 سرعت تقریبی: "+(1/sec).toFixed(2)+" MB/s";
 
 
-out.innerHTML =
-"🚀 سرعت تقریبی: " + speed + " MB/s";
+}catch{
 
-
-}catch(e){
-
-out.innerHTML =
+out.innerHTML=
 "⚠️ تست سرعت محدود شد";
 
 }
