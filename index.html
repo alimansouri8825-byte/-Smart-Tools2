@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,6 +21,9 @@ background:linear-gradient(135deg,#2563eb,#020617);
 min-height:100vh;
 }
 
+
+/* صفحه شروع */
+
 #loading{
 position:fixed;
 width:100%;
@@ -27,71 +31,106 @@ height:100%;
 background:#020617;
 display:flex;
 flex-direction:column;
-align-items:center;
 justify-content:center;
+align-items:center;
 color:white;
 z-index:9999;
 }
 
+
 .logo{
 font-size:35px;
 font-weight:bold;
-animation:pulse 1.5s infinite;
+animation:zoom 1.5s infinite;
 }
 
-@keyframes pulse{
+
+@keyframes zoom{
+
 50%{
 transform:scale(1.15);
 }
+
 }
 
-.loading-bar{
+
+
+.bar{
+
 width:80%;
 height:20px;
 background:#334155;
 border-radius:20px;
-overflow:hidden;
 margin-top:30px;
+overflow:hidden;
+
 }
 
+
+
 .progress{
+
 height:100%;
 width:0%;
 background:#2563eb;
+
 }
 
+
+
 #percent{
+
 margin-top:10px;
 font-size:20px;
+
 }
+
+
 
 
 .container{
+
 max-width:420px;
 margin:auto;
 padding:20px;
+
 }
 
+
+
 .box{
+
 background:white;
 padding:20px;
 border-radius:25px;
 box-shadow:0 0 30px #0006;
+
 }
+
+
 
 h1{
+
 text-align:center;
 color:#2563eb;
+
 }
 
+
+
 .card{
+
 background:#f1f5f9;
 padding:15px;
 border-radius:18px;
 margin:15px 0;
+
 }
 
+
+
 button{
+
 width:100%;
 padding:12px;
 border:0;
@@ -100,26 +139,35 @@ background:#2563eb;
 color:white;
 font-size:16px;
 margin-top:8px;
+
 }
 
+
+
 input{
+
 width:100%;
 padding:10px;
 border-radius:10px;
 border:1px solid #aaa;
-margin:5px 0;
+
 }
 
+
+
 footer{
+
 text-align:center;
 margin-top:20px;
 font-weight:bold;
 color:#2563eb;
+
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -130,22 +178,29 @@ color:#2563eb;
 🧪 Smart Tools Pro
 </div>
 
-<div class="loading-bar">
+
+<div class="bar">
 <div class="progress" id="progress"></div>
 </div>
+
 
 <div id="percent">
 0%
 </div>
 
+
 </div>
+
 
 
 <div class="container">
 
 <div class="box">
 
+
 <h1>
+🧪 Smart Tools Pro
+</h1><h1>
 🧪 Smart Tools Pro
 </h1><div class="card">
 
@@ -229,9 +284,7 @@ color:#2563eb;
 
 <div class="card">
 
-<h3>🌙 تنظیمات</h3>
-
-<button onclick="darkMode()">حالت شب</button>
+<button onclick="darkMode()">🌙 حالت شب</button>
 
 </div>
 
