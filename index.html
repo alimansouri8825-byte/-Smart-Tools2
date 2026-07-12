@@ -22,8 +22,6 @@ min-height:100vh;
 }
 
 
-/* صفحه شروع */
-
 #loading{
 position:fixed;
 width:100%;
@@ -31,8 +29,8 @@ height:100%;
 background:#020617;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 color:white;
 z-index:9999;
 }
@@ -41,96 +39,75 @@ z-index:9999;
 .logo{
 font-size:35px;
 font-weight:bold;
-animation:zoom 1.5s infinite;
+animation:zoom 1.3s infinite;
 }
 
 
 @keyframes zoom{
-
 50%{
 transform:scale(1.15);
 }
-
 }
 
 
-
 .bar{
-
 width:80%;
 height:20px;
 background:#334155;
 border-radius:20px;
-margin-top:30px;
 overflow:hidden;
-
+margin-top:30px;
 }
-
 
 
 .progress{
-
 height:100%;
 width:0%;
 background:#2563eb;
-
 }
-
 
 
 #percent{
-
 margin-top:10px;
 font-size:20px;
-
 }
 
 
 
-
-.container{
-
-max-width:420px;
-margin:auto;
+#site{
+display:none;
 padding:20px;
-
 }
 
 
 
 .box{
-
+max-width:420px;
+margin:auto;
 background:white;
 padding:20px;
 border-radius:25px;
-box-shadow:0 0 30px #0006;
-
 }
 
 
 
 h1{
-
 text-align:center;
 color:#2563eb;
-
 }
 
 
 
 .card{
-
 background:#f1f5f9;
 padding:15px;
 border-radius:18px;
 margin:15px 0;
-
 }
 
 
 
 button{
-
 width:100%;
 padding:12px;
 border:0;
@@ -139,30 +116,27 @@ background:#2563eb;
 color:white;
 font-size:16px;
 margin-top:8px;
-
 }
 
 
 
 input{
-
 width:100%;
 padding:10px;
 border-radius:10px;
 border:1px solid #aaa;
-
+margin:5px 0;
 }
 
 
 
 footer{
-
 text-align:center;
 margin-top:20px;
 font-weight:bold;
 color:#2563eb;
-
 }
+
 
 </style>
 
@@ -188,19 +162,16 @@ color:#2563eb;
 0%
 </div>
 
-
 </div>
 
 
 
-<div class="container">
+<div id="site">
 
 <div class="box">
 
 
 <h1>
-🧪 Smart Tools Pro
-</h1><h1>
 🧪 Smart Tools Pro
 </h1><div class="card">
 
@@ -211,7 +182,6 @@ color:#2563eb;
 </div>
 
 
-
 <div class="card">
 
 <h3>🧮 ماشین حساب</h3>
@@ -220,12 +190,11 @@ color:#2563eb;
 
 <input id="b" placeholder="عدد دوم">
 
-<button onclick="calc()">محاسبه</button>
+<button onclick="calc()">حساب کن</button>
 
 <p id="result"></p>
 
 </div>
-
 
 
 <div class="card">
@@ -234,12 +203,11 @@ color:#2563eb;
 
 <input id="time" placeholder="ثانیه">
 
-<button onclick="startTimer()">شروع تایمر</button>
+<button onclick="startTimer()">شروع</button>
 
 <p id="timer">آماده</p>
 
 </div>
-
 
 
 <div class="card">
@@ -253,14 +221,11 @@ color:#2563eb;
 </div>
 
 
-
 <div class="card">
 
-<h3>🎯 بازی حدس عدد</h3>
+<h3>🎯 حدس عدد</h3>
 
-<p>یک عدد بین ۱ تا ۱۰ حدس بزن</p>
-
-<input id="guess">
+<input id="guess" placeholder="حدس عدد ۱ تا ۱۰">
 
 <button onclick="guessGame()">حدس</button>
 
@@ -269,25 +234,11 @@ color:#2563eb;
 </div>
 
 
-
-<div class="card">
-
-<h3>🚀 تست سرعت اینترنت</h3>
-
-<button onclick="speedTest()">شروع تست</button>
-
-<p id="speed">آماده</p>
-
-</div>
-
-
-
 <div class="card">
 
 <button onclick="darkMode()">🌙 حالت شب</button>
 
 </div>
-
 
 
 <footer>
@@ -298,3 +249,145 @@ color:#2563eb;
 </div>
 
 </div>
+
+
+
+<script>
+
+
+// لودینگ 0 تا 100
+
+let p = 0;
+
+let load = setInterval(function(){
+
+p++;
+
+document.getElementById("progress").style.width = p + "%";
+document.getElementById("percent").innerHTML = p + "%";
+
+
+if(p >= 100){
+
+clearInterval(load);
+
+document.getElementById("loading").style.display="none";
+document.getElementById("site").style.display="block";
+
+}
+
+},30);
+
+
+
+
+// اطلاعات دستگاه
+
+document.getElementById("device").innerHTML =
+"🌐 زبان: " + navigator.language +
+"<br><br>📐 صفحه: " + screen.width + " × " + screen.height +
+"<br><br>⚙️ CPU: " + (navigator.hardwareConcurrency || "نامشخص");
+
+
+
+
+// ماشین حساب
+
+function calc(){
+
+let a = Number(document.getElementById("a").value);
+let b = Number(document.getElementById("b").value);
+
+document.getElementById("result").innerHTML =
+"نتیجه: " + (a+b);
+
+}
+
+
+
+
+// تایمر
+
+let timer;
+
+function startTimer(){
+
+clearInterval(timer);
+
+let t = Number(document.getElementById("time").value);
+
+timer=setInterval(function(){
+
+document.getElementById("timer").innerHTML=t+" ثانیه";
+
+t--;
+
+if(t<0){
+
+clearInterval(timer);
+
+document.getElementById("timer").innerHTML="⏰ تمام شد";
+
+}
+
+},1000);
+
+}
+
+
+
+
+// تاس
+
+function dice(){
+
+let x=Math.floor(Math.random()*6)+1;
+
+document.getElementById("dice").innerHTML="🎲 عدد: "+x;
+
+}
+
+
+
+
+// حدس عدد
+
+let secret=Math.floor(Math.random()*10)+1;
+
+function guessGame(){
+
+let g=Number(document.getElementById("guess").value);
+
+
+if(g===secret){
+
+document.getElementById("game").innerHTML="🎉 درست بود!";
+
+secret=Math.floor(Math.random()*10)+1;
+
+}else{
+
+document.getElementById("game").innerHTML="❌ اشتباهه";
+
+}
+
+}
+
+
+
+
+// حالت شب
+
+function darkMode(){
+
+document.body.style.background="#020617";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
