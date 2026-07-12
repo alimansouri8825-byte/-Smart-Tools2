@@ -1,113 +1,52 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Smart Tools Pro</title>
+<title>Smart Tools</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:tahoma,sans-serif;
-}
-
 body{
-background:#020617;
-}
-
-#loading{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+margin:0;
 background:#020617;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+height:100vh;
+font-family:tahoma,sans-serif;
 color:white;
-z-index:9999;
-}
-
-.loading-text{
-font-size:32px;
-font-weight:bold;
-margin-bottom:20px;
-}
-
-.bar{
-width:80%;
-max-width:500px;
-height:20px;
-background:#334155;
-border-radius:30px;
-overflow:hidden;
-}
-
-.progress{
-width:0%;
-height:100%;
-background:#2563eb;
-}
-
-#percent{
-margin-top:10px;
-font-size:22px;
-font-weight:bold;
-}
-
-#site{
-display:none;
-background:#ffffff;
-min-height:100vh;
-padding:20px;
+text-align:center;
 }
 
 .box{
-max-width:900px;
-margin:auto;
+background:#0f172a;
+padding:30px;
+border-radius:20px;
+max-width:500px;
+width:90%;
 }
 
 h1{
-text-align:center;
-color:#2563eb;
+font-size:32px;
 margin-bottom:20px;
 }
 
-.card{
-background:#f1f5f9;
-padding:15px;
-border-radius:15px;
-margin:15px 0;
+p{
+font-size:20px;
+line-height:1.8;
 }
 
-input{
-width:100%;
-padding:10px;
-margin:6px 0;
-}
-
-button{
-width:100%;
-padding:12px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:12px;
-cursor:pointer;
-}
-
-footer{
-text-align:center;
+.loading{
+font-size:26px;
 margin-top:20px;
-font-weight:bold;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:0.3;
+}
 }
 
 </style>
@@ -116,206 +55,20 @@ font-weight:bold;
 
 <body>
 
-<div id="loading">
-
-<div class="loading-text" id="loadingText">
-.Loading
-</div>
-
-<div class="bar">
-<div class="progress" id="progress"></div>
-</div>
-
-<div id="percent">
-0%
-</div>
-
-</div>
-
-<div id="site">
-
 <div class="box">
 
-<h1>Smart Tools Pro Max</h1><h1> </h1><div class="card">
-<h3>📱 اطلاعات دستگاه</h3>
-<p id="device">در حال دریافت...</p>
-</div>
-
-<div class="card">
-<h3>🧮 ماشین حساب</h3>
-
-<input type="number" id="a" placeholder="عدد اول">
-<input type="number" id="b" placeholder="عدد دوم">
-
-<button onclick="calc()">محاسبه</button>
-
-<p id="result"></p>
-</div>
-
-<div class="card">
-<h3>⏱ تایمر</h3>
-
-<input type="number" id="time" placeholder="ثانیه">
-
-<button onclick="startTimer()">شروع تایمر</button>
-
-<p id="timer">آماده</p>
-</div>
-
-<div class="card">
-<h3>🎲 تاس</h3>
-
-<button onclick="dice()">انداختن تاس</button>
-
-<p id="dice"></p>
-</div>
-
-<div class="card">
-<h3>🚀 تست سرعت اینترنت</h3>
-
-<button onclick="speedTest()">شروع تست</button>
-
-<p id="speed">آماده</p>
-</div>
-
-<div class="card">
-<h3>📡 تست پینگ</h3>
-
-<button onclick="pingTest()">شروع تست</button>
-
-<p id="ping">آماده</p>
-</div>
-
-<footer>
-سازنده: علی منصوری
-</footer><script>
-
-// Loading Animation
-let dots = 1;
-
-setInterval(function(){
-
-dots++;
-
-if(dots > 3){
-
-dots = 1;
-
-}
-
-document.getElementById("loadingText").innerHTML =
-".".repeat(dots) + "Loading";
-
-},500);
-
-
-// Progress Bar
-let p = 0;
-
-const loader = setInterval(function(){
-
-p++;
-
-document.getElementById("progress").style.width = p + "%";
-
-document.getElementById("percent").innerHTML = p + "%";
-
-if(p >= 100){
-
-clearInterval(loader);
-
-document.getElementById("loading").style.display = "none";
-
-document.getElementById("site").style.display = "block";
-
-}
-
-},30);
-
-
-// Device Info
-document.getElementById("device").innerHTML =
-"🌐 زبان: " + navigator.language +
-"<br>📱 صفحه: " + screen.width + " × " + screen.height +
-"<br>💻 هسته CPU: " +
-(navigator.hardwareConcurrency || "نامشخص");
-
-
-// Calculator
-function calc(){
-
-let a = Number(document.getElementById("a").value);
-
-let b = Number(document.getElementById("b").value);
-
-document.getElementById("result").innerHTML =
-"نتیجه: " + (a + b);
-
-}
-
-
-// Timer
-let timer;
-
-function startTimer(){
-
-clearInterval(timer);
-
-let t = Number(document.getElementById("time").value);
-
-timer = setInterval(function(){
-
-document.getElementById("timer").innerHTML =
-t + " ثانیه";
-
-t--;
-
-if(t < 0){
-
-clearInterval(timer);
-
-document.getElementById("timer").innerHTML =
-"⏰ تمام شد";
-
-}
-
-},1000);
-
-}
-
-
-// Dice
-function dice(){
-
-document.getElementById("dice").innerHTML =
-"🎲 " + (Math.floor(Math.random()*6)+1);
-
-}
-
-
-// Speed Test
-function speedTest(){
-
-document.getElementById("speed").innerHTML =
-"در نسخه Ultra تکمیل می‌شود.";
-
-}
-
-
-// Ping Test
-function pingTest(){
-
-document.getElementById("ping").innerHTML =
-"در نسخه Ultra تکمیل می‌شود.";
-
-}
-
-</script>
-
+<h1>🧪 Smart Tools 🧪</h1>
+
+<p>
+در حال بروزرسانی نسخه <b>Pro Max</b><br>
+به نسخه <b>Ultra</b>
+</p>
+
+<div class="loading">
+...Loading
 </div>
 
 </div>
 
 </body>
-
 </html>
