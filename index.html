@@ -18,6 +18,7 @@ background:#020617;
 
 
 #loading{
+
 position:fixed;
 width:100%;
 height:100%;
@@ -27,82 +28,111 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 color:white;
+
 }
 
 
 .loading-text{
-font-size:26px;
+
+font-size:32px;
 font-weight:bold;
+margin-bottom:10px;
+
+}
+
+
+.loading-sub{
+
+font-size:18px;
 margin-bottom:20px;
+
 }
 
 
 .bar{
+
 width:80%;
 height:20px;
 background:#334155;
 border-radius:20px;
 overflow:hidden;
+
 }
 
 
 .progress{
+
 height:100%;
 width:0%;
 background:#2563eb;
+
 }
 
 
 #percent{
+
 margin-top:10px;
 font-size:20px;
+
 }
 
 
+
 #site{
+
 display:none;
 background:white;
 min-height:100vh;
 padding:20px;
+
 }
 
 
 .box{
+
 max-width:450px;
 margin:auto;
+
 }
 
 
 h1{
+
 text-align:center;
 color:#2563eb;
+
 }
 
 
 .card{
+
 background:#f1f5f9;
 padding:15px;
 border-radius:18px;
 margin:15px 0;
+
 }
 
 
 button{
+
 width:100%;
 padding:12px;
 background:#2563eb;
 color:white;
 border:0;
 border-radius:15px;
+
 }
 
 
 footer{
+
 text-align:center;
 font-weight:bold;
 margin-top:20px;
-}
 
+}
 
 </style>
 
@@ -115,6 +145,10 @@ margin-top:20px;
 <div id="loading">
 
 <div class="loading-text">
+🧪 Smart Tools Pro
+</div>
+
+<div class="loading-sub">
 Loading...
 </div>
 
@@ -172,7 +206,6 @@ Loading...
 </div>
 
 
-
 <div class="card">
 
 <h3>⏱ تایمر</h3>
@@ -180,7 +213,7 @@ Loading...
 <input id="time" placeholder="ثانیه">
 
 <button onclick="startTimer()">
-شروع
+شروع تایمر
 </button>
 
 <p id="timer">
@@ -188,7 +221,6 @@ Loading...
 </p>
 
 </div>
-
 
 
 <div class="card">
@@ -202,7 +234,6 @@ Loading...
 <p id="dice"></p>
 
 </div>
-
 
 
 <div class="card">
@@ -220,7 +251,6 @@ Loading...
 </div>
 
 
-
 <div class="card">
 
 <h3>📡 تست پینگ</h3>
@@ -236,7 +266,6 @@ Loading...
 </div>
 
 
-
 <footer>
 سازنده: علی منصوری
 </footer>
@@ -247,7 +276,7 @@ Loading...
 </div><script>
 
 
-// لودینگ ۰ تا ۱۰۰
+// لودینگ
 
 let p = 0;
 
@@ -264,13 +293,14 @@ if(p >= 100){
 
 clearInterval(load);
 
-document.getElementById("loading").style.display="none";
+document.getElementById("loading").style.display = "none";
 
-document.getElementById("site").style.display="block";
+document.getElementById("site").style.display = "block";
 
 }
 
 },30);
+
 
 
 
@@ -287,13 +317,14 @@ document.getElementById("device").innerHTML =
 
 
 
+
 // ماشین حساب
 
 function calc(){
 
 let a = Number(document.getElementById("a").value);
 
-let b = Number(document.getElementById("b").value);
+let b = Number(document.getElementById("b").value");
 
 
 document.getElementById("result").innerHTML =
@@ -316,10 +347,10 @@ clearInterval(timer);
 let t = Number(document.getElementById("time").value);
 
 
-timer=setInterval(function(){
+timer = setInterval(function(){
 
 document.getElementById("timer").innerHTML =
-t+" ثانیه";
+t + " ثانیه";
 
 t--;
 
@@ -340,16 +371,19 @@ document.getElementById("timer").innerHTML =
 
 
 
+
 // تاس
 
 function dice(){
 
-let x=Math.floor(Math.random()*6)+1;
+let x = Math.floor(Math.random()*6)+1;
+
 
 document.getElementById("dice").innerHTML =
-"🎲 عدد: "+x;
+"🎲 عدد: " + x;
 
 }
+
 
 
 
@@ -358,33 +392,33 @@ document.getElementById("dice").innerHTML =
 
 async function pingTest(){
 
-let out=document.getElementById("ping");
+let out = document.getElementById("ping");
 
-out.innerHTML="⏳ در حال تست...";
+out.innerHTML = "⏳ در حال تست...";
 
 
 try{
 
-let start=Date.now();
+let start = Date.now();
 
 
 await fetch(
-"https://www.google.com/favicon.ico?"+Date.now(),
+"https://www.google.com/favicon.ico?" + Date.now(),
 {mode:"no-cors"}
 );
 
 
-let end=Date.now();
+let end = Date.now();
 
 
-out.innerHTML=
-"📡 پینگ تقریبی: "+(end-start)+" ms";
+out.innerHTML =
+"📡 پینگ تقریبی: " + (end-start) + " ms";
 
 
 }catch{
 
-out.innerHTML=
-"⚠️ تست پینگ توسط مرورگر محدود شده";
+out.innerHTML =
+"⚠️ تست پینگ محدود شده";
 
 }
 
@@ -398,17 +432,17 @@ out.innerHTML=
 
 async function speedTest(){
 
-let out=document.getElementById("speed");
+let out = document.getElementById("speed");
 
-out.innerHTML="⏳ در حال تست...";
+out.innerHTML = "⏳ در حال تست...";
 
 
 try{
 
-let start=performance.now();
+let start = performance.now();
 
 
-let r=await fetch(
+let r = await fetch(
 "https://speed.cloudflare.com/__down?bytes=1000000&x="+Date.now()
 );
 
@@ -416,20 +450,20 @@ let r=await fetch(
 await r.blob();
 
 
-let end=performance.now();
+let end = performance.now();
 
 
-let sec=(end-start)/1000;
+let sec = (end-start)/1000;
 
 
-out.innerHTML=
-"🚀 سرعت تقریبی: "+(1/sec).toFixed(2)+" MB/s";
+out.innerHTML =
+"🚀 سرعت تقریبی: " + (1/sec).toFixed(2) + " MB/s";
 
 
 }catch{
 
-out.innerHTML=
-"⚠️ تست سرعت محدود شد";
+out.innerHTML =
+"⚠️ تست سرعت محدود شده";
 
 }
 
