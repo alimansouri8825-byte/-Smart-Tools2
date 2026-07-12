@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧪 Smart Tools</title>
+<title>🧪 Smart Tools Pro</title>
 
 <style>
+
 body{
 margin:0;
 font-family:tahoma;
-background:linear-gradient(135deg,#2563eb,#0f172a);
+background:linear-gradient(135deg,#2563eb,#020617);
 min-height:100vh;
 display:flex;
 justify-content:center;
@@ -19,14 +20,14 @@ transition:1s;
 }
 
 .box{
+width:380px;
 background:white;
-width:370px;
 padding:20px;
 border-radius:25px;
-box-shadow:0 0 25px #0008;
+box-shadow:0 0 30px #0008;
 }
 
-h2{
+h1{
 text-align:center;
 color:#2563eb;
 }
@@ -34,7 +35,7 @@ color:#2563eb;
 .card{
 background:#f1f5f9;
 padding:15px;
-border-radius:15px;
+border-radius:18px;
 margin:15px 0;
 }
 
@@ -42,32 +43,37 @@ button{
 width:100%;
 padding:12px;
 border:0;
-border-radius:12px;
+border-radius:15px;
 background:#2563eb;
 color:white;
 font-size:16px;
 margin-top:8px;
+cursor:pointer;
 }
 
-input{
+input,select{
 width:90%;
 padding:10px;
+margin:5px;
 border-radius:10px;
 border:1px solid #aaa;
-margin:5px;
+}
+
+#gameBox{
+text-align:center;
+font-size:22px;
 }
 
 footer{
 text-align:center;
-margin-top:20px;
 padding:15px;
-font-size:16px;
-color:#2563eb;
 font-weight:bold;
+color:#2563eb;
 }
 
+
 .dark{
-background:#020617;
+background:#000;
 }
 
 .dark .box{
@@ -78,6 +84,7 @@ color:white;
 .dark .card{
 background:#334155;
 }
+
 </style>
 
 </head>
@@ -87,75 +94,68 @@ background:#334155;
 
 <div class="box">
 
-<h2>🧪 Smart Tools</h2>
+
+<h1>🧪 Smart Tools Pro</h1>
 
 
 <div class="card">
-<h3>📱 مشخصات دستگاه</h3>
+<h3>📱 اطلاعات دستگاه</h3>
 <p id="device">در حال دریافت...</p>
 </div>
 
 
 <div class="card">
-<h3>🧮 ماشین حساب</h3>
+<h3>🚀 تست سرعت اینترنت</h3>
+<button onclick="speedTest()">شروع تست</button>
+<p id="speed">آماده</p>
+</div>
 
-<input id="a" placeholder="عدد اول">
-<input id="b" placeholder="عدد دوم">
 
-<button onclick="calc()">جمع</button>
+<div class="card">
+<h3>📡 تست پینگ</h3>
+<button onclick="pingTest()">تست پینگ</button>
+<p id="ping">آماده</p>
+</div>
 
-<p id="calc"></p>
+
+<div class="card">
+<h3>🔋 باتری</h3>
+<button onclick="battery()">بررسی باتری</button>
+<p id="bat">آماده</p>
+</div>
+
+
+<div class="card">
+<h3>🧮 تبدیل واحد</h3>
+
+<input id="unit" placeholder="عدد">
+
+<select id="type">
+<option value="km">کیلومتر به متر</option>
+<option value="m">متر به کیلومتر</option>
+</select>
+
+<button onclick="convert()">تبدیل</button>
+
+<p id="convert"></p>
 
 </div>
 
 
 <div class="card">
+<h3>🎮 بازی سنگ کاغذ قیچی</h3>
 
-<h3>⏱ تایمر</h3>
+<button onclick="rps('سنگ')">🪨 سنگ</button>
+<button onclick="rps('کاغذ')">📄 کاغذ</button>
+<button onclick="rps('قیچی')">✂️ قیچی</button>
 
-<input id="time" placeholder="ثانیه">
-
-<button onclick="timerStart()">شروع تایمر</button>
-
-<p id="timer">00</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>🎲 تاس</h3>
-
-<button onclick="dice()">انداختن تاس</button>
-
-<p id="dice"></p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>🎯 بازی حدس عدد</h3>
-
-<p>یک عدد بین ۱ تا ۱۰ حدس بزن</p>
-
-<input id="guess">
-
-<button onclick="guessGame()">حدس</button>
-
-<p id="game"></p>
+<p id="gameBox"></p>
 
 </div>
 
 
 <div class="card">
-
-<h3>🌙 تنظیمات</h3>
-
-<button onclick="dark()">حالت شب</button>
-
+<button onclick="dark()">🌙 حالت شب</button>
 </div>
 
 
@@ -164,101 +164,202 @@ background:#334155;
 </footer>
 
 
-</div>
+</div><script>
+
+document.getElementById("device").innerHTML =
+"🌐 زبان: " + navigator.language +
+"<br><br>📐 صفحه: " +
+screen.width+" × "+screen.height+
+"<br><br>⚙️ هسته CPU: "+
+(navigator.hardwareConcurrency || "نامشخص")+
+"<br><br>📶 وضعیت اینترنت: "+
+(navigator.onLine ? "آنلاین" : "آفلاین");
 
 
 
-<script>
+// تست سرعت اینترنت
+
+async function speedTest(){
+
+let out=document.getElementById("speed");
+
+out.innerHTML="⏳ در حال تست...";
+
+try{
+
+let start=performance.now();
+
+let r=await fetch(
+"https://speed.cloudflare.com/__down?bytes=10000000&x="+Date.now()
+);
+
+let data=await r.blob();
+
+let end=performance.now();
+
+let sec=(end-start)/1000;
+
+let mbps=((data.size*8)/sec/1000000).toFixed(2);
 
 
-document.getElementById("device").innerHTML=
-"🌐 مرورگر: "+navigator.userAgent+
-"<br><br>"+
-"🗣 زبان: "+navigator.language+
-"<br><br>"+
-"📐 صفحه: "+screen.width+" × "+screen.height+
-"<br><br>"+
-"⚙️ هسته CPU: "+
-(navigator.hardwareConcurrency||"نامشخص");
+out.innerHTML=
+"🚀 سرعت دانلود: "+mbps+" Mbps";
 
+}
 
+catch{
 
-function calc(){
+out.innerHTML="❌ تست نشد";
 
-let a=Number(document.getElementById("a").value);
-let b=Number(document.getElementById("b").value);
-
-document.getElementById("calc").innerHTML=
-"نتیجه: "+(a+b);
+}
 
 }
 
 
 
-let interval;
+// تست پینگ
 
-function timerStart(){
+async function pingTest(){
 
-clearInterval(interval);
+let out=document.getElementById("ping");
 
-let t=Number(document.getElementById("time").value);
+out.innerHTML="⏳ تست...";
 
-interval=setInterval(()=>{
 
-document.getElementById("timer").innerHTML=t+" ثانیه";
+let start=Date.now();
 
-t--;
 
-if(t<0){
+try{
 
-clearInterval(interval);
+await fetch(
+"https://www.google.com/favicon.ico?"+Date.now()
+);
 
-document.getElementById("timer").innerHTML="⏰ تمام شد";
+
+let time=Date.now()-start;
+
+
+out.innerHTML=
+"📡 پینگ: "+time+" ms";
+
 
 }
 
-},1000);
+catch{
+
+out.innerHTML="❌ خطا";
+
+}
 
 }
 
 
 
-function dice(){
 
-let x=Math.floor(Math.random()*6)+1;
+// باتری
 
-document.getElementById("dice").innerHTML=
-"🎲 عدد تاس: "+x;
+async function battery(){
 
-}
+let out=document.getElementById("bat");
 
 
+if(navigator.getBattery){
 
-let secret=Math.floor(Math.random()*10)+1;
+let b=await navigator.getBattery();
 
-
-function guessGame(){
-
-let g=Number(document.getElementById("guess").value);
-
-
-if(g==secret){
-
-document.getElementById("game").innerHTML=
-"🎉 درست حدس زدی!";
-
-secret=Math.floor(Math.random()*10)+1;
+out.innerHTML=
+"🔋 شارژ: "+
+Math.round(b.level*100)+"%"+
+"<br>"+
+(b.charging ? "⚡ در حال شارژ" : "🔌 بدون شارژ");
 
 }
 
 else{
 
-document.getElementById("game").innerHTML=
-"❌ اشتباهه، دوباره تلاش کن";
+out.innerHTML=
+"این مرورگر پشتیبانی نمی‌کند";
 
 }
 
 }
+
+
+
+
+// تبدیل واحد
+
+function convert(){
+
+let n=Number(document.getElementById("unit").value);
+
+let t=document.getElementById("type").value;
+
+let r="";
+
+
+if(t=="km"){
+
+r=n*1000+" متر";
+
+}
+
+else{
+
+r=n/1000+" کیلومتر";
+
+}
+
+
+document.getElementById("convert").innerHTML=r;
+
+}
+
+
+
+
+// سنگ کاغذ قیچی
+
+function rps(user){
+
+let list=["سنگ","کاغذ","قیچی"];
+
+let bot=list[Math.floor(Math.random()*3)];
+
+
+let result="";
+
+
+if(user==bot){
+
+result="مساوی 😐";
+
+}
+
+else if(
+(user=="سنگ"&&bot=="قیچی")||
+(user=="کاغذ"&&bot=="سنگ")||
+(user=="قیچی"&&bot=="کاغذ")
+){
+
+result="بردی 🎉";
+
+}
+
+else{
+
+result="باختی 😅";
+
+}
+
+
+document.getElementById("gameBox").innerHTML=
+"تو: "+user+
+"<br>کامپیوتر: "+bot+
+"<br>"+result;
+
+}
+
 
 
 
@@ -270,7 +371,6 @@ document.body.classList.toggle("dark");
 
 
 </script>
-
 
 </body>
 </html>
