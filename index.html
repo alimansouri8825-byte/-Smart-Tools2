@@ -8,28 +8,23 @@
 
 <title>🧪 Smart Tools Pro</title>
 
-
 <style>
 
 *{
 box-sizing:border-box;
 }
 
-
 body{
-
 margin:0;
 font-family:tahoma;
 background:linear-gradient(135deg,#2563eb,#020617);
 min-height:100vh;
-
 }
 
 
-/* صفحه ورود */
+/* لودینگ */
 
 #loading{
-
 position:fixed;
 width:100%;
 height:100%;
@@ -40,107 +35,79 @@ justify-content:center;
 align-items:center;
 color:white;
 z-index:9999;
-
 }
 
 
 .logo{
-
 font-size:35px;
 font-weight:bold;
-
-animation:zoom 1.3s infinite;
-
+animation:zoom 1.2s infinite;
 }
 
 
 @keyframes zoom{
-
 50%{
-
 transform:scale(1.15);
-
 }
-
 }
-
 
 
 .bar{
-
 width:80%;
 height:20px;
 background:#334155;
 border-radius:20px;
 overflow:hidden;
 margin-top:30px;
-
 }
 
 
 .progress{
-
 height:100%;
 width:0%;
 background:#2563eb;
-
 }
 
 
 #percent{
-
 margin-top:10px;
 font-size:20px;
-
 }
 
 
 
 /* سایت */
 
-
 #site{
-
 display:none;
 padding:20px;
-
 }
 
 
-
 .box{
-
 max-width:420px;
 margin:auto;
 background:white;
 padding:20px;
 border-radius:25px;
-
 }
 
 
 h1{
-
 text-align:center;
 color:#2563eb;
-
 }
 
 
-
 .card{
-
 background:#f1f5f9;
 padding:15px;
 border-radius:18px;
 margin:15px 0;
-
 }
 
 
-
 button{
-
 width:100%;
 padding:12px;
 border:0;
@@ -148,35 +115,27 @@ border-radius:15px;
 background:#2563eb;
 color:white;
 font-size:16px;
-
 }
 
 
-
 input{
-
 width:100%;
 padding:10px;
 border-radius:10px;
 border:1px solid #aaa;
 margin:5px 0;
-
 }
 
 
-
 footer{
-
 text-align:center;
 margin-top:20px;
 font-weight:bold;
 color:#2563eb;
-
 }
 
 
 </style>
-
 
 </head>
 
@@ -184,9 +143,7 @@ color:#2563eb;
 <body>
 
 
-
 <div id="loading">
-
 
 <div class="logo">
 🧪 Smart Tools Pro
@@ -194,9 +151,7 @@ color:#2563eb;
 
 
 <div class="bar">
-
 <div class="progress" id="progress"></div>
-
 </div>
 
 
@@ -204,16 +159,13 @@ color:#2563eb;
 0%
 </div>
 
-
 </div>
-
 
 
 
 <div id="site">
 
 <div class="box">
-
 
 <h1>
 🧪 Smart Tools Pro
@@ -228,7 +180,6 @@ color:#2563eb;
 </p>
 
 </div>
-
 
 
 <div class="card">
@@ -283,7 +234,7 @@ color:#2563eb;
 
 <div class="card">
 
-<h3>🎯 بازی حدس عدد</h3>
+<h3>🎯 حدس عدد</h3>
 
 <input id="guess" placeholder="عدد ۱ تا ۱۰">
 
@@ -348,16 +299,18 @@ color:#2563eb;
 
 </div><script>
 
+
 // لودینگ ۰ تا ۱۰۰
 
 let p = 0;
 
-let load = setInterval(()=>{
+let load = setInterval(function(){
 
 p++;
 
-document.getElementById("progress").style.width = p+"%";
-document.getElementById("percent").innerHTML = p+"%";
+document.getElementById("progress").style.width = p + "%";
+
+document.getElementById("percent").innerHTML = p + "%";
 
 
 if(p >= 100){
@@ -374,13 +327,14 @@ document.getElementById("site").style.display="block";
 
 
 
+
 // اطلاعات دستگاه
 
 document.getElementById("device").innerHTML =
 
-"🌐 زبان: "+navigator.language+
-"<br><br>📐 صفحه: "+screen.width+" × "+screen.height+
-"<br><br>⚙️ هسته CPU: "+
+"🌐 زبان: " + navigator.language +
+"<br><br>📐 صفحه: " + screen.width + " × " + screen.height +
+"<br><br>⚙️ هسته CPU: " +
 (navigator.hardwareConcurrency || "نامشخص");
 
 
@@ -396,7 +350,7 @@ let b = Number(document.getElementById("b").value);
 
 
 document.getElementById("result").innerHTML =
-"نتیجه: "+(a+b);
+"نتیجه: " + (a+b);
 
 }
 
@@ -414,12 +368,10 @@ clearInterval(timer);
 let t = Number(document.getElementById("time").value);
 
 
-timer=setInterval(()=>{
-
+timer = setInterval(function(){
 
 document.getElementById("timer").innerHTML =
-t+" ثانیه";
-
+t + " ثانیه";
 
 t--;
 
@@ -433,7 +385,6 @@ document.getElementById("timer").innerHTML =
 
 }
 
-
 },1000);
 
 }
@@ -445,47 +396,41 @@ document.getElementById("timer").innerHTML =
 
 function dice(){
 
-let x=Math.floor(Math.random()*6)+1;
-
+let x = Math.floor(Math.random()*6)+1;
 
 document.getElementById("dice").innerHTML =
-"🎲 عدد: "+x;
+"🎲 عدد: " + x;
 
 }
-
 
 
 
 
 // حدس عدد
 
-let secret=Math.floor(Math.random()*10)+1;
+let secret = Math.floor(Math.random()*10)+1;
 
 
 function guessGame(){
 
-let g=Number(document.getElementById("guess").value);
+let g = Number(document.getElementById("guess").value);
 
 
-if(g===secret){
+if(g === secret){
 
-document.getElementById("game").innerHTML=
+document.getElementById("game").innerHTML =
 "🎉 درست بود!";
 
-secret=Math.floor(Math.random()*10)+1;
-
+secret = Math.floor(Math.random()*10)+1;
 
 }else{
 
-
-document.getElementById("game").innerHTML=
+document.getElementById("game").innerHTML =
 "❌ اشتباهه";
 
-
 }
 
 }
-
 
 
 
@@ -494,24 +439,22 @@ document.getElementById("game").innerHTML=
 
 async function pingTest(){
 
-let out=document.getElementById("ping");
+let out = document.getElementById("ping");
 
-out.innerHTML="⏳ تست...";
+out.innerHTML="⏳ در حال تست...";
 
 
 try{
 
-let start=performance.now();
-
+let start = performance.now();
 
 await fetch("https://www.google.com/favicon.ico?"+Date.now());
 
+let end = performance.now();
 
-let end=performance.now();
 
-
-out.innerHTML=
-"📡 پینگ: "+Math.round(end-start)+" ms";
+out.innerHTML =
+"📡 پینگ: " + Math.round(end-start) + " ms";
 
 
 }catch{
@@ -525,47 +468,43 @@ out.innerHTML="❌ خطا";
 
 
 
-
 // تست سرعت تقریبی
 
 async function speedTest(){
 
-let out=document.getElementById("speed");
+let out = document.getElementById("speed");
 
-out.innerHTML="⏳ تست...";
+out.innerHTML="⏳ در حال تست...";
 
 
 try{
 
-let start=performance.now();
+let start = performance.now();
 
 
-let response=await fetch(
+let r = await fetch(
 "https://speed.cloudflare.com/__down?bytes=1000000&x="+Date.now()
 );
 
 
-await response.blob();
+await r.blob();
 
 
-let end=performance.now();
+let end = performance.now();
 
 
-let sec=(end-start)/1000;
+let seconds=(end-start)/1000;
+
+let speed=(1/seconds).toFixed(2);
 
 
-let mbps=(1/sec).toFixed(2);
-
-
-out.innerHTML=
-"🚀 سرعت تقریبی: "+mbps+" MB/s";
+out.innerHTML =
+"🚀 سرعت تقریبی: " + speed + " MB/s";
 
 
 }catch{
 
-
 out.innerHTML="❌ خطا در تست";
-
 
 }
 
@@ -579,7 +518,7 @@ out.innerHTML="❌ خطا در تست";
 
 function darkMode(){
 
-document.body.classList.toggle("dark");
+document.body.style.background="#020617";
 
 }
 
