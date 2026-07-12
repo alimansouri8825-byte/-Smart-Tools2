@@ -1,47 +1,82 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>🧪 Smart Tools Pro</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 }
 
 body{
 margin:0;
-font-family:tahoma, sans-serif;
-background:linear-gradient(135deg,#2563eb,#0f172a);
+font-family:tahoma;
+background:linear-gradient(135deg,#2563eb,#020617);
 min-height:100vh;
-padding:20px;
-transition:.5s;
 }
+
+#loading{
+position:fixed;
+width:100%;
+height:100%;
+background:#020617;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color:white;
+z-index:9999;
+}
+
+.logo{
+font-size:35px;
+font-weight:bold;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+50%{
+transform:scale(1.15);
+}
+}
+
+.loading-bar{
+width:80%;
+height:20px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+margin-top:30px;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:#2563eb;
+}
+
+#percent{
+margin-top:10px;
+font-size:20px;
+}
+
 
 .container{
 max-width:420px;
 margin:auto;
+padding:20px;
 }
 
 .box{
 background:white;
-border-radius:25px;
 padding:20px;
-box-shadow:0 10px 30px #0005;
-animation:show .5s;
-}
-
-@keyframes show{
-from{
-transform:translateY(30px);
-opacity:0;
-}
-to{
-transform:translateY(0);
-opacity:1;
-}
+border-radius:25px;
+box-shadow:0 0 30px #0006;
 }
 
 h1{
@@ -51,31 +86,26 @@ color:#2563eb;
 
 .card{
 background:#f1f5f9;
-border-radius:18px;
 padding:15px;
+border-radius:18px;
 margin:15px 0;
 }
 
 button{
 width:100%;
 padding:12px;
-border:none;
+border:0;
 border-radius:15px;
 background:#2563eb;
 color:white;
 font-size:16px;
-cursor:pointer;
 margin-top:8px;
 }
 
-button:hover{
-opacity:.8;
-}
-
-input,select{
+input{
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:10px;
+border-radius:10px;
 border:1px solid #aaa;
 margin:5px 0;
 }
@@ -87,37 +117,52 @@ font-weight:bold;
 color:#2563eb;
 }
 
-.dark{
-background:#020617;
-}
-
-.dark .box{
-background:#111827;
-color:white;
-}
-
-.dark .card{
-background:#334155;
-}
 </style>
 
 </head>
 
 <body>
 
+
+<div id="loading">
+
+<div class="logo">
+🧪 Smart Tools Pro
+</div>
+
+<div class="loading-bar">
+<div class="progress" id="progress"></div>
+</div>
+
+<div id="percent">
+0%
+</div>
+
+</div>
+
+
 <div class="container">
 
 <div class="box">
 
-<h1>🧪 Smart Tools Pro</h1><div class="card">
+<h1>
+🧪 Smart Tools Pro
+</h1><div class="card">
+
 <h3>📱 اطلاعات دستگاه</h3>
+
 <p id="device">در حال دریافت...</p>
+
 </div>
 
+
+
 <div class="card">
+
 <h3>🧮 ماشین حساب</h3>
 
 <input id="a" placeholder="عدد اول">
+
 <input id="b" placeholder="عدد دوم">
 
 <button onclick="calc()">محاسبه</button>
@@ -127,19 +172,23 @@ background:#334155;
 </div>
 
 
+
 <div class="card">
+
 <h3>⏱ تایمر</h3>
 
 <input id="time" placeholder="ثانیه">
 
-<button onclick="startTimer()">شروع</button>
+<button onclick="startTimer()">شروع تایمر</button>
 
 <p id="timer">آماده</p>
 
 </div>
 
 
+
 <div class="card">
+
 <h3>🎲 تاس</h3>
 
 <button onclick="dice()">انداختن تاس</button>
@@ -149,8 +198,10 @@ background:#334155;
 </div>
 
 
+
 <div class="card">
-<h3>🎯 حدس عدد</h3>
+
+<h3>🎯 بازی حدس عدد</h3>
 
 <p>یک عدد بین ۱ تا ۱۰ حدس بزن</p>
 
@@ -163,7 +214,9 @@ background:#334155;
 </div>
 
 
+
 <div class="card">
+
 <h3>🚀 تست سرعت اینترنت</h3>
 
 <button onclick="speedTest()">شروع تست</button>
@@ -173,11 +226,15 @@ background:#334155;
 </div>
 
 
+
 <div class="card">
 
-<button onclick="darkMode()">🌙 حالت شب</button>
+<h3>🌙 تنظیمات</h3>
+
+<button onclick="darkMode()">حالت شب</button>
 
 </div>
+
 
 
 <footer>
@@ -188,147 +245,3 @@ background:#334155;
 </div>
 
 </div>
-
-
-
-<script>
-
-
-document.getElementById("device").innerHTML =
-"🌐 زبان: "+navigator.language+
-"<br><br>📐 صفحه: "+
-screen.width+" × "+screen.height+
-"<br><br>⚙️ CPU: "+
-(navigator.hardwareConcurrency || "نامشخص")+
-"<br><br>📶 اینترنت: "+
-(navigator.onLine ? "آنلاین" : "آفلاین");
-
-
-
-function calc(){
-
-let a=Number(document.getElementById("a").value);
-let b=Number(document.getElementById("b").value);
-
-document.getElementById("result").innerHTML=
-"نتیجه: "+(a+b);
-
-}
-
-
-
-let timer;
-
-
-function startTimer(){
-
-clearInterval(timer);
-
-let t=Number(document.getElementById("time").value);
-
-timer=setInterval(()=>{
-
-document.getElementById("timer").innerHTML=
-t+" ثانیه";
-
-t--;
-
-if(t<0){
-
-clearInterval(timer);
-
-document.getElementById("timer").innerHTML=
-"⏰ تمام شد";
-
-}
-
-},1000);
-
-}
-
-
-
-function dice(){
-
-let x=Math.floor(Math.random()*6)+1;
-
-document.getElementById("dice").innerHTML=
-"🎲 "+x;
-
-}
-
-
-
-let secret=Math.floor(Math.random()*10)+1;
-
-
-function guessGame(){
-
-let g=Number(document.getElementById("guess").value);
-
-
-if(g===secret){
-
-document.getElementById("game").innerHTML=
-"🎉 درست بود!";
-
-secret=Math.floor(Math.random()*10)+1;
-
-}else{
-
-document.getElementById("game").innerHTML=
-"❌ دوباره امتحان کن";
-
-}
-
-}
-
-
-
-async function speedTest(){
-
-let out=document.getElementById("speed");
-
-out.innerHTML="⏳ تست...";
-
-try{
-
-let start=performance.now();
-
-let r=await fetch(
-"https://speed.cloudflare.com/__down?bytes=5000000&x="+Date.now()
-);
-
-let data=await r.blob();
-
-let end=performance.now();
-
-let sec=(end-start)/1000;
-
-let mbps=((data.size*8)/sec/1000000).toFixed(2);
-
-
-out.innerHTML=
-"🚀 "+mbps+" Mbps";
-
-}catch{
-
-out.innerHTML="❌ خطا در تست";
-
-}
-
-}
-
-
-
-function darkMode(){
-
-document.body.classList.toggle("dark");
-
-}
-
-
-</script>
-
-</body>
-</html>
