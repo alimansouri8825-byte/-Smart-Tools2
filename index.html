@@ -6,521 +6,850 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smart Tools Ultra</title>
+<title>🧪Smart Tools Ultra🧪</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
 box-sizing:border-box;
-font-family:tahoma,sans-serif;
 }
 
 body{
-background:#0f172a;
+
+margin:0;
+font-family:tahoma;
+background:
+linear-gradient(135deg,#020617,#2563eb);
+
 color:white;
-}
-
-header{
-
-position:sticky;
-top:0;
-
-background:#1e293b;
-
-padding:18px;
-
 text-align:center;
 
-font-size:28px;
-
-font-weight:bold;
-
-box-shadow:0 2px 10px rgba(0,0,0,.4);
-
-z-index:1000;
-
 }
 
-main{
 
-padding:20px 20px 90px;
 
-}
+/* صفحه لود */
 
-.card{
-
-background:#1e293b;
-
-border-radius:18px;
-
-padding:18px;
-
-margin-bottom:18px;
-
-}
-
-.card h2{
-
-margin-bottom:10px;
-
-color:#38bdf8;
-
-}
-
-.card p{
-
-line-height:1.8;
-
-}
-
-.bottom-nav{
+#loader{
 
 position:fixed;
-
-bottom:0;
-
+top:0;
 left:0;
 
 width:100%;
+height:100%;
 
-height:70px;
-
-background:#111827;
+background:
+linear-gradient(135deg,#020617,#1d4ed8);
 
 display:flex;
+flex-direction:column;
 
-justify-content:space-around;
-
+justify-content:center;
 align-items:center;
 
-border-top:2px solid #334155;
+z-index:9999;
 
 }
 
-.nav-btn{
 
-display:flex;
+.logo{
 
-flex-direction:column;
+font-size:40px;
+animation:pulse 1s infinite;
 
-align-items:center;
+}
+
+
+@keyframes pulse{
+
+50%{
+transform:scale(1.15);
+}
+
+}
+
+
+
+.loadBox{
+
+width:80%;
+height:25px;
+
+background:#ffffff33;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:25px;
+
+}
+
+
+#loadBar{
+
+width:0%;
+
+height:100%;
+
+background:#22c55e;
+
+border-radius:30px;
+
+transition:.1s;
+
+}
+
+
+#loadingText{
+
+margin-top:15px;
+
+font-size:20px;
+
+}
+
+
+
+
+
+.card{
+
+background:#ffffff22;
+
+margin:15px;
+
+padding:20px;
+
+border-radius:25px;
+
+backdrop-filter:blur(10px);
+
+}
+
+
+
+button{
+
+background:#22c55e;
 
 color:white;
 
-font-size:14px;
+border:0;
+
+padding:12px 25px;
+
+border-radius:15px;
+
+font-size:16px;
 
 cursor:pointer;
 
 }
 
-.nav-btn span{
 
-font-size:24px;
 
-margin-bottom:4px;
+.result{
+
+font-size:17px;
+
+line-height:2;
 
 }
+
+
+
+canvas{
+
+background:#111;
+
+border-radius:15px;
+
+}
+
+
 
 </style>
 
 </head>
 
+
+
 <body>
 
-<header>
-Smart Tools
-</header>
 
-<main id="content">
+
+<div id="loader">
+
+<div class="logo">
+🧪
+</div>
+
+
+<h1>
+Smart Tools Ultra
+</h1>
+
+
+<div id="loadingText">
+در حال آماده سازی... 0%
+</div>
+
+
+<div class="loadBox">
+
+<div id="loadBar"></div>
+
+</div>
+
+
+</div>
+
+
+
+
+<h1>
+🧪 Smart Tools Ultra
+</h1>
+
+
 
 <div class="card">
 
-<h2>🎉 به Smart Tools Ultra خوش آمدید</h2>
+<h2>
+📱 اطلاعات دستگاه
+</h2>
 
-<p>
+<div id="device" class="result">
 
-این نسخه در حال توسعه است و امکانات جدید به مرور اضافه خواهند شد.
-
-</p>
+در حال دریافت...
 
 </div>
 
-</main>
+</div>
+<div class="card">
 
-<div class="bottom-nav">
+<h2>⚡ تست سرعت گوشی</h2>
 
-<div class="nav-btn" onclick="showHome()">
-<span>🏠</span>
-خانه
+<button onclick="phoneTest()">
+شروع تست
+</button>
+
+<div id="phone" class="result"></div>
+
 </div>
 
-<div class="nav-btn" onclick="showTools()">
-<span>🧰</span>
-ابزارها
-</div>
 
-<div class="nav-btn" onclick="showGames()">
-<span>🎮</span>
-بازی‌ها
-</div>
-
-<div class="nav-btn" onclick="showSettings()">
-<span>⚙️</span>
-تنظیمات
-</div>
-
-</div><script>
-
-function showHome(){
-
-document.getElementById("content").innerHTML=`
 
 <div class="card">
 
-<h2>🏠 خانه</h2>
+<h2>📡 تست پینگ</h2>
 
-<p>
+<button onclick="pingTest()">
+تست پینگ
+</button>
 
-به Smart Tools Ultra خوش آمدید.
-
-از منوی پایین ابزارها، بازی‌ها و تنظیمات را انتخاب کنید.
-
-</p>
+<div id="ping" class="result"></div>
 
 </div>
+
+
+
+
+<div class="card">
+
+<h2>🌐 تست اینترنت</h2>
+
+<button onclick="internetTest()">
+تست سرعت
+</button>
+
+<div id="internet" class="result"></div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🔐 تولید رمز قوی</h2>
+
+<button onclick="makePassword()">
+ساخت رمز
+</button>
+
+<div id="pass" class="result"></div>
+
+</div>
+
+
+
+
+<script>
+
+
+// اطلاعات دستگاه
+
+document.getElementById("device").innerHTML=
+`
+📱 مرورگر:
+${navigator.userAgent}
+
+<br>
+
+📐 صفحه:
+${screen.width} × ${screen.height}
+
+<br>
+
+🧠 هسته پردازنده:
+${navigator.hardwareConcurrency || "نامشخص"}
+
+<br>
+
+💾 حافظه:
+${navigator.deviceMemory || "نامشخص"} GB
 
 `;
+
+
+
+
+// تست سرعت گوشی
+
+function phoneTest(){
+
+let start=performance.now();
+
+let x=0;
+
+for(let i=0;i<10000000;i++){
+
+x+=i;
+
+}
+
+let end=performance.now();
+
+
+document.getElementById("phone").innerHTML=
+"⚡ امتیاز سرعت: "+
+Math.round(100000/(end-start));
 
 }
 
 
 
-function showTools(){
 
-document.getElementById("content").innerHTML=`
+// تست پینگ
 
-<div class="card">
+function pingTest(){
 
-<h2>🧰 ابزارها</h2>
+let start=Date.now();
 
-<p>🚧 ابزارها به‌زودی اضافه می‌شوند...</p>
 
-</div>
+fetch(
+"https://cloudflare.com/cdn-cgi/trace?"+Math.random(),
+{
+mode:"no-cors"
+}
+)
 
-`;
+.then(()=>{
+
+document.getElementById("ping").innerHTML=
+"📡 پینگ تقریبی: "+
+(Date.now()-start)+
+" ms";
+
+})
+
+.catch(()=>{
+
+document.getElementById("ping").innerHTML=
+"❌ خطا در اتصال";
+
+});
 
 }
 
 
 
-function showGames(){
 
-document.getElementById("content").innerHTML=`
 
-<div class="card">
+// تست اینترنت تقریبی
 
-<h2>🎮 بازی‌ها</h2>
+function internetTest(){
 
-<p>🚧 بازی‌ها به‌زودی اضافه می‌شوند...</p>
+let start=Date.now();
 
-</div>
 
-`;
+fetch(
+"https://speed.cloudflare.com/__down?bytes=500000"
+)
+
+.then(()=>{
+
+let time=Date.now()-start;
+
+let speed=(0.5/(time/1000)).toFixed(2);
+
+
+document.getElementById("internet").innerHTML=
+"🌐 سرعت تقریبی: "+
+speed+
+" MB/s";
+
+})
+
+.catch(()=>{
+
+document.getElementById("internet").innerHTML=
+"❌ تست انجام نشد";
+
+});
 
 }
 
 
 
-function showSettings(){
 
-document.getElementById("content").innerHTML=`
 
-<div class="card">
+// ساخت رمز
 
-<h2>⚙️ تنظیمات</h2>
+function makePassword(){
 
-<p>🚧 تنظیمات به‌زودی اضافه می‌شوند...</p>
+let chars=
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
 
-</div>
 
-`;
+let pass="";
+
+
+for(let i=0;i<16;i++){
+
+pass+=chars[
+Math.floor(Math.random()*chars.length)
+];
 
 }
+
+
+document.getElementById("pass").innerHTML=
+"🔑 "+pass;
+
+}
+
+
 
 </script>
-
-</body>
-
-</html>function showTools(){
-
-document.getElementById("content").innerHTML=`
-
-<div class="card">
-
-<h2>🧰 ابزارها</h2>
-
-<p>یک ابزار را انتخاب کنید.</p>
-
-</div>
-
-<div class="card">
-
-<button onclick="alert('به زودی فعال می‌شود')">
-🧮 ماشین حساب
-</button>
-
-</div>
-
-<div class="card">
-
-<button onclick="alert('به زودی فعال می‌شود')">
-⏱ تایمر
-</button>
-
-</div>
-
-<div class="card">
-
-<button onclick="alert('به زودی فعال می‌شود')">
-📡 تست پینگ
-</button>
-
-</div>
-
-<div class="card">
-
-<button onclick="alert('به زودی فعال می‌شود')">
-🚀 تست سرعت اینترنت
-</button>
-
-</div>
-
-<div class="card">
-
-<button onclick="alert('به زودی فعال می‌شود')">
-📱 اطلاعات دستگاه
-</button>
-
-</div>
-
-`;
-
-}function showGames(){
-
-document.getElementById("content").innerHTML=`
-
 <div class="card">
 
 <h2>🎮 بازی‌ها</h2>
 
-<p>یکی از بازی‌ها را انتخاب کنید.</p>
 
-</div>
+<h3>✊ سنگ، کاغذ، قیچی</h3>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🐍 Snake</button></div>
+<button onclick="rps('سنگ')">🪨 سنگ</button>
+<button onclick="rps('کاغذ')">📄 کاغذ</button>
+<button onclick="rps('قیچی')">✂️ قیچی</button>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">❌ Tic Tac Toe</button></div>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🟨 2048</button></div>
+<div id="game1" class="result"></div>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🧠 Memory</button></div>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🪨 سنگ، کاغذ، قیچی</button></div>
+<hr>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🔢 حدس عدد</button></div>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">⌨️ تست سرعت تایپ</button></div>
+<h3>⚡ تست سرعت واکنش</h3>
 
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🎯 تست سرعت واکنش</button></div>
-
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🃏 Hangman</button></div>
-
-<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🎡 گردونه شانس</button></div>
-
-`;
-
-}.light-mode{
-background:#f8fafc;
-color:#111827;
-}
-
-.light-mode header{
-background:#ffffff;
-color:#111827;
-}
-
-.light-mode .card{
-background:#ffffff;
-color:#111827;
-border:1px solid #d1d5db;
-}
-
-.light-mode .bottom-nav{
-background:#ffffff;
-border-top:2px solid #d1d5db;
-}
-
-.light-mode .nav-btn{
-color:#111827;
-}
-
-.setting-btn{
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-font-size:16px;
-background:#2563eb;
-color:white;
-cursor:pointer;
-}function showSettings(){
-
-document.getElementById("content").innerHTML=`
-
-<div class="card">
-
-<h2>⚙️ تنظیمات</h2>
-
-<button class="setting-btn" onclick="toggleTheme()">
-
-🌙 تغییر حالت شب / روشن
-
+<button onclick="startReaction()">
+شروع
 </button>
 
+<div id="reaction" class="result"></div>
+
+
 </div>
 
-`;
 
-}function toggleTheme(){
 
-document.body.classList.toggle("light-mode");
-
-}function showTools(){
-
-document.getElementById("content").innerHTML=`
 
 <div class="card">
 
-<h2>🧰 ابزارها</h2>
+<h2>🐍 بازی مار</h2>
 
-<p>ماشین حساب Ultra</p>
+<canvas id="snake" width="300" height="300"></canvas>
 
-<input id="num1" type="number" placeholder="عدد اول">
+<br>
 
-<br><br>
+<button onclick="startSnake()">
+شروع مار
+</button>
 
-<input id="num2" type="number" placeholder="عدد دوم">
+<div id="score" class="result">
+امتیاز: 0
+</div>
 
-<br><br>
-
-<button onclick="addNumbers()">➕ جمع</button>
-
-<br><br>
-
-<button onclick="subNumbers()">➖ تفریق</button>
-
-<br><br>
-
-<button onclick="mulNumbers()">✖ ضرب</button>
-
-<br><br>
-
-<button onclick="divNumbers()">➗ تقسیم</button>
-
-<br><br>
-
-<h3 id="calcResult">نتیجه: -</h3>
 
 </div>
 
-`;
 
-}function addNumbers(){
 
-let a=Number(document.getElementById("num1").value);
-let b=Number(document.getElementById("num2").value);
 
-document.getElementById("calcResult").innerHTML="نتیجه: "+(a+b);
+
+<script>
+
+
+// سنگ کاغذ قیچی
+
+function rps(user){
+
+let list=[
+"سنگ",
+"کاغذ",
+"قیچی"
+];
+
+
+let cpu=
+list[Math.floor(Math.random()*3)];
+
+
+let result;
+
+
+if(user==cpu){
+
+result="مساوی 😐";
 
 }
 
-function subNumbers(){
+else if(
+(user=="سنگ" && cpu=="قیچی")||
+(user=="کاغذ" && cpu=="سنگ")||
+(user=="قیچی" && cpu=="کاغذ")
+){
 
-let a=Number(document.getElementById("num1").value);
-let b=Number(document.getElementById("num2").value);
-
-document.getElementById("calcResult").innerHTML="نتیجه: "+(a-b);
-
-}
-
-function mulNumbers(){
-
-let a=Number(document.getElementById("num1").value);
-let b=Number(document.getElementById("num2").value);
-
-document.getElementById("calcResult").innerHTML="نتیجه: "+(a*b);
+result="بردی 🎉";
 
 }
 
-function divNumbers(){
+else{
 
-let a=Number(document.getElementById("num1").value);
-let b=Number(document.getElementById("num2").value);
+result="باختی 😅";
 
-if(b==0){
+}
 
-document.getElementById("calcResult").innerHTML="❌ تقسیم بر صفر امکان‌پذیر نیست";
+
+document.getElementById("game1").innerHTML=
+"تو: "+user+
+"<br>کامپیوتر: "+cpu+
+"<br>"+result;
+
+}
+
+
+
+
+
+// تست واکنش
+
+let reactionStart;
+
+
+function startReaction(){
+
+let box=
+document.getElementById("reaction");
+
+
+box.innerHTML=
+"⏳ صبر کن...";
+
+
+setTimeout(()=>{
+
+
+reactionStart=Date.now();
+
+
+box.innerHTML=
+"⚡ کلیک کن!";
+
+
+box.onclick=function(){
+
+box.innerHTML=
+"⏱ زمان: "+
+(Date.now()-reactionStart)+
+" میلی‌ثانیه";
+
+};
+
+
+},Math.random()*4000+1000);
+
+
+}
+
+
+
+
+
+// بازی مار
+
+let canvas=
+document.getElementById("snake");
+
+let ctx=
+canvas.getContext("2d");
+
+
+let snake=[];
+let food={};
+
+let dx=10;
+let dy=0;
+
+let game;
+let score=0;
+
+
+
+function startSnake(){
+
+
+snake=[
+{x:150,y:150},
+{x:140,y:150},
+{x:130,y:150}
+];
+
+
+food={
+x:Math.floor(Math.random()*30)*10,
+y:Math.floor(Math.random()*30)*10
+};
+
+
+dx=10;
+dy=0;
+
+score=0;
+
+
+document.getElementById("score").innerHTML=
+"امتیاز: 0";
+
+
+clearInterval(game);
+
+game=setInterval(drawSnake,100);
+
+
+}
+
+
+
+
+
+// کنترل لمسی
+
+let startX=0;
+let startY=0;
+
+
+document.addEventListener("touchstart",e=>{
+
+startX=e.touches[0].clientX;
+startY=e.touches[0].clientY;
+
+});
+
+
+
+document.addEventListener("touchend",e=>{
+
+
+let x=e.changedTouches[0].clientX-startX;
+let y=e.changedTouches[0].clientY-startY;
+
+
+
+if(Math.abs(x)>Math.abs(y)){
+
+
+if(x>0 && dx!=-10){
+dx=10;dy=0;
+}
+
+if(x<0 && dx!=10){
+dx=-10;dy=0;
+}
+
+
+}
+
+else{
+
+
+if(y>0 && dy!=-10){
+dx=0;dy=10;
+}
+
+if(y<0 && dy!=10){
+dx=0;dy=-10;
+}
+
+
+}
+
+
+});
+
+
+
+
+
+function drawSnake(){
+
+
+ctx.clearRect(0,0,300,300);
+
+
+
+ctx.fillStyle="red";
+
+ctx.fillRect(food.x,food.y,10,10);
+
+
+
+snake.forEach(part=>{
+
+ctx.fillStyle="lime";
+
+ctx.fillRect(part.x,part.y,10,10);
+
+});
+
+
+
+let head={
+x:snake[0].x+dx,
+y:snake[0].y+dy
+};
+
+
+
+if(head.x==food.x && head.y==food.y){
+
+score++;
+
+
+document.getElementById("score").innerHTML=
+"امتیاز: "+score;
+
+
+food={
+x:Math.floor(Math.random()*30)*10,
+y:Math.floor(Math.random()*30)*10
+};
+
+
+}
+
+else{
+
+snake.pop();
+
+}
+
+
+
+if(
+head.x<0 ||
+head.x>=300 ||
+head.y<0 ||
+head.y>=300
+){
+
+clearInterval(game);
+
+alert("باختی 😅 امتیاز: "+score);
 
 return;
 
 }
 
-document.getElementById("calcResult").innerHTML="نتیجه: "+(a/b);
 
-}<div class="card">
+snake.unshift(head);
 
-<h2>📱 اطلاعات دستگاه</h2>
-
-<button onclick="deviceInfo()">
-نمایش اطلاعات دستگاه
-</button>
-
-<br><br>
-
-<div id="deviceInfo">
-هنوز اطلاعاتی نمایش داده نشده است.
-</div>
-
-</div>function deviceInfo(){
-
-let info="";
-
-info+="🌐 زبان: "+navigator.language+"<br>";
-
-info+="💻 سیستم عامل: "+navigator.platform+"<br>";
-
-info+="📺 اندازه صفحه: "+screen.width+" × "+screen.height+"<br>";
-
-info+="🖥️ تعداد هسته CPU: "+
-(navigator.hardwareConcurrency || "نامشخص")+"<br>";
-
-info+="📱 صفحه لمسی: "+
-("ontouchstart" in window ? "بله" : "خیر")+"<br>";
-
-document.getElementById("deviceInfo").innerHTML=info;
-
-}<div class="card">
-
-<button onclick="snakeComingSoon()">
-🐍 Snake
-</button>
-
-</div>function snakeComingSoon(){
-
-alert(
-"🐍 بازی Snake در نسخه بعدی Smart Tools Ultra اضافه خواهد شد.\n\nلطفاً منتظر بروزرسانی بعدی باشید."
-);
 
 }
+<script>
+
+
+// لودینگ سایت 🧪
+
+let progress = 0;
+
+let loading = setInterval(()=>{
+
+
+progress++;
+
+
+document.getElementById("loadBar").style.width =
+progress + "%";
+
+
+document.getElementById("loadingText").innerHTML =
+"در حال آماده سازی... " + progress + "%";
+
+
+
+if(progress >= 100){
+
+
+clearInterval(loading);
+
+
+
+document.getElementById("loader").style.opacity="0";
+
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},500);
+
+
+}
+
+
+
+},25);
+
+
+
+</script>
+
+
+
+<footer>
+
+<h3>
+ساخته شده توسط علی منصوری ☠️
+</h3>
+
+</footer>
+
+
+
+</body>
+
+</html>
