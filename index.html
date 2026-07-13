@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧪Smart Tools Ultra🧪</title>
-
+<title>🧪 Smart Tools Ultra</title>
 
 <style>
 
@@ -23,17 +22,13 @@ text-align:center;
 #loader{
 
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-
+inset:0;
 background:#020617;
 
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 
 z-index:9999;
 
@@ -42,7 +37,7 @@ z-index:9999;
 
 .logo{
 
-font-size:60px;
+font-size:70px;
 animation:spin 2s infinite;
 
 }
@@ -65,26 +60,21 @@ height:25px;
 
 background:#ffffff33;
 
-border-radius:20px;
+border-radius:30px;
 
 overflow:hidden;
 
 }
 
 
-
 #loadBar{
 
 width:0%;
-
 height:100%;
 
 background:#22c55e;
 
-transition:.2s;
-
 }
-
 
 
 .card{
@@ -111,7 +101,7 @@ color:white;
 
 border:0;
 
-padding:12px 25px;
+padding:12px 20px;
 
 border-radius:15px;
 
@@ -123,19 +113,10 @@ font-size:16px;
 .result{
 
 font-size:17px;
-
 line-height:2;
 
 }
 
-
-canvas{
-
-background:#111;
-
-border-radius:15px;
-
-}
 
 
 </style>
@@ -151,15 +132,12 @@ border-radius:15px;
 
 <div class="logo">🧪</div>
 
-<h1>
-Smart Tools Ultra
-</h1>
+<h1>Smart Tools Ultra</h1>
 
 <div id="loadingText">
 در حال آماده سازی... 0%
 </div>
 
-<br>
 
 <div class="loadBox">
 
@@ -172,11 +150,10 @@ Smart Tools Ultra
 
 
 
-
-
 <h1>
 🧪 Smart Tools Ultra
 </h1>
+
 
 
 
@@ -202,60 +179,19 @@ Smart Tools Ultra
 شروع تست
 </button>
 
+
 <div id="phone" class="result"></div>
 
-</div>
-<div class="card">
-
-<h2>📡 تست پینگ</h2>
-
-<button onclick="pingTest()">
-تست پینگ
-</button>
-
-<div id="ping" class="result"></div>
 
 </div>
-
-
-
-
-<div class="card">
-
-<h2>🌐 تست سرعت اینترنت</h2>
-
-<button onclick="internetTest()">
-شروع تست
-</button>
-
-<div id="internet" class="result"></div>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h2>🔐 تولید رمز قوی</h2>
-
-<button onclick="makePassword()">
-ساخت رمز
-</button>
-
-<div id="pass" class="result"></div>
-
-</div>
-
 
 
 
 <script>
 
 
-// اطلاعات دستگاه
-
 document.getElementById("device").innerHTML=
+
 `
 📱 مرورگر:
 ${navigator.userAgent}
@@ -270,19 +206,12 @@ ${screen.width} × ${screen.height}
 🧠 هسته پردازنده:
 ${navigator.hardwareConcurrency || "نامشخص"}
 
-<br>
-
-💾 حافظه:
-${navigator.deviceMemory || "نامشخص"} GB
-
 `;
 
 
 
-
-// تست سرعت گوشی
-
 function phoneTest(){
+
 
 let start=performance.now();
 
@@ -300,6 +229,7 @@ let end=performance.now();
 
 
 document.getElementById("phone").innerHTML=
+
 "⚡ امتیاز سرعت: "+
 Math.round(100000/(end-start));
 
@@ -308,13 +238,62 @@ Math.round(100000/(end-start));
 
 
 
+</script>
+<div class="card">
+
+<h2>📡 تست پینگ</h2>
+
+<button onclick="pingTest()">
+شروع تست
+</button>
+
+<div id="ping" class="result"></div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🌐 تست سرعت اینترنت</h2>
+
+<button onclick="internetTest()">
+تست اینترنت
+</button>
+
+<div id="internet" class="result"></div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🔐 رمز ساز حرفه‌ای</h2>
+
+<button onclick="makePassword()">
+ساخت رمز
+</button>
+
+<div id="pass" class="result"></div>
+
+</div>
+
+
+
+
+<script>
 
 
 // تست پینگ
 
 function pingTest(){
 
+
 let start=Date.now();
+
 
 
 fetch(
@@ -328,6 +307,7 @@ mode:"no-cors"
 
 
 document.getElementById("ping").innerHTML=
+
 "📡 پینگ تقریبی: "+
 (Date.now()-start)+
 " میلی‌ثانیه";
@@ -339,6 +319,7 @@ document.getElementById("ping").innerHTML=
 
 
 document.getElementById("ping").innerHTML=
+
 "❌ خطا در اتصال";
 
 
@@ -352,9 +333,10 @@ document.getElementById("ping").innerHTML=
 
 
 
-// تست سرعت اینترنت
+// تست اینترنت
 
 function internetTest(){
+
 
 let start=Date.now();
 
@@ -368,11 +350,14 @@ fetch(
 
 let time=Date.now()-start;
 
+
 let speed=
 (0.5/(time/1000)).toFixed(2);
 
 
+
 document.getElementById("internet").innerHTML=
+
 "🌐 سرعت تقریبی: "+
 speed+
 " MB/s";
@@ -380,11 +365,13 @@ speed+
 
 })
 
+
 .catch(()=>{
 
 
 document.getElementById("internet").innerHTML=
-"❌ تست نشد";
+
+"❌ تست انجام نشد";
 
 
 });
@@ -397,28 +384,39 @@ document.getElementById("internet").innerHTML=
 
 
 
-// رمز قوی
+
+// ساخت رمز
 
 function makePassword(){
 
+
 let chars=
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 
 
-let pass="";
+
+let password="";
+
 
 
 for(let i=0;i<16;i++){
 
-pass+=chars[
+
+password +=
+
+chars[
 Math.floor(Math.random()*chars.length)
 ];
+
 
 }
 
 
+
 document.getElementById("pass").innerHTML=
-"🔑 "+pass;
+
+"🔑 "+password;
 
 
 }
@@ -450,6 +448,7 @@ document.getElementById("pass").innerHTML=
 شروع
 </button>
 
+
 <div id="reaction" class="result"></div>
 
 
@@ -463,18 +462,22 @@ document.getElementById("pass").innerHTML=
 
 <h2>🐍 بازی مار</h2>
 
+
 <canvas id="snake" width="300" height="300"></canvas>
+
 
 <br>
 
+
 <button onclick="startSnake()">
-شروع بازی
+شروع مار
 </button>
 
 
 <div id="score" class="result">
 امتیاز: 0
 </div>
+
 
 </div>
 
@@ -497,11 +500,13 @@ let items=[
 ];
 
 
-let cpu=
+let cpu =
 items[Math.floor(Math.random()*3)];
 
 
-let result="";
+
+let result;
+
 
 
 if(user==cpu){
@@ -512,9 +517,9 @@ result="مساوی 😐";
 
 else if(
 
-(user=="سنگ" && cpu=="قیچی") ||
+(user=="سنگ" && cpu=="قیچی")||
 
-(user=="کاغذ" && cpu=="سنگ") ||
+(user=="کاغذ" && cpu=="سنگ")||
 
 (user=="قیچی" && cpu=="کاغذ")
 
@@ -531,13 +536,16 @@ result="باختی 😅";
 }
 
 
+
 document.getElementById("game1").innerHTML=
+
 "تو: "+user+
 "<br>کامپیوتر: "+cpu+
 "<br>"+result;
 
 
 }
+
 
 
 
@@ -554,8 +562,8 @@ function startReaction(){
 let box=document.getElementById("reaction");
 
 
-box.innerHTML=
-"⏳ صبر کن...";
+box.innerHTML="⏳ صبر کن...";
+
 
 
 setTimeout(()=>{
@@ -564,14 +572,15 @@ setTimeout(()=>{
 reactionStart=Date.now();
 
 
-box.innerHTML=
-"⚡ کلیک کن!";
+box.innerHTML="⚡ کلیک کن!";
+
 
 
 box.onclick=function(){
 
 
 box.innerHTML=
+
 "⏱ زمان واکنش: "+
 (Date.now()-reactionStart)+
 " میلی‌ثانیه";
@@ -589,7 +598,7 @@ box.innerHTML=
 
 
 
-// بازی مار
+// مار
 
 let canvas=document.getElementById("snake");
 
@@ -597,14 +606,18 @@ let ctx=canvas.getContext("2d");
 
 
 let snake=[];
+
 let food={};
 
+
 let dx=10;
+
 let dy=0;
 
-let game;
-let score=0;
 
+let snakeGame;
+
+let score=0;
 
 
 
@@ -619,13 +632,19 @@ snake=[
 
 
 food={
+
 x:Math.floor(Math.random()*30)*10,
+
 y:Math.floor(Math.random()*30)*10
+
 };
 
 
+
 dx=10;
+
 dy=0;
+
 
 score=0;
 
@@ -634,9 +653,10 @@ document.getElementById("score").innerHTML=
 "امتیاز: 0";
 
 
-clearInterval(game);
+clearInterval(snakeGame);
 
-game=setInterval(drawSnake,100);
+
+snakeGame=setInterval(drawSnake,100);
 
 
 }
@@ -645,27 +665,33 @@ game=setInterval(drawSnake,100);
 
 
 
-// کنترل لمس
+// لمس گوشی
 
-let touchX=0;
-let touchY=0;
+let startX=0;
+
+let startY=0;
+
 
 
 document.addEventListener("touchstart",e=>{
 
-touchX=e.touches[0].clientX;
-touchY=e.touches[0].clientY;
+
+startX=e.touches[0].clientX;
+
+startY=e.touches[0].clientY;
+
 
 });
+
 
 
 
 document.addEventListener("touchend",e=>{
 
 
-let x=e.changedTouches[0].clientX-touchX;
+let x=e.changedTouches[0].clientX-startX;
 
-let y=e.changedTouches[0].clientY-touchY;
+let y=e.changedTouches[0].clientY-startY;
 
 
 
@@ -688,9 +714,7 @@ dy=0;
 }
 
 
-}
-
-else{
+}else{
 
 
 if(y>0 && dy!=-10){
@@ -753,7 +777,6 @@ y:snake[0].y+dy
 
 
 
-
 if(head.x==food.x && head.y==food.y){
 
 
@@ -774,31 +797,35 @@ y:Math.floor(Math.random()*30)*10
 };
 
 
-}
 
-else{
+}else{
+
 
 snake.pop();
 
+
 }
+
 
 
 
 
 if(
-
 head.x<0 ||
 head.x>=300 ||
 head.y<0 ||
 head.y>=300
-
 ){
 
-clearInterval(game);
+
+clearInterval(snakeGame);
+
 
 alert("باختی 😅 امتیاز: "+score);
 
+
 return;
+
 
 }
 
@@ -811,65 +838,504 @@ snake.unshift(head);
 
 
 </script>
+<div class="card">
+
+<h2>✨ اسم خفن ساز Ultra</h2>
+
+
+<input id="nameInput"
+
+placeholder="اسم خودت را بنویس"
+
+style="
+padding:12px;
+border-radius:15px;
+border:0;
+font-size:18px;
+text-align:center;
+">
+
+
+<br><br>
+
+
+<select id="emojiSelect"
+
+style="
+padding:10px;
+border-radius:10px;
+font-size:16px;
+">
+
+<option>☠️</option>
+<option>👑</option>
+<option>🧪</option>
+<option>🔥</option>
+<option>⚡</option>
+
+</select>
+
+
+
+<select id="fontSelect"
+
+style="
+padding:10px;
+border-radius:10px;
+font-size:16px;
+">
+
+<option>Arial</option>
+<option>Tahoma</option>
+<option>Georgia</option>
+<option>Courier New</option>
+<option>Impact</option>
+
+</select>
+
+
+
+<br><br>
+
+
+
+<button onclick="createCoolName()">
+ساخت اسم
+</button>
+
+
+
+<div id="coolName"
+class="result nameStyle">
+
+</div>
+
+
+</div>
+
+
+
+
+
+<style>
+
+
+.nameStyle{
+
+font-size:35px;
+
+font-weight:bold;
+
+animation:glow 1s infinite alternate;
+
+}
+
+
+
+@keyframes glow{
+
+from{
+
+text-shadow:0 0 5px white;
+
+}
+
+
+to{
+
+text-shadow:0 0 25px #22c55e;
+
+}
+
+
+}
+
+
+</style>
+
+
+
+
+
 <script>
 
-// لودینگ حرفه‌ای 🧪
-
-window.addEventListener("load", function(){
 
 
-let progress = 0;
-
-
-let loading = setInterval(function(){
-
-
-progress++;
-
-
-document.getElementById("loadBar").style.width =
-progress + "%";
-
-
-document.getElementById("loadingText").innerHTML =
-"در حال آماده سازی... " + progress + "%";
+function createCoolName(){
 
 
 
-if(progress >= 100){
+let name=
 
-
-clearInterval(loading);
-
-
-
-setTimeout(function(){
-
-
-document.getElementById("loader").style.opacity="0";
-
-
-setTimeout(function(){
-
-document.getElementById("loader").style.display="none";
-
-},500);
+document.getElementById("nameInput").value;
 
 
 
-},300);
+if(name==""){
+
+name="علی";
+
+}
+
+
+
+
+let emoji=
+
+document.getElementById("emojiSelect").value;
+
+
+
+let font=
+
+document.getElementById("fontSelect").value;
+
+
+
+let output=
+
+emoji+
+" 『 "+
+name+
+" 』 "+
+emoji;
+
+
+
+let box=
+
+document.getElementById("coolName");
+
+
+
+box.innerHTML=output;
+
+
+box.style.fontFamily=font;
+
+
+
+
+let colors=[
+
+"#22c55e",
+"#38bdf8",
+"#f97316",
+"#e879f9",
+"#facc15"
+
+];
+
+
+
+box.style.color=
+
+colors[Math.floor(Math.random()*colors.length)];
+
+
+
+
+// ذخیره اسم
+
+localStorage.setItem(
+
+"smartName",
+
+name
+
+);
+
+
+}
+
+
+
+
+// نمایش اسم قبلی
+
+window.addEventListener("load",()=>{
+
+
+let saved=
+
+localStorage.getItem("smartName");
+
+
+
+if(saved){
+
+document.getElementById("nameInput").value=saved;
+
+}
+
+
+});
+
+
+</script>
+<div class="card">
+
+<h2>🎨 لوگوی اسم</h2>
+
+
+<input id="logoName"
+
+placeholder="اسم لوگو"
+
+style="
+padding:12px;
+border-radius:15px;
+border:0;
+font-size:18px;
+text-align:center;
+">
+
+
+<br><br>
+
+
+<select id="logoEmoji"
+
+style="
+padding:10px;
+border-radius:10px;
+">
+
+<option>☠️</option>
+<option>👑</option>
+<option>🧪</option>
+<option>🔥</option>
+<option>⚡</option>
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="createLogo()">
+ساخت لوگو
+</button>
+
+
+<button onclick="saveLogo()">
+💾 ذخیره عکس
+</button>
+
+
+<br><br>
+
+
+<canvas id="logoCanvas"
+width="500"
+height="250">
+
+</canvas>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+let logoCanvas =
+document.getElementById("logoCanvas");
+
+
+let logoCtx =
+logoCanvas.getContext("2d");
+
+
+
+
+
+function createLogo(){
+
+
+let name =
+document.getElementById("logoName").value;
+
+
+
+if(name==""){
+
+name="علی";
+
+}
+
+
+
+
+let emoji =
+document.getElementById("logoEmoji").value;
+
+
+
+
+let gradient =
+logoCtx.createLinearGradient(
+0,0,500,250
+);
+
+
+
+gradient.addColorStop(
+0,
+"#2563eb"
+);
+
+
+
+gradient.addColorStop(
+1,
+"#020617"
+);
+
+
+
+
+logoCtx.fillStyle=gradient;
+
+
+logoCtx.fillRect(
+0,
+0,
+500,
+250
+);
+
+
+
+
+
+logoCtx.font="70px Arial";
+
+
+logoCtx.fillText(
+emoji,
+40,
+140
+);
+
+
+
+
+
+logoCtx.font=
+"bold 55px Arial";
+
+
+logoCtx.fillStyle="white";
+
+
+logoCtx.shadowColor="#22c55e";
+
+
+logoCtx.shadowBlur=25;
+
+
+
+logoCtx.fillText(
+name,
+130,
+140
+);
 
 
 
 }
 
 
-},25);
+
+
+
+
+function saveLogo(){
+
+
+let link =
+document.createElement("a");
+
+
+link.download=
+"Smart-Tools-Logo.png";
+
+
+link.href=
+logoCanvas.toDataURL();
+
+
+
+link.click();
+
+
+}
+
+
+
+</script>
+
+
+
+
+
+<script>
+
+// پایان لودینگ 🧪
+
+window.addEventListener("load",()=>{
+
+
+let progress=0;
+
+
+let timer=setInterval(()=>{
+
+
+progress++;
+
+
+document.getElementById("loadBar").style.width=
+progress+"%";
+
+
+
+document.getElementById("loadingText").innerHTML=
+"در حال آماده سازی... "+
+progress+
+"%";
+
+
+
+if(progress>=100){
+
+
+clearInterval(timer);
+
+
+
+setTimeout(()=>{
+
+
+document.getElementById("loader").style.display="none";
+
+
+},500);
+
+
+}
+
+
+
+},20);
 
 
 
 });
-
 
 
 </script>
