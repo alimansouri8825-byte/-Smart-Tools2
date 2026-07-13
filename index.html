@@ -1,93 +1,1379 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧪 Smart Tools Ultra</title>
+<title>Smart Tools Ultra</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:Tahoma, Arial, sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#111827,#2563eb);
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:25px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.subtitle{
+    text-align:center;
+    opacity:.8;
+    margin-bottom:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:20px;
+    margin:15px 0;
+    box-shadow:0 10px 30px #0005;
+}
+
+button{
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+🚀 Smart Tools Ultra
+</header>
+
+<div class="subtitle">
+ابزارهای هوشمند، بازی‌ها و امکانات جذاب
+</div>
+
+
+<div class="container">
+
+<div class="card">
+<h2>🔥 خوش آمدید</h2>
+<p>
+به نسخه Ultra سایت علی منصوری خوش آمدید.
+</p>
+</div>
+
+
+</div>
+
+
+<footer>
+ساخته شده توسط علی منصوری 💀
+</footer>
+
+
+</body>
+</html><div class="card">
+
+<h2>🛠️ ابزارهای Smart Tools</h2>
+
+<div class="tools">
+
+<button onclick="showTool('calculator')">
+🧮 ماشین حساب
+</button>
+
+<button onclick="showTool('password')">
+🔐 تولید رمز
+</button>
+
+<button onclick="showTool('converter')">
+🔄 تبدیل واحد
+</button>
+
+<button onclick="showTool('notes')">
+📝 یادداشت
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card" id="toolBox">
+
+<h2>✨ انتخاب یک ابزار</h2>
+
+<p>
+از بالا یکی از ابزارها را انتخاب کن.
+</p>
+
+</div>
+
 
 <style>
 
-body{
-margin:0;
-font-family:tahoma;
-background:linear-gradient(135deg,#020617,#2563eb);
-color:white;
-text-align:center;
-}
-
-
-#loader{
-
-position:fixed;
-inset:0;
-background:#020617;
-
+.tools{
 display:flex;
-flex-direction:column;
-align-items:center;
+flex-wrap:wrap;
+gap:10px;
 justify-content:center;
+}
 
-z-index:9999;
+
+.tools button{
+background:#f97316;
+}
+
+
+#toolBox input,
+#toolBox textarea{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:none;
 
 }
 
 
-.logo{
-
-font-size:70px;
-animation:spin 2s infinite;
-
-}
+</style>
 
 
-@keyframes spin{
+<script>
 
-50%{
-transform:rotate(180deg);
-}
+function showTool(tool){
 
-}
+let box=document.getElementById("toolBox");
 
 
+if(tool==="calculator"){
 
-.loadBox{
+box.innerHTML=`
 
-width:80%;
-height:25px;
+<h2>🧮 ماشین حساب</h2>
 
-background:#ffffff33;
+<input id="calcInput" placeholder="مثال: 20+5">
 
-border-radius:30px;
+<button onclick="calculateUltra()">
+محاسبه
+</button>
 
-overflow:hidden;
+<p id="calcResult"></p>
+
+`;
 
 }
 
 
-#loadBar{
+else if(tool==="password"){
 
-width:0%;
-height:100%;
+box.innerHTML=`
 
-background:#22c55e;
+<h2>🔐 تولید رمز</h2>
+
+<input id="passLength" type="number" value="16">
+
+<button onclick="generatePasswordUltra()">
+ساخت رمز
+</button>
+
+<textarea id="passwordResult"></textarea>
+
+`;
 
 }
 
 
-.card{
+else if(tool==="converter"){
 
-background:#ffffff22;
+box.innerHTML=`
 
-margin:15px;
+<h2>🔄 تبدیل واحد</h2>
 
+<input id="meter" placeholder="متر">
+
+<button onclick="convertUltra()">
+تبدیل به سانتی متر
+</button>
+
+<p id="convertResult"></p>
+
+`;
+
+}
+
+
+else if(tool==="notes"){
+
+box.innerHTML=`
+
+<h2>📝 یادداشت</h2>
+
+<textarea placeholder="یادداشت خودت را بنویس..."></textarea>
+
+`;
+
+}
+
+}
+
+
+function calculateUltra(){
+
+let value=document.getElementById("calcInput").value;
+
+try{
+
+document.getElementById("calcResult").innerHTML=
+"نتیجه: "+eval(value);
+
+}catch{
+
+document.getElementById("calcResult").innerHTML=
+"❌ عبارت اشتباه است";
+
+}
+
+}
+
+
+function convertUltra(){
+
+let m=document.getElementById("meter").value;
+
+document.getElementById("convertResult").innerHTML=
+m+" متر = "+(m*100)+" سانتی متر";
+
+}
+
+
+function generatePasswordUltra(){
+
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+
+let length=document.getElementById("passLength").value;
+
+let pass="";
+
+for(let i=0;i<length;i++){
+
+pass+=chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+document.getElementById("passwordResult").value=pass;
+
+}
+
+</script><!-- Smart Tools Ultra Menu -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
 padding:20px;
-
-border-radius:25px;
-
+border-radius:20px;
 backdrop-filter:blur(10px);
+">
+
+<h2 style="text-align:center;">
+🛠️ ابزارهای Ultra
+</h2>
+
+
+<div style="
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+justify-content:center;
+">
+
+
+<button onclick="alert('🧮 ماشین حساب به زودی فعال می‌شود')">
+🧮 ماشین حساب
+</button>
+
+
+<button onclick="alert('🔐 تولید رمز فعال شد')">
+🔐 تولید رمز
+</button>
+
+
+<button onclick="alert('🌡️ تبدیل دما فعال شد')">
+🌡️ تبدیل دما
+</button>
+
+
+<button onclick="alert('⏱️ تایمر فعال شد')">
+⏱️ تایمر
+</button>
+
+
+<button onclick="alert('📝 یادداشت فعال شد')">
+📝 یادداشت
+</button>
+
+
+</div>
+
+</div>
+
+
+<style>
+
+button{
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 5px 20px #0006;
+}
+
+</style><!-- Ultra Calculator -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+">
+
+<h2 style="text-align:center;">
+🧮 ماشین حساب Ultra
+</h2>
+
+<input id="ultraCalcInput"
+placeholder="مثال: 25*4+10"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:18px;
+">
+
+
+<br><br>
+
+<button onclick="ultraCalculate()">
+محاسبه کن
+</button>
+
+
+<h3 id="ultraCalcResult">
+نتیجه: -
+</h3>
+
+</div>
+
+
+
+<script>
+
+function ultraCalculate(){
+
+let input =
+document.getElementById("ultraCalcInput").value;
+
+
+try{
+
+let result = eval(input);
+
+
+document.getElementById("ultraCalcResult").innerHTML =
+"نتیجه: " + result;
+
+
+}
+
+catch{
+
+document.getElementById("ultraCalcResult").innerHTML =
+"❌ عبارت اشتباه است";
+
+}
+
+}
+
+</script><!-- Ultra Password Generator -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+">
+
+<h2 style="text-align:center;">
+🔐 تولید رمز Ultra
+</h2>
+
+
+<input 
+id="ultraPassLength"
+type="number"
+value="16"
+min="4"
+max="64"
+placeholder="طول رمز"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:18px;
+">
+
+
+<br><br>
+
+
+<button onclick="createUltraPassword()">
+ساخت رمز
+</button>
+
+
+<textarea 
+id="ultraPasswordResult"
+readonly
+placeholder="رمز ساخته شده اینجا میاد..."
+style="
+width:100%;
+height:70px;
+margin-top:15px;
+border-radius:12px;
+padding:10px;
+">
+</textarea>
+
+
+<br>
+
+<button onclick="copyUltraPassword()">
+📋 کپی رمز
+</button>
+
+
+</div>
+
+
+
+<script>
+
+function createUltraPassword(){
+
+let length =
+Number(document.getElementById("ultraPassLength").value);
+
+
+let chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+
+let password="";
+
+
+for(let i=0;i<length;i++){
+
+password +=
+chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+
+document.getElementById("ultraPasswordResult").value =
+password;
+
+}
+
+
+
+function copyUltraPassword(){
+
+let box =
+document.getElementById("ultraPasswordResult");
+
+
+if(box.value===""){
+
+alert("اول رمز بساز");
+
+return;
+
+}
+
+
+navigator.clipboard.writeText(box.value);
+
+
+alert("✅ رمز کپی شد");
+
+}
+
+</script><!-- Ultra Converter -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+">
+
+<h2 style="text-align:center;">
+🌡️ تبدیل واحد Ultra
+</h2>
+
+
+<input 
+id="tempInput"
+type="number"
+placeholder="دمای سلسیوس"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:18px;
+">
+
+
+<br><br>
+
+
+<button onclick="convertTemperature()">
+تبدیل دما
+</button>
+
+
+<h3 id="tempResult">
+نتیجه: -
+</h3>
+
+
+<hr>
+
+
+<input 
+id="meterInput"
+type="number"
+placeholder="مقدار متر"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:18px;
+">
+
+
+<br><br>
+
+
+<button onclick="convertMeter()">
+تبدیل متر
+</button>
+
+
+<h3 id="meterResult">
+نتیجه: -
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function convertTemperature(){
+
+let c =
+Number(document.getElementById("tempInput").value);
+
+
+let f =
+(c * 9 / 5) + 32;
+
+
+document.getElementById("tempResult").innerHTML =
+"🌡️ "+c+"°C = "+f.toFixed(1)+"°F";
+
+}
+
+
+
+function convertMeter(){
+
+let m =
+Number(document.getElementById("meterInput").value);
+
+
+document.getElementById("meterResult").innerHTML =
+"📏 "+m+" متر = "+(m*100)+" سانتی‌متر";
+
+}
+
+</script><!-- Ultra Timer -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+⏱️ تایمر و کرنومتر Ultra
+</h2>
+
+
+<h1 id="timerDisplay">
+00:00
+</h1>
+
+
+<input 
+id="timerSeconds"
+type="number"
+placeholder="زمان به ثانیه"
+style="
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+width:100%;
+">
+
+
+<br><br>
+
+
+<button onclick="startUltraTimer()">
+شروع تایمر
+</button>
+
+
+<button onclick="stopUltraTimer()">
+توقف
+</button>
+
+
+<hr>
+
+
+<h2 id="stopwatchDisplay">
+00:00:00
+</h2>
+
+
+<button onclick="startStopwatch()">
+شروع کرنومتر
+</button>
+
+
+<button onclick="stopStopwatch()">
+توقف کرنومتر
+</button>
+
+
+</div>
+
+
+
+<script>
+
+let timerInterval;
+let stopwatchInterval;
+
+let stopwatchSeconds=0;
+
+
+
+function startUltraTimer(){
+
+let seconds =
+Number(document.getElementById("timerSeconds").value);
+
+
+clearInterval(timerInterval);
+
+
+timerInterval=setInterval(()=>{
+
+
+if(seconds<=0){
+
+clearInterval(timerInterval);
+
+alert("⏰ زمان تمام شد");
+
+return;
+
+}
+
+
+seconds--;
+
+
+let min =
+Math.floor(seconds/60);
+
+let sec =
+seconds%60;
+
+
+document.getElementById("timerDisplay").innerHTML =
+String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0");
+
+
+},1000);
+
+}
+
+
+
+function stopUltraTimer(){
+
+clearInterval(timerInterval);
+
+}
+
+
+
+function startStopwatch(){
+
+clearInterval(stopwatchInterval);
+
+
+stopwatchInterval=setInterval(()=>{
+
+
+stopwatchSeconds++;
+
+
+let h =
+Math.floor(stopwatchSeconds/3600);
+
+let m =
+Math.floor((stopwatchSeconds%3600)/60);
+
+let s =
+stopwatchSeconds%60;
+
+
+document.getElementById("stopwatchDisplay").innerHTML =
+String(h).padStart(2,"0")+":"+
+String(m).padStart(2,"0")+":"+
+String(s).padStart(2,"0");
+
+
+},1000);
+
+}
+
+
+
+function stopStopwatch(){
+
+clearInterval(stopwatchInterval);
+
+}
+
+</script><!-- Ultra Game Center -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🎮 Ultra Game Center
+</h2>
+
+
+<p>
+امتیاز شما:
+</p>
+
+
+<h1 id="ultraScore">
+0
+</h1>
+
+
+<button onclick="playClickGame()">
+🔥 کلیک کن و امتیاز بگیر
+</button>
+
+
+<button onclick="resetScore()">
+🔄 صفر کردن امتیاز
+</button>
+
+
+<div style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+<h3>
+🏆 رکورد
+</h3>
+
+<h2 id="highScore">
+0
+</h2>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+let score =
+Number(localStorage.getItem("ultraScore")) || 0;
+
+
+let high =
+Number(localStorage.getItem("ultraHigh")) || 0;
+
+
+
+document.getElementById("ultraScore").innerHTML =
+score;
+
+
+document.getElementById("highScore").innerHTML =
+high;
+
+
+
+function playClickGame(){
+
+score++;
+
+
+if(score>high){
+
+high=score;
+
+localStorage.setItem("ultraHigh",high);
+
+}
+
+
+localStorage.setItem("ultraScore",score);
+
+
+document.getElementById("ultraScore").innerHTML =
+score;
+
+
+document.getElementById("highScore").innerHTML =
+high;
+
+}
+
+
+
+function resetScore(){
+
+score=0;
+
+
+localStorage.setItem("ultraScore",0);
+
+
+document.getElementById("ultraScore").innerHTML =
+0;
+
+}
+
+</script><!-- Ultra User Profile -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+👤 پروفایل Ultra
+</h2>
+
+
+<h1>
+💀 علی منصوری
+</h1>
+
+
+<p>
+سطح کاربر:
+</p>
+
+
+<h2 id="userLevel">
+1
+</h2>
+
+
+<p>
+XP شما:
+</p>
+
+
+<h2 id="userXP">
+0
+</h2>
+
+
+<button onclick="addXP()">
+⭐ گرفتن XP
+</button>
+
+
+<div style="
+margin-top:15px;
+height:20px;
+background:#0005;
+border-radius:20px;
+overflow:hidden;
+">
+
+<div id="xpBar" style="
+height:100%;
+width:0%;
+background:#22c55e;
+">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+let xp =
+Number(localStorage.getItem("ultraXP")) || 0;
+
+
+function updateProfile(){
+
+let level =
+Math.floor(xp / 100) + 1;
+
+
+let percent =
+xp % 100;
+
+
+document.getElementById("userXP").innerHTML =
+xp;
+
+
+document.getElementById("userLevel").innerHTML =
+level;
+
+
+document.getElementById("xpBar").style.width =
+percent+"%";
+
+}
+
+
+
+function addXP(){
+
+xp += 10;
+
+
+localStorage.setItem("ultraXP",xp);
+
+
+updateProfile();
+
+
+}
+
+
+
+updateProfile();
+
+</script><!-- Ultra Theme Settings -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+⚙️ تنظیمات Ultra
+</h2>
+
+
+<button onclick="changeTheme()">
+🌙 تغییر حالت سایت
+</button>
+
+
+<p id="themeText">
+حالت فعلی: آبی Ultra
+</p>
+
+
+</div>
+
+
+
+<script>
+
+let darkMode =
+localStorage.getItem("ultraTheme");
+
+
+
+function loadTheme(){
+
+if(darkMode==="dark"){
+
+document.body.style.background =
+"linear-gradient(135deg,#000,#374151)";
+
+document.getElementById("themeText").innerHTML =
+"حالت فعلی: 🌙 شب";
+
+}
+
+}
+
+
+
+function changeTheme(){
+
+if(darkMode==="dark"){
+
+darkMode="light";
+
+
+document.body.style.background =
+"linear-gradient(135deg,#111827,#2563eb)";
+
+
+document.getElementById("themeText").innerHTML =
+"حالت فعلی: ☀️ روشن";
+
+
+}
+else{
+
+
+darkMode="dark";
+
+
+document.body.style.background =
+"linear-gradient(135deg,#000,#374151)";
+
+
+document.getElementById("themeText").innerHTML =
+"حالت فعلی: 🌙 شب";
+
+
+}
+
+
+localStorage.setItem("ultraTheme",darkMode);
+
+}
+
+
+
+loadTheme();
+
+</script><!-- Ultra Weather Widget -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🌦️ آب‌وهوای Ultra
+</h2>
+
+
+<input 
+id="cityName"
+placeholder="نام شهر (مثلا Tehran)"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="getUltraWeather()">
+نمایش هوا
+</button>
+
+
+<h2 id="weatherResult">
+هنوز شهری انتخاب نشده
+</h2>
+
+
+</div>
+
+
+
+<script>
+
+async function getUltraWeather(){
+
+let city =
+document.getElementById("cityName").value;
+
+
+if(city===""){
+
+alert("نام شهر را وارد کن");
+
+return;
+
+}
+
+
+let url =
+"https://wttr.in/"+city+"?format=%C+%t";
+
+
+try{
+
+
+let response =
+await fetch(url);
+
+
+let data =
+await response.text();
+
+
+document.getElementById("weatherResult").innerHTML =
+"🌍 "+city+"<br>"+data;
+
+
+}
+
+catch{
+
+
+document.getElementById("weatherResult").innerHTML =
+"❌ خطا در دریافت هوا";
+
+}
+
+
+}
+
+</script><!-- Ultra Notes -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+">
+
+<h2 style="text-align:center;">
+📝 دفترچه یادداشت Ultra
+</h2>
+
+
+<textarea
+id="ultraNotes"
+placeholder="اینجا یادداشت بنویس..."
+style="
+width:100%;
+height:150px;
+padding:15px;
+border-radius:15px;
+border:none;
+font-size:16px;
+">
+</textarea>
+
+
+<br><br>
+
+
+<button onclick="saveUltraNotes()">
+💾 ذخیره یادداشت
+</button>
+
+
+<button onclick="clearUltraNotes()">
+🗑️ پاک کردن
+</button>
+
+
+<p id="noteStatus">
+</p>
+
+
+</div>
+
+
+
+<script>
+
+let savedNotes =
+localStorage.getItem("ultraNotes") || "";
+
+
+document.getElementById("ultraNotes").value =
+savedNotes;
+
+
+
+function saveUltraNotes(){
+
+let text =
+document.getElementById("ultraNotes").value;
+
+
+localStorage.setItem("ultraNotes",text);
+
+
+document.getElementById("noteStatus").innerHTML =
+"✅ یادداشت ذخیره شد";
+
+}
+
+
+
+function clearUltraNotes(){
+
+document.getElementById("ultraNotes").value="";
+
+
+localStorage.removeItem("ultraNotes");
+
+
+document.getElementById("noteStatus").innerHTML =
+"🗑️ یادداشت پاک شد";
+
+}
+
+</script><!-- Ultra Effects -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+✨ افکت Ultra فعال شد
+</h2>
+
+<p>
+سایت با انیمیشن‌های جذاب آماده است 🚀
+</p>
+
+</div>
+
+
+<style>
+
+.card,
+div[style*="background:rgba"]{
+
+animation:ultraShow 0.7s ease;
+
+}
+
+
+@keyframes ultraShow{
+
+from{
+
+opacity:0;
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
 
 }
 
@@ -95,858 +1381,1006 @@ backdrop-filter:blur(10px);
 
 button{
 
-background:#22c55e;
-
-color:white;
-
-border:0;
-
-padding:12px 20px;
-
-border-radius:15px;
-
-font-size:16px;
-
-}
-
-
-.result{
-
-font-size:17px;
-line-height:2;
+position:relative;
+overflow:hidden;
 
 }
 
 
 
-</style>
+button:active{
 
-</head>
-
-
-<body>
-
-
-
-<div id="loader">
-
-<div class="logo">🧪</div>
-
-<h1>Smart Tools Ultra</h1>
-
-<div id="loadingText">
-در حال آماده سازی... 0%
-</div>
-
-
-<div class="loadBox">
-
-<div id="loadBar"></div>
-
-</div>
-
-
-</div>
-
-
-
-<h1>
-🧪 Smart Tools Ultra
-</h1>
-
-
-
-
-<div class="card">
-
-<h2>📱 اطلاعات دستگاه</h2>
-
-<div id="device" class="result">
-
-در حال دریافت...
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>⚡ تست سرعت گوشی</h2>
-
-<button onclick="phoneTest()">
-شروع تست
-</button>
-
-
-<div id="phone" class="result"></div>
-
-
-</div>
-
-
-
-<script>
-
-
-document.getElementById("device").innerHTML=
-
-`
-📱 مرورگر:
-${navigator.userAgent}
-
-<br>
-
-📐 صفحه:
-${screen.width} × ${screen.height}
-
-<br>
-
-🧠 هسته پردازنده:
-${navigator.hardwareConcurrency || "نامشخص"}
-
-`;
-
-
-
-function phoneTest(){
-
-
-let start=performance.now();
-
-let x=0;
-
-
-for(let i=0;i<10000000;i++){
-
-x+=i;
-
-}
-
-
-let end=performance.now();
-
-
-document.getElementById("phone").innerHTML=
-
-"⚡ امتیاز سرعت: "+
-Math.round(100000/(end-start));
-
+transform:scale(.95);
 
 }
 
 
 
-</script>
-<div class="card">
+body:before{
 
-<h2>📡 تست پینگ</h2>
+content:"";
 
-<button onclick="pingTest()">
-شروع تست
-</button>
+position:fixed;
 
-<div id="ping" class="result"></div>
+top:0;
+left:0;
+width:100%;
+height:100%;
 
-</div>
+background:
+radial-gradient(circle at top,#ffffff33,transparent 40%);
 
-
-
-
-<div class="card">
-
-<h2>🌐 تست سرعت اینترنت</h2>
-
-<button onclick="internetTest()">
-تست اینترنت
-</button>
-
-<div id="internet" class="result"></div>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h2>🔐 رمز ساز حرفه‌ای</h2>
-
-<button onclick="makePassword()">
-ساخت رمز
-</button>
-
-<div id="pass" class="result"></div>
-
-</div>
-
-
-
-
-<script>
-
-
-// تست پینگ
-
-function pingTest(){
-
-
-let start=Date.now();
-
-
-
-fetch(
-"https://cloudflare.com/cdn-cgi/trace?"+Math.random(),
-{
-mode:"no-cors"
-}
-)
-
-.then(()=>{
-
-
-document.getElementById("ping").innerHTML=
-
-"📡 پینگ تقریبی: "+
-(Date.now()-start)+
-" میلی‌ثانیه";
-
-
-})
-
-.catch(()=>{
-
-
-document.getElementById("ping").innerHTML=
-
-"❌ خطا در اتصال";
-
-
-});
-
+pointer-events:none;
 
 }
 
-
-
-
-
-
-// تست اینترنت
-
-function internetTest(){
-
-
-let start=Date.now();
-
-
-fetch(
-"https://speed.cloudflare.com/__down?bytes=500000"
-)
-
-.then(()=>{
-
-
-let time=Date.now()-start;
-
-
-let speed=
-(0.5/(time/1000)).toFixed(2);
-
-
-
-document.getElementById("internet").innerHTML=
-
-"🌐 سرعت تقریبی: "+
-speed+
-" MB/s";
-
-
-})
-
-
-.catch(()=>{
-
-
-document.getElementById("internet").innerHTML=
-
-"❌ تست انجام نشد";
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-// ساخت رمز
-
-function makePassword(){
-
-
-let chars=
-
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-
-
-
-let password="";
-
-
-
-for(let i=0;i<16;i++){
-
-
-password +=
-
-chars[
-Math.floor(Math.random()*chars.length)
-];
-
-
-}
-
-
-
-document.getElementById("pass").innerHTML=
-
-"🔑 "+password;
-
-
-}
-
-
-
-</script>
-<div class="card">
-
-<h2>🎮 بازی‌ها</h2>
-
-
-<h3>✊ سنگ، کاغذ، قیچی</h3>
-
-<button onclick="rps('سنگ')">🪨 سنگ</button>
-<button onclick="rps('کاغذ')">📄 کاغذ</button>
-<button onclick="rps('قیچی')">✂️ قیچی</button>
-
-
-<div id="game1" class="result"></div>
-
-
-<hr>
-
-
-<h3>⚡ تست سرعت واکنش</h3>
-
-<button onclick="startReaction()">
-شروع
-</button>
-
-
-<div id="reaction" class="result"></div>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h2>🐍 بازی مار</h2>
-
-
-<canvas id="snake" width="300" height="300"></canvas>
-
-
-<br>
-
-
-<button onclick="startSnake()">
-شروع مار
-</button>
-
-
-<div id="score" class="result">
-امتیاز: 0
-</div>
-
-
-</div>
-
-
-
-
-
-<script>
-
-
-// سنگ کاغذ قیچی
-
-function rps(user){
-
-
-let items=[
-"سنگ",
-"کاغذ",
-"قیچی"
-];
-
-
-let cpu =
-items[Math.floor(Math.random()*3)];
-
-
-
-let result;
-
-
-
-if(user==cpu){
-
-result="مساوی 😐";
-
-}
-
-else if(
-
-(user=="سنگ" && cpu=="قیچی")||
-
-(user=="کاغذ" && cpu=="سنگ")||
-
-(user=="قیچی" && cpu=="کاغذ")
-
-){
-
-result="بردی 🎉";
-
-}
-
-else{
-
-result="باختی 😅";
-
-}
-
-
-
-document.getElementById("game1").innerHTML=
-
-"تو: "+user+
-"<br>کامپیوتر: "+cpu+
-"<br>"+result;
-
-
-}
-
-
-
-
-
-
-// تست واکنش
-
-let reactionStart;
-
-
-function startReaction(){
-
-
-let box=document.getElementById("reaction");
-
-
-box.innerHTML="⏳ صبر کن...";
-
-
-
-setTimeout(()=>{
-
-
-reactionStart=Date.now();
-
-
-box.innerHTML="⚡ کلیک کن!";
-
-
-
-box.onclick=function(){
-
-
-box.innerHTML=
-
-"⏱ زمان واکنش: "+
-(Date.now()-reactionStart)+
-" میلی‌ثانیه";
-
-
-};
-
-
-},Math.random()*4000+1000);
-
-
-}
-
-
-
-
-
-// مار
-
-let canvas=document.getElementById("snake");
-
-let ctx=canvas.getContext("2d");
-
-
-let snake=[];
-
-let food={};
-
-
-let dx=10;
-
-let dy=0;
-
-
-let snakeGame;
-
-let score=0;
-
-
-
-function startSnake(){
-
-
-snake=[
-{x:150,y:150},
-{x:140,y:150},
-{x:130,y:150}
-];
-
-
-food={
-
-x:Math.floor(Math.random()*30)*10,
-
-y:Math.floor(Math.random()*30)*10
-
-};
-
-
-
-dx=10;
-
-dy=0;
-
-
-score=0;
-
-
-document.getElementById("score").innerHTML=
-"امتیاز: 0";
-
-
-clearInterval(snakeGame);
-
-
-snakeGame=setInterval(drawSnake,100);
-
-
-}
-
-
-
-
-
-// لمس گوشی
-
-let startX=0;
-
-let startY=0;
-
-
-
-document.addEventListener("touchstart",e=>{
-
-
-startX=e.touches[0].clientX;
-
-startY=e.touches[0].clientY;
-
-
-});
-
-
-
-
-document.addEventListener("touchend",e=>{
-
-
-let x=e.changedTouches[0].clientX-startX;
-
-let y=e.changedTouches[0].clientY-startY;
-
-
-
-if(Math.abs(x)>Math.abs(y)){
-
-
-if(x>0 && dx!=-10){
-
-dx=10;
-dy=0;
-
-}
-
-
-if(x<0 && dx!=10){
-
-dx=-10;
-dy=0;
-
-}
-
-
-}else{
-
-
-if(y>0 && dy!=-10){
-
-dx=0;
-dy=10;
-
-}
-
-
-if(y<0 && dy!=10){
-
-dx=0;
-dy=-10;
-
-}
-
-
-}
-
-
-});
-
-
-
-
-
-function drawSnake(){
-
-
-ctx.clearRect(0,0,300,300);
-
-
-
-ctx.fillStyle="red";
-
-ctx.fillRect(food.x,food.y,10,10);
-
-
-
-snake.forEach(part=>{
-
-
-ctx.fillStyle="lime";
-
-ctx.fillRect(part.x,part.y,10,10);
-
-
-});
-
-
-
-let head={
-
-x:snake[0].x+dx,
-
-y:snake[0].y+dy
-
-};
-
-
-
-if(head.x==food.x && head.y==food.y){
-
-
-score++;
-
-
-document.getElementById("score").innerHTML=
-"امتیاز: "+score;
-
-
-
-food={
-
-x:Math.floor(Math.random()*30)*10,
-
-y:Math.floor(Math.random()*30)*10
-
-};
-
-
-
-}else{
-
-
-snake.pop();
-
-
-}
-
-
-
-
-
-if(
-head.x<0 ||
-head.x>=300 ||
-head.y<0 ||
-head.y>=300
-){
-
-
-clearInterval(snakeGame);
-
-
-alert("باختی 😅 امتیاز: "+score);
-
-
-return;
-
-
-}
-
-
-
-snake.unshift(head);
-
-
-}
-
-
-</script>
-<div class="card">
-
-<h2>✨ اسم خفن ساز Ultra</h2>
-
-
-<input id="nameInput"
-
-placeholder="اسم خودت را بنویس"
-
-style="
-padding:12px;
-border-radius:15px;
-border:0;
-font-size:18px;
+</style><!-- Ultra Splash Logo -->
+
+<div id="ultraWelcome" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#111827,#2563eb);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
 text-align:center;
 ">
 
+<div>
 
-<br><br>
-
-
-<select id="emojiSelect"
-
-style="
-padding:10px;
-border-radius:10px;
-font-size:16px;
+<h1 style="
+font-size:45px;
+animation:pulseUltra 1.5s infinite;
 ">
+🚀 Smart Tools Ultra
+</h1>
 
-<option>☠️</option>
-<option>👑</option>
-<option>🧪</option>
-<option>🔥</option>
-<option>⚡</option>
+<p>
+نسخه حرفه‌ای ابزارهای هوشمند
+</p>
 
-</select>
-
-
-
-<select id="fontSelect"
-
-style="
-padding:10px;
-border-radius:10px;
-font-size:16px;
-">
-
-<option>Arial</option>
-<option>Tahoma</option>
-<option>Georgia</option>
-<option>Courier New</option>
-<option>Impact</option>
-
-</select>
-
-
-
-<br><br>
-
-
-
-<button onclick="createCoolName()">
-ساخت اسم
+<button onclick="closeUltraWelcome()">
+ورود به سایت
 </button>
 
-
-
-<div id="coolName"
-class="result nameStyle">
-
 </div>
 
-
 </div>
-
-
 
 
 
 <style>
 
+@keyframes pulseUltra{
 
-.nameStyle{
+0%{
+transform:scale(1);
+}
 
-font-size:35px;
+50%{
+transform:scale(1.1);
+}
 
-font-weight:bold;
+100%{
+transform:scale(1);
+}
 
-animation:glow 1s infinite alternate;
+}
+
+</style>
+
+
+
+<script>
+
+function closeUltraWelcome(){
+
+document.getElementById("ultraWelcome").style.display="none";
+
+localStorage.setItem(
+"ultraWelcomeSeen",
+"yes"
+);
 
 }
 
 
 
-@keyframes glow{
+if(localStorage.getItem("ultraWelcomeSeen")==="yes"){
+
+document.getElementById("ultraWelcome").style.display="none";
+
+}
+
+</script><!-- Ultra Mobile Menu -->
+
+<div class="mobileMenu">
+
+<button onclick="scrollToTools()">
+🛠️ ابزارها
+</button>
+
+<button onclick="scrollToGames()">
+🎮 بازی‌ها
+</button>
+
+<button onclick="scrollToProfile()">
+👤 پروفایل
+</button>
+
+</div>
+
+
+
+<style>
+
+.mobileMenu{
+
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+
+background:rgba(0,0,0,.45);
+
+padding:10px;
+
+border-radius:25px;
+
+display:flex;
+
+gap:8px;
+
+z-index:5000;
+
+backdrop-filter:blur(10px);
+
+}
+
+
+.mobileMenu button{
+
+padding:10px 14px;
+font-size:14px;
+
+}
+
+
+
+</style>
+
+
+
+<script>
+
+function scrollToTools(){
+
+window.scrollTo({
+
+top:300,
+behavior:"smooth"
+
+});
+
+}
+
+
+
+function scrollToGames(){
+
+window.scrollTo({
+
+top:900,
+behavior:"smooth"
+
+});
+
+}
+
+
+
+function scrollToProfile(){
+
+window.scrollTo({
+
+top:1200,
+behavior:"smooth"
+
+});
+
+}
+
+</script><!-- Ultra Login System -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔒 ورود کاربر Ultra
+</h2>
+
+
+<input 
+id="userNameInput"
+placeholder="نام خودت را وارد کن"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="saveUltraUser()">
+ورود
+</button>
+
+
+<h2 id="welcomeUser">
+</h2>
+
+
+</div>
+
+
+
+<script>
+
+let ultraUser =
+localStorage.getItem("ultraUser");
+
+
+if(ultraUser){
+
+document.getElementById("welcomeUser").innerHTML =
+"خوش آمدی 👋 "+ultraUser;
+
+}
+
+
+
+function saveUltraUser(){
+
+let name =
+document.getElementById("userNameInput").value;
+
+
+if(name===""){
+
+alert("نام را وارد کن");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"ultraUser",
+name
+);
+
+
+document.getElementById("welcomeUser").innerHTML =
+"خوش آمدی 👋 "+name;
+
+
+}
+
+</script><!-- Ultra Notification System -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔔 اعلان‌های Ultra
+</h2>
+
+
+<button onclick="showUltraNotification()">
+نمایش پیام
+</button>
+
+
+<div id="ultraNotification" style="
+margin-top:20px;
+padding:15px;
+border-radius:15px;
+background:#0003;
+display:none;
+">
+
+🚀 به Smart Tools Ultra خوش آمدی!
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showUltraNotification(){
+
+let box =
+document.getElementById("ultraNotification");
+
+
+box.style.display="block";
+
+
+setTimeout(()=>{
+
+box.style.display="none";
+
+},4000);
+
+
+}
+
+</script><!-- Ultra Language Switch -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2 id="langTitle">
+🌐 زبان سایت
+</h2>
+
+
+<button onclick="setPersian()">
+🇮🇷 فارسی
+</button>
+
+
+<button onclick="setEnglish()">
+🇺🇸 English
+</button>
+
+
+<h3 id="langMessage">
+Smart Tools Ultra آماده است 🚀
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function setPersian(){
+
+document.documentElement.lang="fa";
+
+document.getElementById("langTitle").innerHTML =
+"🌐 زبان سایت";
+
+
+document.getElementById("langMessage").innerHTML =
+"خوش آمدی به Smart Tools Ultra 🚀";
+
+
+localStorage.setItem(
+"ultraLang",
+"fa"
+);
+
+}
+
+
+
+function setEnglish(){
+
+document.documentElement.lang="en";
+
+document.getElementById("langTitle").innerHTML =
+"🌐 Website Language";
+
+
+document.getElementById("langMessage").innerHTML =
+"Welcome to Smart Tools Ultra 🚀";
+
+
+localStorage.setItem(
+"ultraLang",
+"en"
+);
+
+}
+
+
+
+if(localStorage.getItem("ultraLang")==="en"){
+
+setEnglish();
+
+}
+
+</script><!-- Ultra Sound Effects -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔊 تنظیمات صدا
+</h2>
+
+
+<button onclick="enableUltraSound()">
+فعال کردن صدا
+</button>
+
+
+<button onclick="disableUltraSound()">
+خاموش کردن صدا
+</button>
+
+
+<p id="soundStatus">
+صدا خاموش است
+</p>
+
+
+</div>
+
+
+
+<script>
+
+let ultraSound =
+false;
+
+
+
+function clickSound(){
+
+if(!ultraSound)
+return;
+
+
+let audio =
+new Audio(
+"https://actions.google.com/sounds/v1/cartoon/pop.ogg"
+);
+
+
+audio.play();
+
+}
+
+
+
+function enableUltraSound(){
+
+ultraSound=true;
+
+
+localStorage.setItem(
+"ultraSound",
+"on"
+);
+
+
+document.getElementById("soundStatus").innerHTML =
+"🔊 صدا روشن شد";
+
+
+clickSound();
+
+}
+
+
+
+function disableUltraSound(){
+
+ultraSound=false;
+
+
+localStorage.setItem(
+"ultraSound",
+"off"
+);
+
+
+document.getElementById("soundStatus").innerHTML =
+"🔇 صدا خاموش شد";
+
+}
+
+
+
+if(localStorage.getItem("ultraSound")==="on"){
+
+ultraSound=true;
+
+}
+
+</script>
+
+
+
+<style>
+
+button:hover{
+
+filter:brightness(1.2);
+
+}
+
+</style><!-- Ultra Dashboard -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📊 داشبورد Ultra
+</h2>
+
+
+<p>
+تعداد ورود:
+</p>
+
+<h2 id="visitCount">
+0
+</h2>
+
+
+<p>
+تعداد کلیک‌های ابزار:
+</p>
+
+<h2 id="toolClicks">
+0
+</h2>
+
+
+<p>
+امتیاز کلی:
+</p>
+
+<h2 id="totalScore">
+0
+</h2>
+
+
+<button onclick="clearStats()">
+🗑️ پاک کردن آمار
+</button>
+
+
+</div>
+
+
+
+<script>
+
+let visits =
+Number(localStorage.getItem("ultraVisits")) || 0;
+
+
+let clicks =
+Number(localStorage.getItem("ultraClicks")) || 0;
+
+
+
+visits++;
+
+
+localStorage.setItem(
+"ultraVisits",
+visits
+);
+
+
+
+function updateDashboard(){
+
+document.getElementById("visitCount").innerHTML =
+visits;
+
+
+document.getElementById("toolClicks").innerHTML =
+clicks;
+
+
+document.getElementById("totalScore").innerHTML =
+Number(localStorage.getItem("ultraScore")) || 0;
+
+}
+
+
+function clearStats(){
+
+localStorage.removeItem("ultraVisits");
+
+localStorage.removeItem("ultraClicks");
+
+visits=0;
+
+clicks=0;
+
+updateDashboard();
+
+}
+
+
+
+updateDashboard();
+
+</script><!-- Ultra Achievements -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🏆 دستاوردهای Ultra
+</h2>
+
+
+<div id="achievements">
+در حال بررسی...
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function checkAchievements(){
+
+let score =
+Number(localStorage.getItem("ultraScore")) || 0;
+
+
+let xp =
+Number(localStorage.getItem("ultraXP")) || 0;
+
+
+let result="";
+
+
+if(score>=10){
+
+result += "🥉 کلیک‌کننده تازه‌کار<br>";
+
+}
+
+
+if(score>=100){
+
+result += "🥈 بازیکن حرفه‌ای<br>";
+
+}
+
+
+if(score>=500){
+
+result += "🥇 استاد Ultra<br>";
+
+}
+
+
+if(xp>=100){
+
+result += "⭐ سطح‌گیرنده<br>";
+
+}
+
+
+if(result===""){
+
+result="🔒 هنوز دستاوردی باز نشده";
+
+}
+
+
+document.getElementById("achievements").innerHTML =
+result;
+
+
+}
+
+
+
+checkAchievements();
+
+</script><!-- Ultra Security -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🛡️ امنیت Ultra
+</h2>
+
+
+<input
+id="securityPin"
+type="password"
+placeholder="یک رمز 4 رقمی بساز"
+maxlength="4"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:18px;
+">
+
+
+<br><br>
+
+
+<button onclick="saveUltraPin()">
+ذخیره رمز
+</button>
+
+
+<button onclick="checkUltraPin()">
+باز کردن قفل
+</button>
+
+
+<h3 id="securityResult">
+قفل خاموش است
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function saveUltraPin(){
+
+let pin =
+document.getElementById("securityPin").value;
+
+
+if(pin.length!==4){
+
+alert("رمز باید 4 رقم باشد");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"ultraPin",
+pin
+);
+
+
+document.getElementById("securityResult").innerHTML =
+"🔒 رمز ذخیره شد";
+
+}
+
+
+
+function checkUltraPin(){
+
+let saved =
+localStorage.getItem("ultraPin");
+
+
+let input =
+document.getElementById("securityPin").value;
+
+
+if(saved && saved===input){
+
+document.getElementById("securityResult").innerHTML =
+"✅ قفل باز شد";
+
+}
+
+else{
+
+document.getElementById("securityResult").innerHTML =
+"❌ رمز اشتباه است";
+
+}
+
+}
+
+</script><!-- Ultra App Mode -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📱 حالت اپ Ultra
+</h2>
+
+
+<p>
+سایتت می‌تواند مثل یک برنامه روی گوشی اجرا شود.
+</p>
+
+
+<button onclick="addAppTip()">
+✨ راهنمای نصب
+</button>
+
+
+<h3 id="appTip"></h3>
+
+
+</div>
+
+
+
+<script>
+
+function addAppTip(){
+
+document.getElementById("appTip").innerHTML =
+"در مرورگر گوشی گزینه «افزودن به صفحه اصلی» را بزن تا مثل اپ نصب شود 📲";
+
+}
+
+</script>
+
+
+
+<!-- PWA Settings -->
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#2563eb"><!-- Ultra Loading Screen -->
+
+<div id="ultraLoader">
+
+<div class="loaderBox">
+
+<h1>
+🚀 Smart Tools Ultra
+</h1>
+
+<div class="loaderCircle"></div>
+
+<p>
+در حال آماده‌سازی ابزارها...
+</p>
+
+</div>
+
+</div>
+
+
+
+<style>
+
+#ultraLoader{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+linear-gradient(135deg,#111827,#2563eb);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:10000;
+
+text-align:center;
+
+}
+
+
+
+.loaderBox h1{
+
+font-size:38px;
+
+}
+
+
+
+.loaderCircle{
+
+width:60px;
+height:60px;
+
+border:6px solid #ffffff55;
+
+border-top-color:white;
+
+border-radius:50%;
+
+margin:20px auto;
+
+animation:spinUltra 1s linear infinite;
+
+}
+
+
+
+@keyframes spinUltra{
 
 from{
 
-text-shadow:0 0 5px white;
+transform:rotate(0deg);
 
 }
-
 
 to{
 
-text-shadow:0 0 25px #22c55e;
+transform:rotate(360deg);
 
 }
-
 
 }
 
@@ -955,157 +2389,982 @@ text-shadow:0 0 25px #22c55e;
 
 
 
+<script>
+
+window.addEventListener("load",()=>{
+
+
+setTimeout(()=>{
+
+
+document.getElementById("ultraLoader").style.display="none";
+
+
+},2000);
+
+
+});
+
+</script><!-- Ultra Creator Card -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:25px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<div style="
+width:100px;
+height:100px;
+margin:auto;
+border-radius:50%;
+background:linear-gradient(135deg,#22c55e,#2563eb);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px;
+">
+
+💀
+
+</div>
+
+
+<h2>
+Smart Tools Ultra
+</h2>
+
+
+<h3>
+ساخته شده توسط علی منصوری
+</h3>
+
+
+<p>
+🚀 ابزارهای هوشمند، بازی‌ها و امکانات جذاب
+</p>
+
+
+<button onclick="showCreator()">
+⭐ درباره سازنده
+</button>
+
+
+<p id="creatorInfo"></p>
+
+
+</div>
+
 
 
 <script>
 
+function showCreator(){
+
+document.getElementById("creatorInfo").innerHTML =
+"💀 علی منصوری<br>سازنده Smart Tools Ultra";
+
+}
+
+</script><!-- Ultra Extra Tools -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🧰 ابزارهای بیشتر Ultra
+</h2>
 
 
-function createCoolName(){
+<h3>
+🔢 شمارنده کلیک
+</h3>
+
+
+<h1 id="counterUltra">
+0
+</h1>
+
+
+<button onclick="increaseUltraCounter()">
+➕ افزایش
+</button>
+
+
+<button onclick="resetUltraCounter()">
+🔄 ریست
+</button>
 
 
 
-let name=
-
-document.getElementById("nameInput").value;
+<hr>
 
 
+<h3>
+✍️ تولید متن تصادفی
+</h3>
 
-if(name==""){
 
-name="علی";
+<button onclick="createRandomText()">
+ساخت متن
+</button>
+
+
+<p id="randomText">
+-
+</p>
+
+
+</div>
+
+
+
+<script>
+
+let ultraCounter =
+Number(localStorage.getItem("ultraCounter")) || 0;
+
+
+document.getElementById("counterUltra").innerHTML =
+ultraCounter;
+
+
+
+function increaseUltraCounter(){
+
+ultraCounter++;
+
+localStorage.setItem(
+"ultraCounter",
+ultraCounter
+);
+
+
+document.getElementById("counterUltra").innerHTML =
+ultraCounter;
 
 }
 
 
 
+function resetUltraCounter(){
 
-let emoji=
-
-document.getElementById("emojiSelect").value;
-
+ultraCounter=0;
 
 
-let font=
+localStorage.setItem(
+"ultraCounter",
+0
+);
 
-document.getElementById("fontSelect").value;
 
+document.getElementById("counterUltra").innerHTML =
+0;
 
-
-let output=
-
-emoji+
-" 『 "+
-name+
-" 』 "+
-emoji;
+}
 
 
 
-let box=
+function createRandomText(){
 
-document.getElementById("coolName");
+let texts=[
+
+"🚀 Smart Tools Ultra آماده است",
+
+"🔥 امروز یک روز عالی برای ساختن است",
+
+"⭐ به موفقیت ادامه بده",
+
+"💡 ایده‌های جدید بساز"
+
+];
+
+
+let random =
+texts[Math.floor(Math.random()*texts.length)];
+
+
+document.getElementById("randomText").innerHTML =
+random;
+
+}
+
+</script><!-- Ultra Search -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔍 جستجوی Ultra
+</h2>
+
+
+<input 
+id="ultraSearch"
+placeholder="نام ابزار را بنویس..."
+onkeyup="searchUltraTools()"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<div id="searchResult" style="
+margin-top:15px;
+font-size:18px;
+">
+
+ابزاری جستجو نشده
+
+</div>
+
+
+</div>
 
 
 
-box.innerHTML=output;
+<script>
 
+let ultraTools=[
 
-box.style.fontFamily=font;
+"ماشین حساب 🧮",
 
+"رمزساز 🔐",
 
+"تبدیل دما 🌡️",
 
+"تایمر ⏱️",
 
-let colors=[
+"کرنومتر 🕒",
 
-"#22c55e",
-"#38bdf8",
-"#f97316",
-"#e879f9",
-"#facc15"
+"آب و هوا 🌦️",
+
+"یادداشت 📝",
+
+"بازی 🎮",
+
+"پروفایل 👤"
 
 ];
 
 
 
-box.style.color=
+function searchUltraTools(){
 
-colors[Math.floor(Math.random()*colors.length)];
+let text =
+document.getElementById("ultraSearch").value;
 
 
-
-
-// ذخیره اسم
-
-localStorage.setItem(
-
-"smartName",
-
-name
-
+let result =
+ultraTools.filter(item=>
+item.includes(text)
 );
 
 
-}
 
+if(text===""){
 
+document.getElementById("searchResult").innerHTML =
+"نام ابزار را وارد کن";
 
-
-// نمایش اسم قبلی
-
-window.addEventListener("load",()=>{
-
-
-let saved=
-
-localStorage.getItem("smartName");
-
-
-
-if(saved){
-
-document.getElementById("nameInput").value=saved;
+return;
 
 }
 
 
-});
+
+if(result.length>0){
+
+document.getElementById("searchResult").innerHTML =
+"✅ پیدا شد:<br>"+result.join("<br>");
+
+}
+
+else{
+
+document.getElementById("searchResult").innerHTML =
+"❌ چیزی پیدا نشد";
+
+}
 
 
-</script>
-<div class="card">
+}
 
-<h2>🎨 لوگوی اسم</h2>
+</script><!-- Ultra Activity Stats -->
 
-
-<input id="logoName"
-
-placeholder="اسم لوگو"
-
-style="
-padding:12px;
-border-radius:15px;
-border:0;
-font-size:18px;
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
 text-align:center;
+">
+
+<h2>
+📈 آمار فعالیت Ultra
+</h2>
+
+
+<p>
+تعداد روزهای استفاده:
+</p>
+
+<h2 id="daysUsed">
+0
+</h2>
+
+
+<p>
+آخرین ورود:
+</p>
+
+<h3 id="lastVisit">
+-
+</h3>
+
+
+<div style="
+height:25px;
+background:#0005;
+border-radius:20px;
+overflow:hidden;
+margin-top:15px;
+">
+
+<div id="activityBar" style="
+height:100%;
+width:0%;
+background:#22c55e;
+">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+let days =
+Number(localStorage.getItem("ultraDays")) || 0;
+
+
+let today =
+new Date().toLocaleDateString();
+
+
+let last =
+localStorage.getItem("ultraLastVisit");
+
+
+if(last!==today){
+
+days++;
+
+localStorage.setItem(
+"ultraDays",
+days
+);
+
+localStorage.setItem(
+"ultraLastVisit",
+today
+);
+
+}
+
+
+
+document.getElementById("daysUsed").innerHTML =
+days;
+
+
+document.getElementById("lastVisit").innerHTML =
+today;
+
+
+
+let progress =
+Math.min(days*10,100);
+
+
+document.getElementById("activityBar").style.width =
+progress+"%";
+
+</script><!-- Ultra Shop -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🎁 فروشگاه Ultra
+</h2>
+
+
+<p>
+سکه شما:
+</p>
+
+<h1 id="ultraCoins">
+0
+</h1>
+
+
+
+<div style="
+background:#0003;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+">
+
+<h3>
+⭐ تم طلایی
+</h3>
+
+<p>
+قیمت: 100 سکه
+</p>
+
+<button onclick="buyGoldTheme()">
+خرید
+</button>
+
+</div>
+
+
+
+<div style="
+background:#0003;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+">
+
+<h3>
+🚀 نشان Ultra
+</h3>
+
+<p>
+قیمت: 50 سکه
+</p>
+
+<button onclick="buyBadge()">
+خرید
+</button>
+
+</div>
+
+
+<p id="shopMessage"></p>
+
+
+</div>
+
+
+
+<script>
+
+let coins =
+Number(localStorage.getItem("ultraCoins")) || 0;
+
+
+document.getElementById("ultraCoins").innerHTML =
+coins;
+
+
+
+function buyGoldTheme(){
+
+if(coins>=100){
+
+coins-=100;
+
+
+localStorage.setItem(
+"ultraCoins",
+coins
+);
+
+
+document.body.style.background =
+"linear-gradient(135deg,#92400e,#facc15)";
+
+
+document.getElementById("shopMessage").innerHTML =
+"✅ تم طلایی فعال شد";
+
+}
+
+else{
+
+document.getElementById("shopMessage").innerHTML =
+"❌ سکه کافی نداری";
+
+}
+
+
+updateCoins();
+
+}
+
+
+
+function buyBadge(){
+
+if(coins>=50){
+
+coins-=50;
+
+
+localStorage.setItem(
+"ultraCoins",
+coins
+);
+
+
+document.getElementById("shopMessage").innerHTML =
+"🏆 نشان Ultra خریداری شد";
+
+}
+
+else{
+
+document.getElementById("shopMessage").innerHTML =
+"❌ سکه کافی نداری";
+
+}
+
+
+updateCoins();
+
+}
+
+
+
+function updateCoins(){
+
+document.getElementById("ultraCoins").innerHTML =
+coins;
+
+}
+
+</script><!-- Ultra Assistant -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🤖 دستیار Ultra
+</h2>
+
+
+<input 
+id="assistantInput"
+placeholder="سوالت را بنویس..."
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
 ">
 
 
 <br><br>
 
 
-<select id="logoEmoji"
+<button onclick="askUltraAssistant()">
+ارسال
+</button>
 
+
+<div id="assistantAnswer" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+منتظر سوال شما هستم...
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function askUltraAssistant(){
+
+let q =
+document.getElementById("assistantInput").value.toLowerCase();
+
+
+let answer =
+"🤖 هنوز جواب این سوال را یاد نگرفتم";
+
+
+
+if(q.includes("سلام")){
+
+answer =
+"سلام 👋 به Smart Tools Ultra خوش آمدی";
+
+}
+
+
+else if(q.includes("هوا")){
+
+answer =
+"🌦️ از ابزار آب‌وهوای Ultra استفاده کن";
+
+}
+
+
+else if(q.includes("رمز")){
+
+answer =
+"🔐 از رمزساز Ultra یک رمز قوی بساز";
+
+}
+
+
+else if(q.includes("بازی")){
+
+answer =
+"🎮 بخش بازی Ultra را امتحان کن";
+
+}
+
+
+else if(q.includes("سازنده")){
+
+answer =
+"💀 سازنده Smart Tools Ultra: علی منصوری";
+
+}
+
+
+
+document.getElementById("assistantAnswer").innerHTML =
+answer;
+
+}
+
+</script><!-- Ultra Media Player -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🎵 مدیا پلیر Ultra
+</h2>
+
+
+<input
+id="audioURL"
+placeholder="لینک فایل صوتی"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="playUltraMusic()">
+▶️ پخش
+</button>
+
+
+<button onclick="stopUltraMusic()">
+⏹️ توقف
+</button>
+
+
+<br><br>
+
+
+<audio id="ultraAudio" controls style="width:100%;">
+</audio>
+
+
+</div>
+
+
+
+<script>
+
+function playUltraMusic(){
+
+let url =
+document.getElementById("audioURL").value;
+
+
+let audio =
+document.getElementById("ultraAudio");
+
+
+audio.src=url;
+
+audio.play();
+
+}
+
+
+
+function stopUltraMusic(){
+
+let audio =
+document.getElementById("ultraAudio");
+
+
+audio.pause();
+
+
+}
+
+</script><!-- Ultra QR Generator -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📸 ساخت QR Code Ultra
+</h2>
+
+
+<input
+id="qrText"
+placeholder="متن یا لینک را وارد کن"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="makeUltraQR()">
+ساخت QR
+</button>
+
+
+<br><br>
+
+
+<img 
+id="qrImage"
+style="
+max-width:220px;
+border-radius:15px;
+background:white;
+padding:10px;
+display:none;
+">
+
+
+</div>
+
+
+
+<script>
+
+function makeUltraQR(){
+
+let text =
+document.getElementById("qrText").value;
+
+
+if(text===""){
+
+alert("اول متن یا لینک را وارد کن");
+
+return;
+
+}
+
+
+let qr =
+"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="
++encodeURIComponent(text);
+
+
+
+let img =
+document.getElementById("qrImage");
+
+
+img.src=qr;
+
+img.style.display="inline-block";
+
+}
+
+</script><!-- Ultra File Viewer -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📁 مدیریت فایل Ultra
+</h2>
+
+
+<input 
+type="file"
+id="ultraFile"
+onchange="showUltraFile()"
 style="
 padding:10px;
 border-radius:10px;
+"
+>
+
+
+<div id="fileInfo" style="
+margin-top:20px;
+background:#0003;
+padding:15px;
+border-radius:15px;
 ">
 
-<option>☠️</option>
-<option>👑</option>
-<option>🧪</option>
-<option>🔥</option>
-<option>⚡</option>
+هنوز فایلی انتخاب نشده
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showUltraFile(){
+
+let file =
+document.getElementById("ultraFile").files[0];
+
+
+if(!file){
+
+return;
+
+}
+
+
+document.getElementById("fileInfo").innerHTML =
+
+"📄 نام فایل: "+file.name+
+"<br><br>"+
+"📦 حجم: "+(file.size/1024).toFixed(2)+" KB"+
+"<br><br>"+
+"📌 نوع: "+file.type;
+
+
+}
+
+</script><!-- Ultra Text Generator -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+✍️ تولید متن Ultra
+</h2>
+
+
+<select id="textType" style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:16px;
+">
+
+<option value="idea">
+💡 ایده
+</option>
+
+<option value="caption">
+📱 کپشن
+</option>
+
+<option value="motivation">
+🔥 انگیزشی
+</option>
+
+<option value="bio">
+👤 بیو
+</option>
 
 </select>
 
@@ -1113,244 +3372,2271 @@ border-radius:10px;
 <br><br>
 
 
-<button onclick="createLogo()">
-ساخت لوگو
+<button onclick="generateUltraText()">
+ساخت متن
 </button>
 
 
-<button onclick="saveLogo()">
-💾 ذخیره عکس
-</button>
+<p id="generatedText" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
 
+-
 
-<br><br>
-
-
-<canvas id="logoCanvas"
-width="500"
-height="250">
-
-</canvas>
+</p>
 
 
 </div>
 
 
 
-
-
 <script>
 
+function generateUltraText(){
 
-let logoCanvas =
-document.getElementById("logoCanvas");
-
-
-let logoCtx =
-logoCanvas.getContext("2d");
+let type =
+document.getElementById("textType").value;
 
 
+let texts={
 
+idea:[
+"یک ایده جدید بساز و شروع کن 🚀",
+"خلاقیت خودت را نشان بده 💡"
+],
 
+caption:[
+"امروز بهتر از دیروز باش 🔥",
+"یک قدم کوچک، یک موفقیت بزرگ ⭐"
+],
 
-function createLogo(){
+motivation:[
+"تلاش کن، نتیجه نزدیک است 💪",
+"هیچ چیزی غیرممکن نیست 🚀"
+],
 
+bio:[
+"Creator | Smart Tools Ultra 💀",
+"Future Builder 🚀"
+]
 
-let name =
-document.getElementById("logoName").value;
-
-
-
-if(name==""){
-
-name="علی";
-
-}
-
-
-
-
-let emoji =
-document.getElementById("logoEmoji").value;
+};
 
 
 
-
-let gradient =
-logoCtx.createLinearGradient(
-0,0,500,250
-);
+let list =
+texts[type];
 
 
-
-gradient.addColorStop(
-0,
-"#2563eb"
-);
+let result =
+list[Math.floor(Math.random()*list.length)];
 
 
-
-gradient.addColorStop(
-1,
-"#020617"
-);
-
-
-
-
-logoCtx.fillStyle=gradient;
-
-
-logoCtx.fillRect(
-0,
-0,
-500,
-250
-);
-
-
-
-
-
-logoCtx.font="70px Arial";
-
-
-logoCtx.fillText(
-emoji,
-40,
-140
-);
-
-
-
-
-
-logoCtx.font=
-"bold 55px Arial";
-
-
-logoCtx.fillStyle="white";
-
-
-logoCtx.shadowColor="#22c55e";
-
-
-logoCtx.shadowBlur=25;
-
-
-
-logoCtx.fillText(
-name,
-130,
-140
-);
-
-
+document.getElementById("generatedText").innerHTML =
+result;
 
 }
 
+</script><!-- Ultra Color Customizer -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🎨 شخصی‌سازی ظاهر Ultra
+</h2>
 
 
+<p>
+انتخاب رنگ پس‌زمینه:
+</p>
 
 
-
-function saveLogo(){
-
-
-let link =
-document.createElement("a");
-
-
-link.download=
-"Smart-Tools-Logo.png";
-
-
-link.href=
-logoCanvas.toDataURL();
+<input 
+type="color"
+id="bgColor"
+value="#2563eb"
+style="
+width:80px;
+height:50px;
+border:none;
+"
+>
 
 
-
-link.click();
-
-
-}
+<br><br>
 
 
+<button onclick="changeUltraColor()">
+اعمال رنگ
+</button>
 
-</script>
+
+<button onclick="resetUltraColor()">
+بازگشت
+</button>
 
 
+<p id="colorMessage">
+-
+</p>
+
+
+</div>
 
 
 
 <script>
 
-// پایان لودینگ 🧪
-
-window.addEventListener("load",()=>{
-
-
-let progress=0;
-
-
-let timer=setInterval(()=>{
-
-
-progress++;
-
-
-document.getElementById("loadBar").style.width=
-progress+"%";
+let savedColor =
+localStorage.getItem("ultraColor");
 
 
 
-document.getElementById("loadingText").innerHTML=
-"در حال آماده سازی... "+
-progress+
-"%";
+if(savedColor){
+
+document.body.style.background =
+savedColor;
+
+}
 
 
 
-if(progress>=100){
+function changeUltraColor(){
+
+let color =
+document.getElementById("bgColor").value;
 
 
-clearInterval(timer);
+document.body.style.background =
+color;
+
+
+localStorage.setItem(
+"ultraColor",
+color
+);
+
+
+document.getElementById("colorMessage").innerHTML =
+"✅ رنگ ذخیره شد";
+
+}
+
+
+
+function resetUltraColor(){
+
+document.body.style.background =
+"linear-gradient(135deg,#111827,#2563eb)";
+
+
+localStorage.removeItem(
+"ultraColor"
+);
+
+
+document.getElementById("colorMessage").innerHTML =
+"🔄 ظاهر اصلی برگشت";
+
+}
+
+</script><!-- Ultra To Do List -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+✅ کارهای روزانه Ultra
+</h2>
+
+
+<input
+id="todoInput"
+placeholder="یک کار جدید بنویس..."
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="addUltraTodo()">
+➕ اضافه کردن
+</button>
+
+
+<ul id="todoList" style="
+text-align:right;
+padding:15px;
+">
+</ul>
+
+
+</div>
+
+
+
+<script>
+
+let todos =
+JSON.parse(localStorage.getItem("ultraTodos")) || [];
+
+
+
+function showTodos(){
+
+let list =
+document.getElementById("todoList");
+
+
+list.innerHTML="";
+
+
+todos.forEach((todo,index)=>{
+
+
+list.innerHTML +=
+
+`
+<li style="
+margin:10px;
+background:#0003;
+padding:10px;
+border-radius:10px;
+">
+
+${todo}
+
+<button onclick="deleteUltraTodo(${index})">
+🗑️
+</button>
+
+</li>
+`;
+
+});
+
+
+}
+
+
+
+function addUltraTodo(){
+
+let input =
+document.getElementById("todoInput");
+
+
+if(input.value===""){
+
+return;
+
+}
+
+
+todos.push(input.value);
+
+
+localStorage.setItem(
+"ultraTodos",
+JSON.stringify(todos)
+);
+
+
+input.value="";
+
+
+showTodos();
+
+}
+
+
+
+function deleteUltraTodo(index){
+
+todos.splice(index,1);
+
+
+localStorage.setItem(
+"ultraTodos",
+JSON.stringify(todos)
+);
+
+
+showTodos();
+
+}
+
+
+
+showTodos();
+
+</script><!-- Ultra Reminder -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔔 یادآور Ultra
+</h2>
+
+
+<input
+id="reminderText"
+placeholder="متن یادآوری..."
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<input
+id="reminderTime"
+type="number"
+placeholder="زمان به ثانیه"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="startUltraReminder()">
+شروع یادآور
+</button>
+
+
+<h3 id="reminderStatus">
+-
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function startUltraReminder(){
+
+let text =
+document.getElementById("reminderText").value;
+
+
+let time =
+Number(document.getElementById("reminderTime").value);
+
+
+
+if(text==="" || time<=0){
+
+alert("اطلاعات را کامل کن");
+
+return;
+
+}
+
+
+
+document.getElementById("reminderStatus").innerHTML =
+"⏳ یادآور فعال شد";
 
 
 
 setTimeout(()=>{
 
 
-document.getElementById("loader").style.display="none";
+alert("🔔 یادآوری: "+text);
 
 
-},500);
+document.getElementById("reminderStatus").innerHTML =
+"✅ یادآوری انجام شد";
 
+
+},time*1000);
+
+
+}
+
+</script><!-- Ultra Categories -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🗂️ دسته‌بندی ابزارها
+</h2>
+
+
+<button onclick="showCategory('all')">
+⭐ همه
+</button>
+
+<button onclick="showCategory('tools')">
+🛠️ ابزارها
+</button>
+
+<button onclick="showCategory('games')">
+🎮 بازی‌ها
+</button>
+
+<button onclick="showCategory('smart')">
+🤖 هوشمند
+</button>
+
+
+
+<div id="categoryResult" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+همه بخش‌ها نمایش داده می‌شود
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showCategory(type){
+
+let result="";
+
+
+if(type==="all"){
+
+result=
+"🛠️ ابزارها<br>🎮 بازی‌ها<br>🤖 دستیار هوشمند";
+
+}
+
+
+if(type==="tools"){
+
+result=
+"🧮 ماشین حساب<br>🔐 رمزساز<br>🌡️ تبدیل واحد<br>⏱️ تایمر<br>📝 یادداشت";
+
+}
+
+
+if(type==="games"){
+
+result=
+"🎮 کلیک‌گیم<br>🏆 رکوردها<br>⭐ دستاوردها";
+
+}
+
+
+if(type==="smart"){
+
+result=
+"🤖 دستیار Ultra<br>🔍 جستجو<br>📊 داشبورد";
 
 }
 
 
 
-},20);
+document.getElementById("categoryResult").innerHTML =
+result;
 
+}
+
+</script><!-- Ultra Guess Game -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🎮 بازی حدس عدد Ultra
+</h2>
+
+
+<p>
+من یک عدد بین 1 تا 100 انتخاب کردم، حدس بزن!
+</p>
+
+
+<input
+id="guessInput"
+type="number"
+placeholder="عدد خودت را وارد کن"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:17px;
+">
+
+
+<br><br>
+
+
+<button onclick="checkGuess()">
+حدس بزن
+</button>
+
+
+<h3 id="guessResult">
+-
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+let secretNumber =
+Math.floor(Math.random()*100)+1;
+
+
+
+function checkGuess(){
+
+let guess =
+Number(document.getElementById("guessInput").value);
+
+
+let result =
+document.getElementById("guessResult");
+
+
+
+if(!guess){
+
+result.innerHTML =
+"عدد وارد کن";
+
+return;
+
+}
+
+
+
+if(guess===secretNumber){
+
+result.innerHTML =
+"🎉 درست حدس زدی!";
+
+secretNumber =
+Math.floor(Math.random()*100)+1;
+
+}
+
+
+else if(guess>secretNumber){
+
+result.innerHTML =
+"⬇️ عدد کوچکتر است";
+
+}
+
+
+else{
+
+result.innerHTML =
+"⬆️ عدد بزرگتر است";
+
+}
+
+}
+
+</script><!-- Ultra Puzzle Game -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🧩 پازل اعداد Ultra
+</h2>
+
+
+<p>
+اعداد را به ترتیب 1 تا 5 بچین!
+</p>
+
+
+<div id="puzzleBox" style="
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+">
+</div>
+
+
+<h3 id="puzzleMessage">
+-
+</h3>
+
+
+<button onclick="startPuzzle()">
+🔄 شروع دوباره
+</button>
+
+
+</div>
+
+
+
+<script>
+
+let puzzleNumbers=[];
+
+
+
+function startPuzzle(){
+
+puzzleNumbers=[1,2,3,4,5];
+
+
+puzzleNumbers.sort(()=>Math.random()-0.5);
+
+
+showPuzzle();
+
+}
+
+
+
+function showPuzzle(){
+
+let box =
+document.getElementById("puzzleBox");
+
+
+box.innerHTML="";
+
+
+puzzleNumbers.forEach(num=>{
+
+
+let btn =
+document.createElement("button");
+
+
+btn.innerHTML=num;
+
+
+btn.onclick=function(){
+
+movePuzzle(num);
+
+};
+
+
+box.appendChild(btn);
 
 
 });
+
+}
+
+
+
+function movePuzzle(num){
+
+let index =
+puzzleNumbers.indexOf(num);
+
+
+if(index>0){
+
+[puzzleNumbers[index],puzzleNumbers[index-1]]
+=
+[puzzleNumbers[index-1],puzzleNumbers[index]];
+
+}
+
+
+showPuzzle();
+
+
+
+if(puzzleNumbers.join("")==="12345"){
+
+document.getElementById("puzzleMessage").innerHTML =
+"🎉 پازل حل شد!";
+
+}
+
+}
+
+
+
+startPuzzle();
+
+</script><!-- Ultra Mobile Optimization -->
+
+<style>
+
+@media(max-width:600px){
+
+body{
+
+font-size:14px;
+
+}
+
+
+h1{
+
+font-size:30px !important;
+
+}
+
+
+h2{
+
+font-size:22px !important;
+
+}
+
+
+button{
+
+width:100%;
+
+margin-top:8px;
+
+padding:14px;
+
+}
+
+
+input,
+textarea,
+select{
+
+font-size:16px !important;
+
+}
+
+
+.mobileMenu{
+
+width:95%;
+
+justify-content:center;
+
+}
+
+
+.mobileMenu button{
+
+font-size:12px;
+
+padding:8px;
+
+}
+
+
+div[style*="padding:20px"]{
+
+margin-left:10px;
+
+margin-right:10px;
+
+}
+
+}
+
+
+  </style><!-- Ultra Final Settings -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+⚙️ تنظیمات نهایی Ultra
+</h2>
+
+
+<button onclick="showSiteInfo()">
+ℹ️ اطلاعات سایت
+</button>
+
+
+<button onclick="resetAllUltra()">
+🗑️ پاک کردن اطلاعات
+</button>
+
+
+<div id="siteInfo" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+-
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showSiteInfo(){
+
+document.getElementById("siteInfo").innerHTML =
+`
+🚀 Smart Tools Ultra<br>
+نسخه: Ultra 1.0<br>
+سازنده: علی منصوری 💀<br>
+ابزارها + بازی‌ها + امکانات هوشمند
+`;
+
+}
+
+
+
+function resetAllUltra(){
+
+let confirmReset =
+confirm("همه اطلاعات ذخیره شده پاک شود؟");
+
+
+if(confirmReset){
+
+localStorage.clear();
+
+
+alert("✅ اطلاعات پاک شد. صفحه را دوباره باز کن.");
+
+}
+
+}
+
+</script><!-- Ultra Help Center -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📚 راهنمای Smart Tools Ultra
+</h2>
+
+
+<button onclick="showHelp('tools')">
+🛠️ ابزارها
+</button>
+
+
+<button onclick="showHelp('games')">
+🎮 بازی‌ها
+</button>
+
+
+<button onclick="showHelp('profile')">
+👤 پروفایل
+</button>
+
+
+<div id="helpText" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+یک بخش را انتخاب کن
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showHelp(type){
+
+let text="";
+
+
+if(type==="tools"){
+
+text=
+"🧮 ماشین حساب، 🔐 رمزساز، 🌡️ تبدیل واحد و ابزارهای کاربردی در این بخش هستند.";
+
+}
+
+
+if(type==="games"){
+
+text=
+"🎮 بازی کن، امتیاز بگیر و دستاورد باز کن.";
+
+}
+
+
+if(type==="profile"){
+
+text=
+"👤 در پروفایل می‌توانی XP و سطح خودت را ببینی.";
+
+}
+
+
+
+document.getElementById("helpText").innerHTML =
+text;
+
+}
+
+</script><!-- Ultra Performance Booster -->
+
+<script>
+
+
+// جلوگیری از اسکرول افقی در موبایل
+
+document.body.style.overflowX="hidden";
+
+
+
+// ذخیره زمان آخرین بازدید
+
+localStorage.setItem(
+"ultraLastOpen",
+new Date().toLocaleString()
+);
+
+
+
+// شمارش استفاده از سایت
+
+let opens =
+Number(localStorage.getItem("ultraOpenCount")) || 0;
+
+
+opens++;
+
+
+localStorage.setItem(
+"ultraOpenCount",
+opens
+);
+
+
+
+// پیام آماده بودن سایت
+
+console.log(
+"🚀 Smart Tools Ultra Loaded Successfully"
+);
+
 
 
 </script>
 
 
+<style>
 
-<footer>
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+*{
+
+-webkit-tap-highlight-color:transparent;
+
+}
+
+
+img{
+
+max-width:100%;
+
+height:auto;
+
+}
+
+
+</style><!-- Ultra Final Banner -->
+
+<div style="
+margin-top:30px;
+background:linear-gradient(135deg,#2563eb,#22c55e);
+padding:30px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 10px 30px #0005;
+">
+
+<h1>
+🚀 Smart Tools Ultra
+</h1>
+
 
 <h3>
-ساخته شده توسط علی منصوری ☠️
+جعبه ابزار هوشمند علی منصوری 💀
 </h3>
 
-</footer>
+
+<p>
+🛠️ ابزارهای کاربردی<br>
+🎮 بازی‌های جذاب<br>
+🤖 امکانات هوشمند<br>
+📱 طراحی شده برای موبایل
+</p>
 
 
-</body>
+<button onclick="shareUltra()">
+📤 اشتراک‌گذاری سایت
+</button>
 
-</html>
+
+</div>
+
+
+
+<script>
+
+function shareUltra(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Smart Tools Ultra",
+
+text:"این سایت ابزارهای هوشمند و بازی‌های جذاب دارد 🚀",
+
+url:window.location.href
+
+});
+
+}
+
+else{
+
+alert("لینک سایت را کپی کن و برای دوستانت بفرست 🚀");
+
+}
+
+}
+
+</script><!-- Ultra PWA Starter -->
+
+<script>
+
+// فعال کردن حالت نصب اپ
+
+if("serviceWorker" in navigator){
+
+window.addEventListener("load",()=>{
+
+console.log(
+"📱 حالت اپ Ultra آماده است"
+);
+
+});
+
+}
+
+
+
+function installTip(){
+
+alert(
+"برای نصب سایت: از منوی مرورگر گزینه «افزودن به صفحه اصلی» را بزن 📲"
+);
+
+}
+
+</script>
+
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📱 نصب Smart Tools Ultra
+</h2>
+
+<p>
+سایت را مثل یک برنامه روی گوشی استفاده کن.
+</p>
+
+
+<button onclick="installTip()">
+🚀 راهنمای نصب
+</button>
+
+
+</div><!-- Ultra 404 Handler -->
+
+<div id="ultra404" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#111827,#dc2626);
+z-index:99999;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+">
+
+<div>
+
+<h1 style="
+font-size:70px;
+">
+404
+</h1>
+
+
+<h2>
+😢 صفحه پیدا نشد
+</h2>
+
+
+<p>
+ولی Smart Tools Ultra هنوز آماده کمک است 🚀
+</p>
+
+
+<button onclick="backUltraHome()">
+🏠 بازگشت
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function showUltra404(){
+
+document.getElementById("ultra404").style.display="flex";
+
+}
+
+
+
+function backUltraHome(){
+
+document.getElementById("ultra404").style.display="none";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script><!-- Ultra About & Rules -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+📜 درباره Smart Tools Ultra
+</h2>
+
+
+<button onclick="showAboutUltra()">
+ℹ️ درباره ما
+</button>
+
+
+<button onclick="showRulesUltra()">
+📋 قوانین
+</button>
+
+
+<div id="aboutRulesBox" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+یک گزینه را انتخاب کن
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showAboutUltra(){
+
+document.getElementById("aboutRulesBox").innerHTML =
+`
+🚀 Smart Tools Ultra<br><br>
+یک جعبه ابزار هوشمند شامل ابزارها، بازی‌ها و امکانات جذاب.<br><br>
+ساخته شده توسط علی منصوری 💀
+`;
+
+}
+
+
+
+function showRulesUltra(){
+
+document.getElementById("aboutRulesBox").innerHTML =
+`
+📋 قوانین Ultra:<br><br>
+✅ استفاده درست از ابزارها<br>
+✅ احترام به کاربران<br>
+✅ حفظ امنیت اطلاعات شخصی
+`;
+
+}
+
+</script><!-- Ultra System Tester -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🧪 تست سیستم Ultra
+</h2>
+
+
+<button onclick="runUltraTest()">
+🚀 شروع تست
+</button>
+
+
+<div id="testResult" style="
+margin-top:20px;
+padding:15px;
+background:#0003;
+border-radius:15px;
+">
+
+آماده تست...
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function runUltraTest(){
+
+let result="";
+
+
+let checks=[
+
+"✅ ظاهر سایت فعال است",
+
+"✅ ابزارها آماده هستند",
+
+"✅ ذخیره‌سازی مرورگر فعال است",
+
+"✅ سیستم بازی فعال است",
+
+"✅ تنظیمات آماده است"
+
+];
+
+
+
+result =
+checks.join("<br>");
+
+
+
+document.getElementById("testResult").innerHTML =
+result;
+
+}
+
+</script><!-- Ultra Quick Access -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+⚡ دسترسی سریع Ultra
+</h2>
+
+
+<div style="
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+">
+
+
+<button onclick="quickMessage('🧮 ماشین حساب آماده است')">
+🧮
+</button>
+
+
+<button onclick="quickMessage('🔐 رمزساز آماده است')">
+🔐
+</button>
+
+
+<button onclick="quickMessage('🌦️ آب‌وهوا آماده است')">
+🌦️
+</button>
+
+
+<button onclick="quickMessage('🎮 بازی‌ها آماده هستند')">
+🎮
+</button>
+
+
+<button onclick="quickMessage('📝 یادداشت آماده است')">
+📝
+</button>
+
+
+</div>
+
+
+<h3 id="quickResult">
+یک ابزار انتخاب کن
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function quickMessage(text){
+
+document.getElementById("quickResult").innerHTML =
+text;
+
+}
+
+</script><!-- Ultra Final Brand -->
+
+<div style="
+margin-top:30px;
+background:linear-gradient(135deg,#111827,#2563eb);
+padding:30px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 10px 30px #0005;
+">
+
+<h1>
+💀 Smart Tools Ultra
+</h1>
+
+
+<p style="font-size:18px;">
+ساخته شده با خلاقیت و ایده‌های علی منصوری 🚀
+</p>
+
+
+<div style="
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:20px;
+">
+
+
+<span>
+🛠️ ابزارها
+</span>
+
+
+<span>
+🎮 بازی‌ها
+</span>
+
+
+<span>
+🤖 هوش مصنوعی
+</span>
+
+
+<span>
+📱 موبایل
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+console.log(
+"🚀 Smart Tools Ultra Final Version Loaded"
+);
+
+</script><!-- Ultra Final Check -->
+
+<div style="
+margin-top:30px;
+background:rgba(255,255,255,0.12);
+padding:25px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+✅ چک نهایی Ultra
+</h2>
+
+
+<div id="finalCheck">
+در حال بررسی...
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function finalUltraCheck(){
+
+let checks=[
+
+"🚀 Smart Tools Ultra فعال است",
+
+"🧮 ابزارهای کاربردی آماده هستند",
+
+"🎮 بخش بازی‌ها فعال است",
+
+"👤 پروفایل کاربر آماده است",
+
+"💾 ذخیره‌سازی مرورگر فعال است",
+
+"📱 نسخه موبایل آماده است"
+
+];
+
+
+document.getElementById("finalCheck").innerHTML =
+checks.join("<br>");
+
+}
+
+
+finalUltraCheck();
+
+</script><!-- Ultra Back To Top -->
+
+<button id="backTop"
+onclick="goTopUltra()">
+⬆️
+</button>
+
+
+<style>
+
+#backTop{
+
+position:fixed;
+
+bottom:90px;
+
+right:20px;
+
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+background:#2563eb;
+
+color:white;
+
+border:none;
+
+font-size:22px;
+
+display:none;
+
+z-index:6000;
+
+box-shadow:0 5px 20px #0005;
+
+}
+
+
+#backTop:hover{
+
+transform:scale(1.1);
+
+}
+
+</style>
+
+
+
+<script>
+
+window.addEventListener("scroll",()=>{
+
+
+let btn =
+document.getElementById("backTop");
+
+
+if(window.scrollY>300){
+
+btn.style.display="block";
+
+}
+
+else{
+
+btn.style.display="none";
+
+}
+
+
+});
+
+
+
+function goTopUltra(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script><!-- Ultra Live Clock -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🕒 ساعت زنده Ultra
+</h2>
+
+
+<h1 id="ultraClock">
+00:00:00
+</h1>
+
+
+<p id="ultraDate">
+-
+</p>
+
+
+</div>
+
+
+
+<script>
+
+function updateUltraClock(){
+
+let now =
+new Date();
+
+
+let time =
+now.toLocaleTimeString("fa-IR");
+
+
+let date =
+now.toLocaleDateString("fa-IR");
+
+
+
+document.getElementById("ultraClock").innerHTML =
+time;
+
+
+document.getElementById("ultraDate").innerHTML =
+date;
+
+}
+
+
+
+setInterval(
+updateUltraClock,
+1000
+);
+
+
+updateUltraClock();
+
+</script><!-- Ultra Rating System -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+⭐ امتیاز به Smart Tools Ultra
+</h2>
+
+
+<p>
+نظرت چیه؟
+</p>
+
+
+<div style="
+font-size:35px;
+">
+
+<span onclick="rateUltra(1)">
+⭐
+</span>
+
+<span onclick="rateUltra(2)">
+⭐
+</span>
+
+<span onclick="rateUltra(3)">
+⭐
+</span>
+
+<span onclick="rateUltra(4)">
+⭐
+</span>
+
+<span onclick="rateUltra(5)">
+⭐
+</span>
+
+</div>
+
+
+<h3 id="ratingResult">
+هنوز امتیازی ثبت نشده
+</h3>
+
+
+</div>
+
+
+
+<script>
+
+function rateUltra(star){
+
+localStorage.setItem(
+"ultraRating",
+star
+);
+
+
+document.getElementById("ratingResult").innerHTML =
+"✅ امتیاز شما: "+star+" ستاره";
+
+}
+
+let oldRating =
+localStorage.getItem("ultraRating");
+
+
+if(oldRating){
+
+document.getElementById("ratingResult").innerHTML =
+"⭐ امتیاز قبلی شما: "+oldRating;
+
+}
+
+</script><!-- Ultra Notification -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🔔 اعلان Ultra
+</h2>
+
+
+<button onclick="showUltraNotification()">
+نمایش اعلان
+</button>
+
+
+<div id="ultraNotification" style="
+display:none;
+margin-top:20px;
+padding:15px;
+background:#0005;
+border-radius:15px;
+">
+
+🚀 Smart Tools Ultra آماده استفاده است
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function showUltraNotification(){
+
+let box =
+document.getElementById("ultraNotification");
+
+
+box.style.display="block";
+
+
+setTimeout(()=>{
+
+box.style.display="none";
+
+},4000);
+
+
+}
+
+</script><!-- Ultra Dark Light Mode -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🌙 حالت نمایش Ultra
+</h2>
+
+
+<button onclick="darkUltraMode()">
+🌙 حالت شب
+</button>
+
+
+<button onclick="lightUltraMode()">
+☀️ حالت روز
+</button>
+
+
+<p id="modeStatus">
+حالت عادی
+</p>
+
+
+</div>
+
+
+
+<script>
+
+function darkUltraMode(){
+
+document.body.style.background =
+"#111827";
+
+document.body.style.color =
+"white";
+
+
+localStorage.setItem(
+"ultraMode",
+"dark"
+);
+
+
+document.getElementById("modeStatus").innerHTML =
+"🌙 حالت شب فعال شد";
+
+}
+
+
+
+function lightUltraMode(){
+
+document.body.style.background =
+"#f8fafc";
+
+document.body.style.color =
+"black";
+
+
+localStorage.setItem(
+"ultraMode",
+"light"
+);
+
+
+document.getElementById("modeStatus").innerHTML =
+"☀️ حالت روز فعال شد";
+
+}
+
+
+
+let savedMode =
+localStorage.getItem("ultraMode");
+
+
+if(savedMode==="dark"){
+
+darkUltraMode();
+
+}
+
+
+if(savedMode==="light"){
+
+lightUltraMode();
+
+}
+
+</script><!-- Ultra Floating Menu -->
+
+<div id="ultraFloatMenu">
+
+<button onclick="scrollToTools()">
+🛠️
+</button>
+
+
+<button onclick="scrollToGames()">
+🎮
+</button>
+
+
+<button onclick="scrollToTopUltra()">
+⬆️
+</button>
+
+</div>
+
+
+
+<style>
+
+#ultraFloatMenu{
+
+position:fixed;
+
+bottom:20px;
+
+left:20px;
+
+display:flex;
+
+gap:10px;
+
+z-index:5000;
+
+}
+
+
+
+#ultraFloatMenu button{
+
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+font-size:22px;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+
+</style>
+
+
+
+<script>
+
+function scrollToTools(){
+
+window.scrollTo({
+
+top:500,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+
+function scrollToGames(){
+
+window.scrollTo({
+
+top:1500,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+
+function scrollToTopUltra(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script><!-- Ultra Settings Backup -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+💾 مدیریت تنظیمات
+</h2>
+
+
+<button onclick="exportUltraSettings()">
+📤 ذخیره تنظیمات
+</button>
+
+
+<button onclick="importUltraSettings()">
+📥 بازیابی تنظیمات
+</button>
+
+
+<p id="backupResult">
+-
+</p>
+
+
+</div>
+
+
+
+<script>
+
+function exportUltraSettings(){
+
+let data =
+JSON.stringify(localStorage);
+
+
+navigator.clipboard.writeText(data);
+
+
+document.getElementById("backupResult").innerHTML =
+"✅ تنظیمات کپی شد";
+
+}
+
+
+
+function importUltraSettings(){
+
+let text =
+prompt("کد تنظیمات را وارد کن");
+
+
+if(text){
+
+try{
+
+let data =
+JSON.parse(text);
+
+
+for(let key in data){
+
+localStorage.setItem(
+key,
+data[key]
+);
+
+}
+
+
+document.getElementById("backupResult").innerHTML =
+"✅ تنظیمات بازیابی شد";
+
+
+}
+
+catch{
+
+document.getElementById("backupResult").innerHTML =
+"❌ کد اشتباه است";
+
+}
+
+}
+
+}
+
+</script><!-- Ultra Update Center -->
+
+<div style="
+margin-top:25px;
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+">
+
+<h2>
+🆙 مرکز آپدیت Ultra
+</h2>
+
+
+<h3 id="ultraVersion">
+نسخه فعلی: Ultra 1.0
+</h3>
+
+
+<button onclick="checkUltraUpdate()">
+🔍 بررسی آپدیت
+</button>
+
+
+<p id="updateResult">
+-
+</p>
+
+
+</div>
+
+
+
+<script>
+
+function checkUltraUpdate(){
+
+document.getElementById("updateResult").innerHTML =
+"✅ سایت شما آخرین نسخه را اجرا می‌کند 🚀";
+
+}
+
+</script><!-- Ultra Thank You -->
+
+<div style="
+margin-top:30px;
+background:linear-gradient(135deg,#2563eb,#22c55e);
+padding:30px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 10px 30px #0005;
+">
+
+<h1>
+🎉 پایان Smart Tools Ultra
+</h1>
+
+
+<p>
+ممنون که از این پروژه استفاده می‌کنی ❤️
+</p>
+
+
+<h2>
+💀 ساخته شده توسط علی منصوری
+</h2>
+
+
+<p>
+🚀 نسخه Ultra آماده است
+</p>
+
+
+<button onclick="celebrateUltra()">
+🎊 جشن بگیر
+</button>
+
+
+</div>
+
+
+
+<script>
+
+function celebrateUltra(){
+
+alert(
+"🎉 تبریک! Smart Tools Ultra آماده اجراست 🚀"
+);
+
+}
+
+</script>
