@@ -6,45 +6,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧪Smart Tools Ultra🧪</title>
+<title>🧪 Smart Tools Ultra</title>
+
 
 <style>
 
-*{
-box-sizing:border-box;
-}
-
 body{
-
 margin:0;
 font-family:tahoma;
-background:
-linear-gradient(135deg,#020617,#2563eb);
-
+background:linear-gradient(135deg,#020617,#2563eb);
 color:white;
 text-align:center;
-
 }
 
-
-
-/* صفحه لود */
 
 #loader{
 
 position:fixed;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
 
-background:
-linear-gradient(135deg,#020617,#1d4ed8);
+background:#020617;
 
 display:flex;
 flex-direction:column;
-
 justify-content:center;
 align-items:center;
 
@@ -55,16 +42,16 @@ z-index:9999;
 
 .logo{
 
-font-size:40px;
-animation:pulse 1s infinite;
+font-size:60px;
+animation:spin 2s infinite;
 
 }
 
 
-@keyframes pulse{
+@keyframes spin{
 
 50%{
-transform:scale(1.15);
+transform:rotate(180deg);
 }
 
 }
@@ -78,13 +65,12 @@ height:25px;
 
 background:#ffffff33;
 
-border-radius:30px;
+border-radius:20px;
 
 overflow:hidden;
 
-margin-top:25px;
-
 }
+
 
 
 #loadBar{
@@ -95,22 +81,9 @@ height:100%;
 
 background:#22c55e;
 
-border-radius:30px;
-
-transition:.1s;
+transition:.2s;
 
 }
-
-
-#loadingText{
-
-margin-top:15px;
-
-font-size:20px;
-
-}
-
-
 
 
 
@@ -144,10 +117,7 @@ border-radius:15px;
 
 font-size:16px;
 
-cursor:pointer;
-
 }
-
 
 
 .result{
@@ -159,7 +129,6 @@ line-height:2;
 }
 
 
-
 canvas{
 
 background:#111;
@@ -169,11 +138,9 @@ border-radius:15px;
 }
 
 
-
 </style>
 
 </head>
-
 
 
 <body>
@@ -182,20 +149,17 @@ border-radius:15px;
 
 <div id="loader">
 
-<div class="logo">
-🧪
-</div>
-
+<div class="logo">🧪</div>
 
 <h1>
 Smart Tools Ultra
 </h1>
 
-
 <div id="loadingText">
 در حال آماده سازی... 0%
 </div>
 
+<br>
 
 <div class="loadBox">
 
@@ -209,6 +173,7 @@ Smart Tools Ultra
 
 
 
+
 <h1>
 🧪 Smart Tools Ultra
 </h1>
@@ -217,9 +182,7 @@ Smart Tools Ultra
 
 <div class="card">
 
-<h2>
-📱 اطلاعات دستگاه
-</h2>
+<h2>📱 اطلاعات دستگاه</h2>
 
 <div id="device" class="result">
 
@@ -228,6 +191,9 @@ Smart Tools Ultra
 </div>
 
 </div>
+
+
+
 <div class="card">
 
 <h2>⚡ تست سرعت گوشی</h2>
@@ -239,9 +205,6 @@ Smart Tools Ultra
 <div id="phone" class="result"></div>
 
 </div>
-
-
-
 <div class="card">
 
 <h2>📡 تست پینگ</h2>
@@ -259,10 +222,10 @@ Smart Tools Ultra
 
 <div class="card">
 
-<h2>🌐 تست اینترنت</h2>
+<h2>🌐 تست سرعت اینترنت</h2>
 
 <button onclick="internetTest()">
-تست سرعت
+شروع تست
 </button>
 
 <div id="internet" class="result"></div>
@@ -325,11 +288,13 @@ let start=performance.now();
 
 let x=0;
 
+
 for(let i=0;i<10000000;i++){
 
 x+=i;
 
 }
+
 
 let end=performance.now();
 
@@ -338,7 +303,9 @@ document.getElementById("phone").innerHTML=
 "⚡ امتیاز سرعت: "+
 Math.round(100000/(end-start));
 
+
 }
+
 
 
 
@@ -359,19 +326,24 @@ mode:"no-cors"
 
 .then(()=>{
 
+
 document.getElementById("ping").innerHTML=
 "📡 پینگ تقریبی: "+
 (Date.now()-start)+
-" ms";
+" میلی‌ثانیه";
+
 
 })
 
 .catch(()=>{
 
+
 document.getElementById("ping").innerHTML=
 "❌ خطا در اتصال";
 
+
 });
+
 
 }
 
@@ -379,7 +351,8 @@ document.getElementById("ping").innerHTML=
 
 
 
-// تست اینترنت تقریبی
+
+// تست سرعت اینترنت
 
 function internetTest(){
 
@@ -392,9 +365,11 @@ fetch(
 
 .then(()=>{
 
+
 let time=Date.now()-start;
 
-let speed=(0.5/(time/1000)).toFixed(2);
+let speed=
+(0.5/(time/1000)).toFixed(2);
 
 
 document.getElementById("internet").innerHTML=
@@ -402,14 +377,18 @@ document.getElementById("internet").innerHTML=
 speed+
 " MB/s";
 
+
 })
 
 .catch(()=>{
 
+
 document.getElementById("internet").innerHTML=
-"❌ تست انجام نشد";
+"❌ تست نشد";
+
 
 });
+
 
 }
 
@@ -417,7 +396,8 @@ document.getElementById("internet").innerHTML=
 
 
 
-// ساخت رمز
+
+// رمز قوی
 
 function makePassword(){
 
@@ -439,6 +419,7 @@ Math.floor(Math.random()*chars.length)
 
 document.getElementById("pass").innerHTML=
 "🔑 "+pass;
+
 
 }
 
@@ -477,6 +458,7 @@ document.getElementById("pass").innerHTML=
 
 
 
+
 <div class="card">
 
 <h2>🐍 بازی مار</h2>
@@ -486,13 +468,13 @@ document.getElementById("pass").innerHTML=
 <br>
 
 <button onclick="startSnake()">
-شروع مار
+شروع بازی
 </button>
+
 
 <div id="score" class="result">
 امتیاز: 0
 </div>
-
 
 </div>
 
@@ -507,7 +489,8 @@ document.getElementById("pass").innerHTML=
 
 function rps(user){
 
-let list=[
+
+let items=[
 "سنگ",
 "کاغذ",
 "قیچی"
@@ -515,10 +498,10 @@ let list=[
 
 
 let cpu=
-list[Math.floor(Math.random()*3)];
+items[Math.floor(Math.random()*3)];
 
 
-let result;
+let result="";
 
 
 if(user==cpu){
@@ -528,9 +511,13 @@ result="مساوی 😐";
 }
 
 else if(
-(user=="سنگ" && cpu=="قیچی")||
-(user=="کاغذ" && cpu=="سنگ")||
+
+(user=="سنگ" && cpu=="قیچی") ||
+
+(user=="کاغذ" && cpu=="سنگ") ||
+
 (user=="قیچی" && cpu=="کاغذ")
+
 ){
 
 result="بردی 🎉";
@@ -549,6 +536,7 @@ document.getElementById("game1").innerHTML=
 "<br>کامپیوتر: "+cpu+
 "<br>"+result;
 
+
 }
 
 
@@ -562,8 +550,8 @@ let reactionStart;
 
 function startReaction(){
 
-let box=
-document.getElementById("reaction");
+
+let box=document.getElementById("reaction");
 
 
 box.innerHTML=
@@ -582,10 +570,12 @@ box.innerHTML=
 
 box.onclick=function(){
 
+
 box.innerHTML=
-"⏱ زمان: "+
+"⏱ زمان واکنش: "+
 (Date.now()-reactionStart)+
 " میلی‌ثانیه";
+
 
 };
 
@@ -601,11 +591,9 @@ box.innerHTML=
 
 // بازی مار
 
-let canvas=
-document.getElementById("snake");
+let canvas=document.getElementById("snake");
 
-let ctx=
-canvas.getContext("2d");
+let ctx=canvas.getContext("2d");
 
 
 let snake=[];
@@ -616,6 +604,7 @@ let dy=0;
 
 let game;
 let score=0;
+
 
 
 
@@ -656,16 +645,16 @@ game=setInterval(drawSnake,100);
 
 
 
-// کنترل لمسی
+// کنترل لمس
 
-let startX=0;
-let startY=0;
+let touchX=0;
+let touchY=0;
 
 
 document.addEventListener("touchstart",e=>{
 
-startX=e.touches[0].clientX;
-startY=e.touches[0].clientY;
+touchX=e.touches[0].clientX;
+touchY=e.touches[0].clientY;
 
 });
 
@@ -674,8 +663,9 @@ startY=e.touches[0].clientY;
 document.addEventListener("touchend",e=>{
 
 
-let x=e.changedTouches[0].clientX-startX;
-let y=e.changedTouches[0].clientY-startY;
+let x=e.changedTouches[0].clientX-touchX;
+
+let y=e.changedTouches[0].clientY-touchY;
 
 
 
@@ -683,11 +673,18 @@ if(Math.abs(x)>Math.abs(y)){
 
 
 if(x>0 && dx!=-10){
-dx=10;dy=0;
+
+dx=10;
+dy=0;
+
 }
 
+
 if(x<0 && dx!=10){
-dx=-10;dy=0;
+
+dx=-10;
+dy=0;
+
 }
 
 
@@ -697,11 +694,18 @@ else{
 
 
 if(y>0 && dy!=-10){
-dx=0;dy=10;
+
+dx=0;
+dy=10;
+
 }
 
+
 if(y<0 && dy!=10){
-dx=0;dy=-10;
+
+dx=0;
+dy=-10;
+
 }
 
 
@@ -729,22 +733,29 @@ ctx.fillRect(food.x,food.y,10,10);
 
 snake.forEach(part=>{
 
+
 ctx.fillStyle="lime";
 
 ctx.fillRect(part.x,part.y,10,10);
+
 
 });
 
 
 
 let head={
+
 x:snake[0].x+dx,
+
 y:snake[0].y+dy
+
 };
 
 
 
+
 if(head.x==food.x && head.y==food.y){
+
 
 score++;
 
@@ -753,9 +764,13 @@ document.getElementById("score").innerHTML=
 "امتیاز: "+score;
 
 
+
 food={
+
 x:Math.floor(Math.random()*30)*10,
+
 y:Math.floor(Math.random()*30)*10
+
 };
 
 
@@ -769,11 +784,14 @@ snake.pop();
 
 
 
+
 if(
+
 head.x<0 ||
 head.x>=300 ||
 head.y<0 ||
 head.y>=300
+
 ){
 
 clearInterval(game);
@@ -785,18 +803,25 @@ return;
 }
 
 
+
 snake.unshift(head);
 
 
 }
+
+
+</script>
 <script>
 
+// لودینگ حرفه‌ای 🧪
 
-// لودینگ سایت 🧪
+window.addEventListener("load", function(){
+
 
 let progress = 0;
 
-let loading = setInterval(()=>{
+
+let loading = setInterval(function(){
 
 
 progress++;
@@ -818,21 +843,32 @@ clearInterval(loading);
 
 
 
+setTimeout(function(){
+
+
 document.getElementById("loader").style.opacity="0";
 
 
-setTimeout(()=>{
+setTimeout(function(){
 
 document.getElementById("loader").style.display="none";
 
 },500);
 
 
+
+},300);
+
+
+
 }
 
 
-
 },25);
+
+
+
+});
 
 
 
@@ -847,7 +883,6 @@ document.getElementById("loader").style.display="none";
 </h3>
 
 </footer>
-
 
 
 </body>
