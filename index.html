@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smart Tools - Software Update</title>
+<title>Smart Tools Ultra</title>
 
 <style>
 
@@ -18,74 +18,109 @@ font-family:tahoma,sans-serif;
 }
 
 body{
-background:#020617;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
+background:#0f172a;
 color:white;
 }
 
-.box{
-width:100%;
-max-width:700px;
-background:#0f172a;
-border-radius:20px;
-padding:30px;
-box-shadow:0 0 25px rgba(37,99,235,.4);
-}
+header{
 
-h1{
-text-align:center;
-font-size:38px;
-color:#38bdf8;
-margin-bottom:10px;
-}
+position:sticky;
+top:0;
 
-h2{
-text-align:center;
-font-size:22px;
-color:#94a3b8;
-margin-bottom:30px;
-}
-
-.info{
-font-size:20px;
-line-height:2;
-margin-bottom:20px;
-}
-
-.features{
 background:#1e293b;
-padding:20px;
-border-radius:15px;
-margin:20px 0;
-}
 
-.features h3{
-margin-bottom:15px;
-color:#38bdf8;
-}
+padding:18px;
 
-.features p{
-margin:8px 0;
-font-size:18px;
-}
-
-.note{
-margin-top:20px;
-font-size:18px;
 text-align:center;
-color:#cbd5e1;
-}
 
-#loading{
-margin-top:25px;
-text-align:center;
 font-size:28px;
+
 font-weight:bold;
+
+box-shadow:0 2px 10px rgba(0,0,0,.4);
+
+z-index:1000;
+
+}
+
+main{
+
+padding:20px 20px 90px;
+
+}
+
+.card{
+
+background:#1e293b;
+
+border-radius:18px;
+
+padding:18px;
+
+margin-bottom:18px;
+
+}
+
+.card h2{
+
+margin-bottom:10px;
+
 color:#38bdf8;
+
+}
+
+.card p{
+
+line-height:1.8;
+
+}
+
+.bottom-nav{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:70px;
+
+background:#111827;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+border-top:2px solid #334155;
+
+}
+
+.nav-btn{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+color:white;
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+.nav-btn span{
+
+font-size:24px;
+
+margin-bottom:4px;
+
 }
 
 </style>
@@ -94,97 +129,398 @@ color:#38bdf8;
 
 <body>
 
-<div class="box">
+<header>
+Smart Tools
+</header>
 
-<h1>Smart Tools</h1>
+<main id="content">
 
-<h2>Software Update</h2>
+<div class="card">
 
-<div class="info">
+<h2>🎉 به Smart Tools Ultra خوش آمدید</h2>
 
-نسخه فعلی:
-<b>Pro Max</b>
+<p>
 
-<br><br>
+این نسخه در حال توسعه است و امکانات جدید به مرور اضافه خواهند شد.
 
-نسخه جدید:
-<b>Ultra</b>
-
-</div>
-
-<div class="features">
-
-<h3>ویژگی‌های جدید</h3>
-
-<p>✔ طراحی کاملاً جدید</p>
-
-<p>✔ سازگار با گوشی و لپ‌تاپ</p>
-
-<p>✔ حالت شب و روشن</p>
-
-<p>✔اضافه شدن بیش از ۳۰ بازی جدید</p>
-  
-<p>✔ نمایش مدل گوشی</p>
-
-<p>✔ اطلاعات کامل‌تر دستگاه</p>
-
-<p>✔ بهبود تست سرعت اینترنت</p>
-
-<p>✔ بهبود تست پینگ</p>
-
-<p>✔ نوار لود جدید از چپ به راست</p>
-
-<p>✔ انیمیشن‌های روان‌تر</p>
-
-<p>✔ ظاهر حرفه‌ای‌تر</p>
-
-<p>✔ ابزارهای جدید</p>
-
-<p>✔ بهبود ماشین حساب</p>
-
-<p>✔ بهبود تایمر</p>
-
-<p>✔ بهبود ابزار تاس</p>
-
-<p>✔ افزایش سرعت سایت</p>
-
-<p>✔ رفع باگ‌های نسخه Pro Max</p>
-
-<p>✔ بهینه‌سازی برای مرورگرهای جدید</p>
+</p>
 
 </div>
 
-<div class="note">
-  
-  در حال بروزرسانی سایت لطفا بعدا مراجعه فرمایید.
+</main>
+
+<div class="bottom-nav">
+
+<div class="nav-btn" onclick="showHome()">
+<span>🏠</span>
+خانه
+</div>
+
+<div class="nav-btn" onclick="showTools()">
+<span>🧰</span>
+ابزارها
+</div>
+
+<div class="nav-btn" onclick="showGames()">
+<span>🎮</span>
+بازی‌ها
+</div>
+
+<div class="nav-btn" onclick="showSettings()">
+<span>⚙️</span>
+تنظیمات
+</div>
+
+</div><script>
+
+function showHome(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🏠 خانه</h2>
+
+<p>
+
+به Smart Tools Ultra خوش آمدید.
+
+از منوی پایین ابزارها، بازی‌ها و تنظیمات را انتخاب کنید.
+
+</p>
 
 </div>
 
-<div id="loading">
-.Loading
-</div>
+`;
 
-</div>
-
-<script>
-
-let dots = 1;
-
-setInterval(function(){
-
-dots++;
-
-if(dots > 3){
-dots = 1;
 }
 
-document.getElementById("loading").innerHTML =
-".".repeat(dots) + "Loading";
 
-},500);
+
+function showTools(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🧰 ابزارها</h2>
+
+<p>🚧 ابزارها به‌زودی اضافه می‌شوند...</p>
+
+</div>
+
+`;
+
+}
+
+
+
+function showGames(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🎮 بازی‌ها</h2>
+
+<p>🚧 بازی‌ها به‌زودی اضافه می‌شوند...</p>
+
+</div>
+
+`;
+
+}
+
+
+
+function showSettings(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>⚙️ تنظیمات</h2>
+
+<p>🚧 تنظیمات به‌زودی اضافه می‌شوند...</p>
+
+</div>
+
+`;
+
+}
 
 </script>
 
 </body>
 
-</html>
+</html>function showTools(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🧰 ابزارها</h2>
+
+<p>یک ابزار را انتخاب کنید.</p>
+
+</div>
+
+<div class="card">
+
+<button onclick="alert('به زودی فعال می‌شود')">
+🧮 ماشین حساب
+</button>
+
+</div>
+
+<div class="card">
+
+<button onclick="alert('به زودی فعال می‌شود')">
+⏱ تایمر
+</button>
+
+</div>
+
+<div class="card">
+
+<button onclick="alert('به زودی فعال می‌شود')">
+📡 تست پینگ
+</button>
+
+</div>
+
+<div class="card">
+
+<button onclick="alert('به زودی فعال می‌شود')">
+🚀 تست سرعت اینترنت
+</button>
+
+</div>
+
+<div class="card">
+
+<button onclick="alert('به زودی فعال می‌شود')">
+📱 اطلاعات دستگاه
+</button>
+
+</div>
+
+`;
+
+}function showGames(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🎮 بازی‌ها</h2>
+
+<p>یکی از بازی‌ها را انتخاب کنید.</p>
+
+</div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🐍 Snake</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">❌ Tic Tac Toe</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🟨 2048</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🧠 Memory</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🪨 سنگ، کاغذ، قیچی</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🔢 حدس عدد</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">⌨️ تست سرعت تایپ</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🎯 تست سرعت واکنش</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🃏 Hangman</button></div>
+
+<div class="card"><button onclick="alert('به‌زودی اضافه می‌شود')">🎡 گردونه شانس</button></div>
+
+`;
+
+}.light-mode{
+background:#f8fafc;
+color:#111827;
+}
+
+.light-mode header{
+background:#ffffff;
+color:#111827;
+}
+
+.light-mode .card{
+background:#ffffff;
+color:#111827;
+border:1px solid #d1d5db;
+}
+
+.light-mode .bottom-nav{
+background:#ffffff;
+border-top:2px solid #d1d5db;
+}
+
+.light-mode .nav-btn{
+color:#111827;
+}
+
+.setting-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+font-size:16px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+}function showSettings(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>⚙️ تنظیمات</h2>
+
+<button class="setting-btn" onclick="toggleTheme()">
+
+🌙 تغییر حالت شب / روشن
+
+</button>
+
+</div>
+
+`;
+
+}function toggleTheme(){
+
+document.body.classList.toggle("light-mode");
+
+}function showTools(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="card">
+
+<h2>🧰 ابزارها</h2>
+
+<p>ماشین حساب Ultra</p>
+
+<input id="num1" type="number" placeholder="عدد اول">
+
+<br><br>
+
+<input id="num2" type="number" placeholder="عدد دوم">
+
+<br><br>
+
+<button onclick="addNumbers()">➕ جمع</button>
+
+<br><br>
+
+<button onclick="subNumbers()">➖ تفریق</button>
+
+<br><br>
+
+<button onclick="mulNumbers()">✖ ضرب</button>
+
+<br><br>
+
+<button onclick="divNumbers()">➗ تقسیم</button>
+
+<br><br>
+
+<h3 id="calcResult">نتیجه: -</h3>
+
+</div>
+
+`;
+
+}function addNumbers(){
+
+let a=Number(document.getElementById("num1").value);
+let b=Number(document.getElementById("num2").value);
+
+document.getElementById("calcResult").innerHTML="نتیجه: "+(a+b);
+
+}
+
+function subNumbers(){
+
+let a=Number(document.getElementById("num1").value);
+let b=Number(document.getElementById("num2").value);
+
+document.getElementById("calcResult").innerHTML="نتیجه: "+(a-b);
+
+}
+
+function mulNumbers(){
+
+let a=Number(document.getElementById("num1").value);
+let b=Number(document.getElementById("num2").value);
+
+document.getElementById("calcResult").innerHTML="نتیجه: "+(a*b);
+
+}
+
+function divNumbers(){
+
+let a=Number(document.getElementById("num1").value);
+let b=Number(document.getElementById("num2").value);
+
+if(b==0){
+
+document.getElementById("calcResult").innerHTML="❌ تقسیم بر صفر امکان‌پذیر نیست";
+
+return;
+
+}
+
+document.getElementById("calcResult").innerHTML="نتیجه: "+(a/b);
+
+}<div class="card">
+
+<h2>📱 اطلاعات دستگاه</h2>
+
+<button onclick="deviceInfo()">
+نمایش اطلاعات دستگاه
+</button>
+
+<br><br>
+
+<div id="deviceInfo">
+هنوز اطلاعاتی نمایش داده نشده است.
+</div>
+
+</div>function deviceInfo(){
+
+let info="";
+
+info+="🌐 زبان: "+navigator.language+"<br>";
+
+info+="💻 سیستم عامل: "+navigator.platform+"<br>";
+
+info+="📺 اندازه صفحه: "+screen.width+" × "+screen.height+"<br>";
+
+info+="🖥️ تعداد هسته CPU: "+
+(navigator.hardwareConcurrency || "نامشخص")+"<br>";
+
+info+="📱 صفحه لمسی: "+
+("ontouchstart" in window ? "بله" : "خیر")+"<br>";
+
+document.getElementById("deviceInfo").innerHTML=info;
+
+}<div class="card">
+
+<button onclick="snakeComingSoon()">
+🐍 Snake
+</button>
+
+</div>function snakeComingSoon(){
+
+alert(
+"🐍 بازی Snake در نسخه بعدی Smart Tools Ultra اضافه خواهد شد.\n\nلطفاً منتظر بروزرسانی بعدی باشید."
+);
+
+}
